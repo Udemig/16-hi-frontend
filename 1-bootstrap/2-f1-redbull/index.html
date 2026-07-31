@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oracle Red Bull Racing</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Booststrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body >
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-navy sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+          <span class="text-white">Red Bull</span> <span class="text-danger">Racing</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link text-white"  href="#home">Anasayfa</a></li>
+            <li class="nav-item"><a class="nav-link text-white"  href="#stats">Takım</a></li>
+            <li class="nav-item"><a class="nav-link text-white"  href="#drivers">Pilotlar</a></li>
+            <li class="nav-item"><a class="nav-link text-white"  href="#car">Araç</a></li>
+            <li class="nav-item"><a class="nav-link text-white"  href="#schedule">Takvim</a></li>
+            <li class="nav-item"><a class="nav-link text-white"  href="#sponsors">Sponsorlar</a></li>
+            <li class="nav-item"><a class="nav-link text-white"  href="#contact">İletişim</a></li>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="hero-section d-flex align-items-center text-center text-md-start">
+        <div class="container position-relative z-1">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 class="display-3 fw-black text-white text-uppercase mb-3">Oracle Red Bull Racing</h1>
+                    <p class="lead text-light mb-5 fs-4">Hızın, inovasyonun ve şampiyonluk performansının sınırlarını zorluyoruz.</p>
+
+                    <div class="d-flex flex-column flex-sm-row gap-3">
+                        <a href="#" class="btn btn-red btn-lg px-5 py-3 fw-bold text-uppercase rounded-1">Takımı Keşfet</a>
+                        <a href="#" class="btn btn-outline-light btn-lg px-5 py-3 fw-bold text-uppercase rounded-1">Sezonu İncele</a>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Takım İstatistikleri -->
+    <section id="stats" class="py-5 bg-dark-navy spacing">
+        <div class="container">
+            <div class="row text-center g-4">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="stat-card p-4 rounded-3 h-100">
+                        <h2 class="display-4 fw-bold text-yellow mb-2">6</h2>
+                        <p class="text-uppercase text-light mb-0 fw-semibold tracking-wide">Şampiyonluk</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="stat-card p-4 rounded-3 h-100">
+                        <h2 class="display-4 fw-bold text-yellow mb-2">115+</h2>
+                        <p class="text-uppercase text-light mb-0 fw-semibold tracking-wide">Yarış Galibiyeti</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="stat-card p-4 rounded-3 h-100">
+                        <h2 class="display-4 fw-bold text-yellow mb-2">100+</h2>
+                        <p class="text-uppercase text-light mb-0 fw-semibold tracking-wide">Pol Pozisyonu</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="stat-card p-4 rounded-3 h-100">
+                        <h2 class="display-4 fw-bold text-yellow mb-2">95+</h2>
+                        <p class="text-uppercase text-light mb-0 fw-semibold tracking-wide">En Hızlı Tur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pilotlar -->
+    <section id="drivers" class="py-5 bg-navy spacing">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-white">PİLOTLAR</h2>
+                <div class="line mx-auto mt-3"></div>
+            </div>
+
+
+            <div class="row g-5 justify-content-center">
+                <!-- PİLOT 1 -->
+                 <div class="col-lg-5 col-md-6">
+                    <div class="card bg-dark-navy text-white border-0 h-100 shadow-lg">
+                        <img src="/images/verstappen.jpg" class="card-img-top object-fit-cover" style="height: 450px;">
+                        <div class="card-body p-4 position-relative">
+                            <div class="driver-number">1</div>
+                            <h3 class="card-title fw-bold text-uppercase mb-1">Max Verstappen</h3>
+                            <p class="text-yellow mb-3 fw-semibold"><i class="bi bi-geo-alt-fill me-1"></i> Hollanda</p>
+                            <p class="card-text text-light opacity-75">Üç kez Dünya Şampiyonu olan Max Verstappen, agresif sürüş tarzı ve eşsiz hızıyla pistlerde fırtına estiriyor.</p>
+                        </div>
+                    </div>
+                 </div>
+                 <!-- PİLOT 2 -->
+                <div class="col-lg-5 col-md-6">
+                    <div class="card bg-dark-navy text-white border-0 h-100 shadow-lg">
+                        <img src="/images/perez.avif" class="card-img-top object-fit-cover" style="height: 450px;">
+                        <div class="card-body p-4 position-relative">
+                            <div class="driver-number">11</div>
+                            <h3 class="card-title fw-bold text-uppercase mb-1">Sergio Perez</h3>
+                            <p class="text-yellow mb-3 fw-semibold"><i class="bi bi-geo-alt-fill me-1"></i> Meksika</p>
+                            <p class="card-text text-light opacity-75">"Lastik Fısıldayan" lakaplı deneyimli pilot Checo Perez, mükemmel yarış zekası ve tecrübesiyle takımın vazgeçilmezi.</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Araç Bilgileri -->
+    <section id="car" class="py-5 bg-dark-navy spacing">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <!-- Foto -->
+                <div class="col-lg-7">
+                    <img src="/images/car.jpg" class="img-fluid rounded-3 shadow-lg">
+                </div>
+                <!-- Yazılar -->
+                <div class="col-lg-5">
+                    <h2 class="display-5 fw-bold text-white text-uppercase mb-4">RB20 Özellikleri</h2>
+                    <p class="lead text-light opacity-75 mb-4">Mühendisliğin zirvesi. Red Bull Powertrains ile güçlendirilmiş aerodinamik bir şaheser.</p>
+
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between border-bottom border-secondary py-3">
+                            <span>Motor</span>
+                            <span>Honda RBPTH002</span>
+                        </li>
+                        <li class="d-flex justify-content-between border-bottom border-secondary py-3">
+                            <span>Güç Ünitesi</span>
+                            <span>1.6 L V6 Turbo Hibrit</span>
+                        </li>
+                        <li class="d-flex justify-content-between border-bottom border-secondary py-3">
+                            <span>Ağırlık</span>
+                            <span>798 kg</span>
+                        </li>
+                        <li class="d-flex justify-content-between border-bottom border-secondary py-3">
+                            <span>Şasi</span>
+                            <span>Karbon Fiber Kompozit</span>
+                        </li>
+                        <li class="d-flex justify-content-between border-bottom border-secondary py-3">
+                            <span>Takım Patronu</span>
+                            <span>Christian Horner</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Takvim Tablosu -->
+    <section id="schedule" class="py-5 bg-navy spacing">
+     <div class="container">
+         <div class="text-center mb-5">
+           <h2 class="text-uppercase text-white fw-bold display-5">Yarış Takvimi</h2>
+           <div class="line mx-auto mt-3"></div>
+         </div>
+
+
+         <div class="table-responsive bg-dark-navy p-4 rounded-3 shadow">
+            <table class="table table-secondary table-striped table-hover table-borderless align-middle mb-0">
+                <thead>
+                    <tr class="text-uppercase text-yellow border-bottom border-secondary">
+                        <th class="py-3">Grand-Prix</th>
+                        <th class="py-3">Ülke</th>
+                        <th class="py-3">Pist</th>
+                        <th class="py-3">Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="py-3 fw-semibold">Bahreyn Grand Prix</td>
+                        <td>Bahreyn</td>
+                        <td >Bahrain International Circuit</td>
+                        <td>02 Mart</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 fw-semibold">Suudi Arabistan Grand Prix</td>
+                        <td>Suudi Arabistan</td>
+                        <td >Jeddah Corniche Circuit</td>
+                        <td>09 Mart</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 fw-semibold">Avustralya Grand Prix</td>
+                        <td>Avustralya</td>
+                        <td >Albert Park Circuit</td>
+                        <td>24 Mart</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 fw-semibold">Japonya Grand Prix</td>
+                        <td>Japonya</td>
+                        <td >Suzuka International Racing Course</td>
+                        <td>07 Nisan</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 fw-semibold">Miami Grand Prix</td>
+                        <td>ABD</td>
+                        <td >Miami International Autodrome</td>
+                        <td>05 Mayıs</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 fw-semibold">Emilia Romagna Grand Prix</td>
+                        <td>İtalya</td>
+                        <td >Autodromo Enzo e Dino Ferrari</td>
+                        <td>19 Mayıs</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 fw-semibold">Monako Grand Prix</td>
+                        <td>Monako</td>
+                        <td >Circuit de Monaco</td>
+                        <td>26 Mayıs</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 fw-semibold">Büyük Britanya Grand Prix</td>
+                        <td>Birleşik Krallık</td>
+                        <td >	Silverstone Circuit</td>
+                        <td>07 Temmuz</td>
+                    </tr>
+                </tbody>
+            </table>
+         </div>
+     </div>
+    </section>
+
+    <!-- Neden Redbull? -->
+     <section id="why" class="py-5 bg-dark-navy spacing">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-white text-uppercase">Neden Red Bull Racing?</h2>
+                <div class="line mx-auto mt-3"></div>
+            </div>
+
+            <div class="row g-4">
+              <!-- 1 -->
+              <div class="col-md-4">
+                <div class="feature-card text-center p-5 rounded-3 h-100 bg-navy shadow-sm">
+                    <div class="mb-4 d-inline-flex align-items-center justify-content-center bg-dark-navy rounded-circle" style="width: 80px; height: 80px;">
+                       <i class="bi bi-lightning-charge-fill text-yellow fs-1"></i>
+                    </div>
+
+                    <h4 class="fw-bold mb-3 text-white">İnovasyon</h4>
+                    
+                    <p class="text-light opacity-75 mb-0">Sınırları zorlayan mühendislik ve aerodinamik tasarımlarla her zaman rakiplerimizin bir adım önündeyiz.</p>
+                </div>
+              </div>
+
+              <!-- 2 -->
+              <div class="col-md-4">
+                <div class="feature-card text-center p-5 rounded-3 h-100 bg-navy shadow-sm">
+                    <div class="mb-4 d-inline-flex align-items-center justify-content-center bg-dark-navy  rounded-circle" style="width: 80px; height: 80px;">
+                       <i class="bi bi-trophy-fill fs-1 text-danger"></i>
+                    </div>
+
+                    <h4 class="fw-bold mb-3 text-white">Şampiyonluk DNA'sı</h4>
+                    
+                    <p class="text-light opacity-75 mb-0">Kazanma arzusu her şeyimiz. Sayısız şampiyonlukla F1 tarihine altın harflerle yazılmış bir mirasımız var.</p>
+                </div>
+              </div>
+
+              <!-- 3 -->
+              <div class="col-md-4">
+                <div class="feature-card text-center p-5 rounded-3 h-100 bg-navy shadow-sm">
+                    <div class="mb-4 d-inline-flex align-items-center justify-content-center bg-dark-navy rounded-circle" style="width: 80px; height: 80px;">
+                      <i class="bi bi-gear-fill fs-1 text-success"></i>
+                    </div>
+
+                    <h4 class="fw-bold mb-3 text-white">Dünya Standartlarında Mühendislik</h4>
+                    
+                    <p class="text-light opacity-75 mb-0">En parlak zihinlerle çalışarak aracı her yarışta daha hızlı, daha dayanıklı ve daha kusursuz hale getiriyoruz.</p>
+                </div>
+              </div>
+            </div>
+        </div>
+     </section>
+  </body>
+</html>

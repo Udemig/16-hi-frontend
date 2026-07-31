@@ -1,0 +1,21 @@
+.bg-blue {
+  background: blue;
+}
+
+.submit-button {
+  margin: 10px;
+  padding: 5px 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  background: aqua;
+  border: none;
+  transition: all 0.3s;
+}
+
+.submit-button:hover {
+  filter: brightness(70%);
+}
+
+.box {
+  height: 500px;
+}

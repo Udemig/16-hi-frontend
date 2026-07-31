@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap");
+
+body {
+  font-family: "Inter", sans-serif;
+  color: #f8f9fa;
+  background: #050e2d;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand {
+  font-family: "Outfit", sans-serif;
+}
+
+/* Renkler */
+:root {
+  --rb-navy: #0a1e5e;
+  --rb-dark-navy: #050e2d;
+  --rb-red: #e51a31;
+  --rb-yellow: #f4c114;
+}
+
+.bg-navy {
+  background: var(--rb-navy);
+}
+.bg-dark-navy {
+  background: var(--rb-dark-navy);
+}
+.bg-black {
+  background: #000000 !important;
+}
+.text-navy {
+  color: var(--rb-navy);
+}
+.text-yellow {
+  color: var(--rb-yellow);
+}
+.text-red {
+  color: var(--rb-red);
+}
+
+/* Navbar */
+.navbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.navbar-nav .nav-link {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  margin-left: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--rb-yellow) !important;
+}
+
+/* Buttons */
+.btn-red {
+  background: var(--rb-red);
+  border-color: var(--rb-red);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.btn-red:hover {
+  background: #c01428;
+  border-color: #c01428;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 26, 49, 0.4);
+}
+
+.btn-outline-light {
+  border-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+  background: #fff;
+  color: var(--rb-navy);
+  transform: translateY(-2px);
+}
+
+/* Yazı */
+.fw-black {
+  font-weight: 900;
+}
+.spacing {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+.tracking-wide {
+  letter-spacing: 0.1em;
+}
+
+/* Hero */
+.hero-section {
+  min-height: 100vh;
+  background-image: url("/images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /*parallax effect*/
+  position: relative;
+}
+
+.hero-section h1 {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-overlay {
+  background: linear-gradient(
+    to right,
+    rgba(5, 14, 45, 0.95) 0%,
+    rgba(5, 14, 45, 0.6) 50%,
+    rgba(5, 14, 45, 0.1) 100%
+  );
+  position: absolute;
+  inset: 0;
+}
+
+/* Card */
+.stat-card {
+  background: linear-gradient(145deg, rgba(10, 30, 94, 0.6), rgba(5, 14, 45, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Pilotlar */
+.line {
+  width: 60px;
+  height: 4px;
+  background-color: var(--rb-red);
+  border-radius: 2px;
+}
+
+#drivers .card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+#drivers .card:hover {
+  transform: translateY(-10px);
+}
+
+.driver-number {
+  position: absolute;
+  top: -40px;
+  right: 20px;
+  font-size: 4rem;
+  font-family: "Outfit", "sans-serif";
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.1);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Araç */
+#car img {
+  transition: transform 0.5s ease;
+}
+
+#car img:hover {
+  transform: scale(1.02);
+}
+
+/* Neden Red Bull ? */
+.feature-card {
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}

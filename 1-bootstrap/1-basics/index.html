@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div>
+      <!-- Display: başlık boyutu -->
+      <h1 class="display-1">Lorem ipsum dolor sit</h1>
+
+      <!-- FS: Font-Size: Yazı boyutu -->
+      <p class="fs-1">Lorem ipsum dolor sit</p>
+
+      <!-- FW: Font-Weight: Yazı Kalınlığı -->
+      <p class="fs-1 fw-bold">Lorem ipsum dolor sit</p>
+      <p class="fs-1 fw-semibold">Lorem ipsum dolor sit</p>
+
+      <!-- Hizalama -->
+      <p class="fs-1 text-end">Lorem ipsum dolor sit amet.</p>
+      <p class="fs-1 text-start">Lorem ipsum dolor sit amet.</p>
+      <p class="fs-1 text-center">Lorem ipsum dolor sit amet.</p>
+
+      <!-- Renkler -->
+      <div class="fs-1 bg-primary">Lorem, ipsum dolor.</div>
+      <div class="fs-1 bg-secondary">Lorem, ipsum dolor.</div>
+      <div class="fs-1 bg-success">Lorem, ipsum dolor.</div>
+      <div class="fs-1 bg-danger">Lorem, ipsum dolor.</div>
+      <div class="fs-1 bg-warning">Lorem, ipsum dolor.</div>
+      <div class="fs-1 bg-info">Lorem, ipsum dolor.</div>
+      <div class="fs-1 bg-dark">Lorem, ipsum dolor.</div>
+      <div class="fs-1 bg-light">Lorem, ipsum dolor.</div>
+      <div class="fs-1 text-danger">Lorem, ipsum dolor.</div>
+
+      <!-- Boşluklar -->
+      <div class="fs-1 m-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 mt-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 mb-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 ms-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 me-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 mx-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 my-5">Lorem, ipsum dolor.</div>
+
+      <div class="fs-1 p-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 pt-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 pb-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 ps-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 pe-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 px-5">Lorem, ipsum dolor.</div>
+      <div class="fs-1 py-5">Lorem, ipsum dolor.</div>
+
+      <!-- Genişlik Yükseklik -->
+      <div class="bg-danger fs-1 p-5 w-25 h-25">Lorem, ipsum dolor.</div>
+      <div class="bg-success fs-1 p-5 w-50 h-50">Lorem, ipsum dolor.</div>
+      <div class="bg-danger fs-1 p-5 w-75 h-75">Lorem, ipsum dolor.</div>
+      <div class="bg-success fs-1 p-5 w-100 h-100">Lorem, ipsum dolor.</div>
+      <div class="fs-1 p-5 bg-danger vh-100">ekran yüksekliği</div>
+      <p class="fs-1 p-5 bg-success vw-100">ekran genişliği</p>
+
+      <!-- Display -->
+      <div class="fs-1 d-none bg-warning">Lorem, ipsum dolor.</div>
+      <div class="fs-1 d-block bg-warning">Lorem, ipsum dolor.</div>
+      <div class="fs-1 d-inline bg-info">Lorem, ipsum dolor.</div>
+      <div class="fs-1 d-inline-block bg-dark">Lorem, ipsum dolor.</div>
+
+      <!-- Flexbox -->
+      <div
+        class="bg-info my-5 box d-flex justify-content-evenly align-items-center flex-row flex-wrap"
+      >
+        <div class="fs-1 flex-fill bg-danger">eleman-1</div>
+        <div class="fs-1 flex-fill bg-warning">eleman-2</div>
+        <div class="fs-1 flex-fill bg-danger">eleman-3</div>
+        <div class="fs-1 flex-fill bg-warning">eleman-4</div>
+        <div class="fs-1 flex-fill bg-danger">eleman-5</div>
+        <div class="fs-1 flex-fill bg-danger">eleman-1</div>
+        <div class="fs-1 flex-fill bg-warning">eleman-2</div>
+        <div class="fs-1 flex-fill bg-danger">eleman-3</div>
+        <div class="fs-1 flex-fill bg-warning">eleman-4</div>
+        <div class="fs-1 flex-fill bg-danger">eleman-5</div>
+        <div class="fs-1 flex-fill bg-danger">eleman-5</div>
+        <div class="fs-1 flex-fill bg-danger">eleman-1</div>
+        <div class="fs-1 flex-fill bg-warning">eleman-2</div>
+        <div class="fs-1 flex-fill bg-danger">eleman-3</div>
+        <div class="fs-1 flex-fill bg-warning">eleman-4</div>
+        <div class="fs-1 flex-fill bg-danger">eleman-5</div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="p-10">
+      <button class="btn btn-dark fs-1">Bana Tıkla</button>
+      <button class="btn btn-outline-dark fs-1">Bana Tıkla</button>
+
+      <div class="m-5 btn-group">
+        <button class="btn btn-primary fs-1">azalt</button>
+        <button class="btn btn-info fs-1">sıfırla</button>
+        <button class="btn btn-primary fs-1">arttırr</button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-striped table-hover table-bordered table-dark table-responsive">
+      <thead>
+        <tr>
+          <th>Ad</th>
+          <th>Soyad</th>
+          <th>Yaş</th>
+          <th>Puan</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Ali</td>
+          <td>Kaya</td>
+          <td>23</td>
+          <td>90</td>
+        </tr>
+        <tr>
+          <td>Ayşe</td>
+          <td>Yıldız</td>
+          <td>27</td>
+          <td>92</td>
+        </tr>
+        <tr>
+          <td>Fatma</td>
+          <td>Işık</td>
+          <td>21</td>
+          <td>96</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Form -->
+    <div class="container p-10 m-10">
+      <form>
+        <div>
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control is-invalid" required />
+        </div>
+
+        <div class="mt-3">
+          <label class="form-label">Şifre</label>
+          <input type="password" class="form-control is-valid" />
+        </div>
+        <div class="mt-3 d-flex gap-3">
+          <input type="checkbox" class="form-check" />
+          <label class="form-label">Okudum onaylıyorum</label>
+        </div>
+
+        <div class="mt-3 d-flex justify-content-end">
+          <button class="btn btn-primary">Gönder</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Resimler -->
+    <div style="height: 400px; width: 400px">
+      <img
+        src="https://binyaprak.com/images/blog_images/11067/computer-program-code_1385-63_20210128-202659_1.jpg"
+        class="img-fluid rounded-circle object-fit-cover"
+      />
+    </div>
+
+    <!-- Cards  -->
+    <div class="container">
+      <div class="card">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Scarpa_di_vernice.jpg/250px-Scarpa_di_vernice.jpg"
+          class="card-img-top"
+        />
+
+        <div class="card-body">
+          <h1 class="card-title">Ayakkabı</h1>
+          <p class="card-text">en popüler ürünümüz</p>
+          <button class="btn btn-primary">Satın Al</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- Alert -->
+      <div class="alert alert-success">Uyarı mesajı</div>
+      <div class="alert alert-danger">Uyarı mesajı</div>
+      <div class="alert alert-warning">Uyarı mesajı</div>
+
+      <!-- Badge -->
+      <div class="badge bg-danger">3 yeni mesaj</div>
+      <div class="badge bg-success">email onaylandı</div>
+
+      <!-- Loader -->
+      <div class="spinner-border text-primary"></div>
+      <div class="spinner-grow text-primary"></div>
+
+      <!-- Carousel -->
+      <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2VhfGVufDB8MHwwfHx8Mg%3D%3D"
+              class="d-block w-100"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://images.unsplash.com/photo-1468581264429-2548ef9eb732?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2VhfGVufDB8MHwwfHx8Mg%3D%3D"
+              class="d-block w-100"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://images.unsplash.com/photo-1530053969600-caed2596d242?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2VhfGVufDB8MHwwfHx8Mg%3D%3D"
+              class="d-block w-100"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!-- Icons -->
+      <h1 class="display-1">
+        <i class="bi bi-airplane-engines-fill"></i>
+        <i class="bi bi-android2"></i>
+      </h1>
+    </div>
+  </body>
+</html>

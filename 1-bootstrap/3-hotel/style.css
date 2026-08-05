@@ -1,0 +1,41 @@
+/* font import */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+:root {
+  --gold: #c5a880;
+  --dark: #0f172a;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: #334155;
+  background: #f8fafc;
+}
+
+.font-serif {
+  font-family: "Playfair Display", serif;
+}
+.bg-dark-navy {
+  background-color: var(--dark) !important;
+}
+.text-gold {
+  color: var(--gold) !important;
+}
+.bg-gold {
+  background-color: var(--gold) !important;
+}
+.btn-gold {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #fff !important;
+}
+.btn-gold:hover {
+  background: #b39266 !important;
+  border-color: #b39266 !important;
+  color: #fff !important;
+}
+.hero-img {
+  height: 75vh;
+  min-height: 450px;
+  object-fit: cover;
+}

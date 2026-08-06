@@ -39,3 +39,32 @@ body {
   min-height: 450px;
   object-fit: cover;
 }
+.overlay {
+  background: rgba(15, 23, 42, 0.6);
+}
+.room-img {
+  height: 200px;
+  object-fit: cover;
+}
+.hover-lift {
+  transition: transform 0.25s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+a {
+  text-decoration: none !important;
+}
+
+@keyframes popup {
+  0% {
+    scale: 0.1;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+.popup {
+  animation: popup 1s ease;
+}

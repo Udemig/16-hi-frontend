@@ -77,8 +77,331 @@
     </nav>
 
     <!-- Ana İçerik -->
-    <main style="height: 600px">
-      <h1>ODALAR SAYFASI</h1>
+    <main>
+      <!-- Breadcrumb -->
+      <header class="bg-dark-navy text-white py-4">
+        <div class="container">
+          <nav>
+            <ol class="breadcrumb text-light">
+              <li class="breadcrumb-item">
+                <a href="index.html" class="text-gold">Anasayfa</a>
+              </li>
+              <li class="breadcrumb-item active text-light opacity-75">
+                <a href="odalar.html" class="text-light">Odalar</a>
+              </li>
+            </ol>
+          </nav>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h1 class="display-6 fw-bold font-serif mb-1">Lüks Odalar & Süitler</h1>
+              <p class="text-light opacity-75 small mb-0">
+                En iyi konfor için tasarlanmış özel süitlerimiz.
+              </p>
+            </div>
+            <span class="badge bg-gold px-3 py-2 rounded-pill d-none d-md-inline"
+              >En İyi Fiyat Garantisi</span
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- Alert -->
+      <div class="container mt-3 popup">
+        <div
+          role="alert"
+          class="alert alert-warning alert-dismissible fade show border-0 shadow-sm rounded-4 p-3 d-flex align-items-center pe-5"
+        >
+          <i class="bi bi-percent fs-3 text-warning-emphasis me-3"></i>
+          <div class="small">
+            <strong>Özel Sezon İndirimi!</strong> 3 gece ve üzeri konaklamalarda %20 indirim. Kod:
+            <span class="badge bg-dark text-gold">LUXURY20</span>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      </div>
+
+      <!-- Filtreleme Formu -->
+      <section class="container py-2">
+        <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
+          <form class="row g-2 align-items-end">
+            <div class="col-md-4 col-sm-6">
+              <label class="form-label small fw-semibold text-dark">Oda Tipi</label>
+              <select class="form-select form-select-sm rounded-3">
+                <option selected>Tüm Kategoriler</option>
+                <option>Deluxe Süt</option>
+                <option>Başkanlık Çatı Katı</option>
+                <option>Bahçe Villası</option>
+              </select>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <label class="form-label small fw-semibold text-dark">Fiyat Aralığı</label>
+              <select class="form-select form-select-sm rounded-3">
+                <option selected>Tüm Fiyatlar</option>
+                <option>3.000 ₺ - 5.000 ₺</option>
+                <option>5.000 ₺ ve üzeri</option>
+              </select>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <label class="form-label small fw-semibold text-dark">Misafir</label>
+              <select class="form-select form-select-sm rounded-3">
+                <option selected>Fark Etmez</option>
+                <option>1 - 2 Kişi</option>
+                <option>3+ Kişi (Aile)</option>
+              </select>
+            </div>
+            <div class="col-md-2 col-sm-6 d-grid">
+              <button class="btn btn-gold btn-sm rounded-3 fw-medium">Filtrele</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Oda Kartları -->
+      <section class="container py-3">
+        <div class="row g-4">
+          <!-- Oda 1 -->
+          <div class="col-lg-4 col-md-6">
+            <article
+              class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift bg-white"
+            >
+              <div class="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80"
+                  class="card-img-top room-img"
+                />
+                <span class="badge bg-gold position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill"
+                  >Popüler</span
+                >
+              </div>
+              <div class="card-body p-4 d-flex flex-column">
+                <h2 class="card-title h5 fw-bold font-serif text-dark mb-1">
+                  Deluxe Deniz Manzaralı Süit
+                </h2>
+                <p class="card-text text-secondary small mb-3">
+                  Panoramik Akdeniz manzarası ve geniş özel balkon.
+                </p>
+
+                <ul class="list-group list-group-flush small mb-3">
+                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
+                    <i class="bi bi-check-circle-fill text-gold me-2"></i> King Size Ortopedik Yatak
+                  </li>
+                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
+                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Jakuzili Mermer Banyo
+                  </li>
+                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
+                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Yüksek Hızlı Wi-Fi
+                  </li>
+                </ul>
+
+                <footer class="mt-auto pt-2 border-top">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="fs-5 fw-bold text-dark"
+                      >3.500 ₺ <small class="text-muted fs-6 fw-normal">/gece</small></span
+                    >
+                  </div>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-outline-dark btn-sm w-50 rounded-pill">Detaylar</button>
+                    <button class="btn btn-gold btn-sm w-50 rounded-pill">Ayırt</button>
+                  </div>
+                </footer>
+              </div>
+            </article>
+          </div>
+          <!-- Oda 2 -->
+          <div class="col-lg-4 col-md-6">
+            <article
+              class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift bg-white"
+            >
+              <div class="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80"
+                  class="card-img-top room-img"
+                />
+                <span class="badge bg-dark position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill"
+                  >Vip Süit</span
+                >
+              </div>
+              <div class="card-body p-4 d-flex flex-column">
+                <h2 class="card-title h5 fw-bold font-serif text-dark mb-1">
+                  Kraliyet Başkanlık Çatı Katı
+                </h2>
+                <p class="card-text text-secondary small mb-3">
+                  Özel ısıtmalı çatı teras havuzu ve 7/24 kişisel uşak.
+                </p>
+
+                <ul class="list-group list-group-flush small mb-3">
+                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
+                    <i class="bi bi-check-circle-fill text-gold me-2"></i> 7/24 Kişisel Uşak Servisi
+                  </li>
+                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
+                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Özel Isıtmalı Çatı Havuzu
+                  </li>
+                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
+                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Ücretsiz Şampanya İkramı
+                  </li>
+                </ul>
+
+                <footer class="mt-auto pt-2 border-top">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="fs-5 fw-bold text-dark"
+                      >8.900 ₺ <small class="text-muted fs-6 fw-normal">/gece</small></span
+                    >
+                  </div>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-outline-dark btn-sm w-50 rounded-pill">Detaylar</button>
+                    <button class="btn btn-gold btn-sm w-50 rounded-pill">Ayırt</button>
+                  </div>
+                </footer>
+              </div>
+            </article>
+          </div>
+          <!-- Oda 3 -->
+          <div class="col-lg-4 col-md-6">
+            <article
+              class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift bg-white"
+            >
+              <div class="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=600&q=80"
+                  class="card-img-top room-img"
+                />
+                <span
+                  class="badge bg-success position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill"
+                  >Yeni</span
+                >
+              </div>
+              <div class="card-body p-4 d-flex flex-column">
+                <h2 class="card-title h5 fw-bold font-serif text-dark mb-1">
+                  Executive Bahçe Villası
+                </h2>
+                <p class="card-text text-secondary small mb-3">
+                  Botanik bahçe içinde açık hava yağmur duşu ve kamelya.
+                </p>
+
+                <ul class="list-group list-group-flush small mb-3">
+                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
+                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Özel Bahçe Güneşlenme
+                    Alanı
+                  </li>
+                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
+                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Açık Hava Yağmur Duşu
+                  </li>
+                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
+                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Organik Kahvaltı Sepeti
+                  </li>
+                </ul>
+
+                <footer class="mt-auto pt-2 border-top">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="fs-5 fw-bold text-dark"
+                      >4.900 ₺ <small class="text-muted fs-6 fw-normal">/gece</small></span
+                    >
+                  </div>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-outline-dark btn-sm w-50 rounded-pill">Detaylar</button>
+                    <button class="btn btn-gold btn-sm w-50 rounded-pill">Ayırt</button>
+                  </div>
+                </footer>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Pagination - Sayfalama -->
+        <nav class="d-flex justify-content-center my-5">
+          <ul class="pagination">
+            <li class="page-item disabled"><a class="page-link" href="#">Geri</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">İleri</a></li>
+          </ul>
+        </nav>
+
+        <!-- Otel Olanakları -->
+        <section class="py-5 bg-white border-top">
+          <div class="container">
+            <header class="text-center mb-4">
+              <h2 class="display-6 fw-bold font-serif text-dark">Otel Olanakları</h2>
+              <p class="text-secondary small">Konaklamanıza dahil olan ayrıcalıklar.</p>
+            </header>
+
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="accordion" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button
+                        class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
+                      >
+                        <i class="bi bi-flower1 text-gold me-2"></i> 1. Lüks Spa & Türk Hamamı
+                      </button>
+                    </h2>
+                    <div
+                      id="collapseOne"
+                      class="accordion-collapse collapse show"
+                      data-bs-parent="#accordionExample"
+                    >
+                      <div class="accordion-body">
+                        Bütünsel organik aromaterapiler, geleneksel Türk hamamı ve Fin saunası ile
+                        yenilenin.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo"
+                      >
+                        <i class="bi bi-cup-hot me-2 text-gold"></i>
+                        2. Michelin Yıldızlı Restoran
+                      </button>
+                    </h2>
+                    <div
+                      id="collapseTwo"
+                      class="accordion-collapse collapse"
+                      data-bs-parent="#accordionExample"
+                    >
+                      <div class="accordion-body">
+                        Ödüllü şeflerimizin hazırladığı taze Akdeniz lezzetleri ve seçkin şarap
+                        mahzeni.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree"
+                      >
+                        <i class="bi bi-water text-gold me-2"></i> 3. Isıtmalı Sonsuzluk Havuzu
+                      </button>
+                    </h2>
+                    <div
+                      id="collapseThree"
+                      class="accordion-collapse collapse"
+                      data-bs-parent="#accordionExample"
+                    >
+                      <div class="accordion-body">
+                        Akdeniz manzaralı sonsuzluk havuzumuzda havlu servisi ve kokteyller
+                        eşliğinde dinlenin.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
     </main>
 
     <!-- Footer -->

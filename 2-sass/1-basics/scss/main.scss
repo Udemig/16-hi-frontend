@@ -1,0 +1,132 @@
+// @use: Partial olarak tanımlanan diğer dosylardaki içerikleri bu dosyaya çağırmmaya yarar
+@use "text";
+@use "variables" as *;
+@use "sass:math";
+
+body {
+  background: $arkaplan;
+  color: $yazi;
+  padding: $bosluk;
+}
+
+// Nesting
+ul {
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 10px;
+  list-style: none;
+
+  li {
+    background: white;
+    color: black;
+    padding: 5px;
+    border-bottom: 2px solid;
+
+    a {
+      color: red;
+    }
+  }
+}
+
+// Parent Nesting
+button {
+  // background: yellow;
+
+  &:hover {
+    // background: green;
+  }
+}
+
+// Mixin
+// SCCS'te tekrar tekrar kullanıcağımız CSS kodlarını bir kez tanımlayıp istediğimiz yerde kullanmamızı sağlar
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div {
+  // @include: mixinle tanımlanmış kodları çağırmaya yarar
+  @include flex-center;
+}
+
+.box {
+  @include flex-center;
+}
+
+.container {
+  @include flex-center;
+}
+
+// Paremetreli Mixin
+// Mixin stilleri arasında değişken olması gerek kısımları parametre olarak alabiliyoruz
+@mixin alert($renk, $boyut) {
+  background: $renk;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: $boyut;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.success-alert {
+  // parametreli mixin kullanırken parametreye aşağıdaki gibi değer gönderiyoruz
+  @include alert(green, 22px);
+}
+.error-alert {
+  @include alert(red, 15px);
+}
+.warning-alert {
+  @include alert(orange, 16px);
+}
+
+// Extend
+// SCSS'te @extend, bir class'ın başka bir class'ın CSS özelliklerini miras almasını sağlar
+%button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  text-shadow: 2px 2px 10px black;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(75%);
+  }
+}
+
+.sucess-btn {
+  @extend %button;
+  background: green;
+}
+
+.error-btn {
+  @extend %button;
+  background: red;
+}
+
+.warning-btn {
+  @extend %button;
+  background: orange;
+}
+
+/*
+  ! SCSS Operatörleri
+  * SCCS'te Operatörler, değerler üzerinde işlem yapmamızı sağlar. Özellikl boyut,renk,oran ve responsive tasarım gibi durumlarda kullanışlıdır
+  + toplama
+  - çıkarma
+  * çarpma
+  / bölme
+  % mod alma
+  */
+
+.kutu {
+  background: rgb(62, 62, 62);
+  border-radius: math.div(100px, 5);
+  height: 200px + 100px;
+  padding: 20px - 5px;
+  width: 100px * 4;
+  margin-top: 55px % 10;
+}

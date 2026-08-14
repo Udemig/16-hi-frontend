@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap");
+
+// ========================================
+// SCSS VARIABLES
+// Tekrar kullanılacak değerleri merkezi
+// bir yerde tutmamızı sağlar.
+// Renk veya spacing değiştiğinde tek bir
+// yerden yönetebiliriz.
+// ========================================
+
+$color-primary: #ff4d8d;
+$color-secondary: #7c3aed;
+$color-background: #09090b;
+$color-surface: #15151a;
+$color-text: #ffffff;
+$color-muted: #a1a1a1;
+$color-border: #27272a;
+
+$font-sans: "Inter", sans-serif;
+$font-outfit: "Outfit", sans-serif;
+
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 992px;
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$spacing-xl: 8rem;

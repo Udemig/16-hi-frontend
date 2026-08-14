@@ -1,0 +1,10 @@
+// ========================================
+// @USE
+// Modern SCSS yaklaşımıdır. Dosyaları
+// birbirine bağlar. @import yerine kullanılır.
+// ========================================
+@use "variables";
+@use "mixins";
+@use "base";
+@use "components";
+@use "pages";

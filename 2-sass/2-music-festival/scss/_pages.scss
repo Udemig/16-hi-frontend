@@ -1,0 +1,125 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// Sayfalara özel stillendirmelerli bu dosyada yazıcaz
+
+// ---- Anasayfa ----
+// -- Hero --
+.hero {
+  height: 100vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  background-image:
+    linear-gradient(to bottom, rgba($color-background, 0.5), $color-background),
+    url("https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg");
+  background-size: cover;
+  background-position: center;
+
+  h1 {
+    margin-bottom: $spacing-md;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #fff, $color-primary);
+    color: transparent;
+    background-clip: text;
+  }
+
+  p {
+    font-size: 1.25rem;
+    margin-bottom: $spacing-lg;
+    color: $color-muted;
+  }
+
+  .actions {
+    display: flex;
+    gap: $spacing-sm;
+  }
+}
+
+// -- Açıklama --
+.about {
+  background-color: $color-surface;
+
+  .about-content {
+    display: grid;
+    gap: $spacing-xl;
+    align-items: center;
+    padding: $spacing-xl $spacing-sm;
+
+    @include respond-desktop {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .text h2 {
+    text-align: left;
+  }
+
+  .text p {
+    font-size: 1.25rem;
+    color: $color-muted;
+  }
+
+  img {
+    border-radius: 8px;
+  }
+}
+
+// -- CTA: Call To Action --
+.cta {
+  padding: $spacing-xl 0;
+  text-align: center;
+  background: linear-gradient(135deg, $color-secondary, $color-primary);
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: $spacing-lg;
+  }
+}
+
+// ---- Biletler ----
+// -- Bilet Seçenekleri
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include respond-desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pricing-card {
+    background-color: $color-surface;
+    border-radius: 8px;
+    padding: $spacing-lg;
+    text-align: center;
+    border: 1px solid $color-border;
+
+    &.featured {
+      border-color: $color-primary;
+      transform: scale(1.05);
+      background: linear-gradient(to bottom, $color-surface, rgba($color-primary, 0.1));
+    }
+
+    h3 {
+      color: $color-muted;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      font-size: 3rem;
+      font-family: $font-outfit;
+      font-weight: 900;
+      margin-bottom: $spacing-md;
+    }
+
+    ul {
+      margin-bottom: $spacing-lg;
+
+      li {
+        margin-bottom: $spacing-sm;
+        color: $color-muted;
+      }
+    }
+  }
+}

@@ -1,0 +1,239 @@
+// Tekrar Kullanılabilir Header Footer Container Card gibi yapıları bu dosyada stillendiricez
+@use "variables" as *;
+@use "mixins" as *;
+
+// --- Container -----
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0px auto;
+  padding: 0 $spacing-sm;
+
+  @include respond-tablet {
+    padding: 0 $spacing-md;
+  }
+}
+
+// --- Header -----
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: $spacing-md 0;
+
+  div {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+  }
+
+  .logo {
+    font-family: $font-outfit;
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: $color-primary;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+
+    @include respond-tablet {
+      gap: $spacing-md;
+    }
+
+    a {
+      font-weight: 500;
+      transition: color 0.3s ease;
+
+      &:hover,
+      &.active {
+        color: $color-primary;
+      }
+    }
+  }
+
+  .btn {
+    display: none;
+    @include respond-tablet {
+      display: inline-block;
+    }
+  }
+}
+
+// --- Buton -----
+.btn {
+  display: inline-block;
+  font-family: $font-outfit;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 1rem 2rem;
+  border: 2px solid transparent;
+}
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+.btn-lg {
+  padding: 1.25rem 3rem;
+}
+.btn-primary {
+  background-color: $color-primary;
+  color: $color-text;
+
+  &:hover {
+    background-color: darken($color-primary, 10%);
+    transform: translateY(-2px);
+    color: white;
+  }
+}
+.btn-outline {
+  background-color: transparent;
+  border-color: $color-text;
+  color: $color-text;
+
+  &:hover {
+    background-color: $color-text;
+    color: $color-background;
+    transform: translateY(-2px);
+  }
+}
+
+// --- Footer ---
+footer {
+  background-color: $color-surface;
+  padding: $spacing-xl 0 $spacing-md;
+  border-top: 1px solid $color-border;
+  text-align: center;
+
+  .brand {
+    margin-bottom: $spacing-md;
+
+    h2 {
+      color: $color-primary;
+      font-size: 1.5rem;
+    }
+
+    p {
+      color: $color-muted;
+    }
+  }
+
+  .copy {
+    color: $color-muted;
+    font-size: 0.875rem;
+  }
+}
+
+// --- Section ---
+.section {
+  padding: $spacing-xl 0;
+}
+
+.section-title {
+  font-family: $font-outfit;
+  font-size: 2.25rem;
+  font-weight: 900;
+  margin-bottom: $spacing-lg;
+  text-align: center;
+  color: $color-text;
+
+  @include respond-tablet {
+    font-size: 3rem;
+  }
+}
+
+// ---- Artists ---
+.artist-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include respond-tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.artist-card {
+  background-color: $color-surface;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .img-wrapper {
+    height: 250px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .content {
+    padding: $spacing-md;
+  }
+
+  h3 {
+    margin-bottom: $spacing-xs;
+    color: $color-text;
+  }
+
+  p {
+    color: $color-muted;
+    font-size: 0.875rem;
+    margin-top: $spacing-xs;
+  }
+}
+
+// Badge
+.badge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.badge-electronic {
+  background-color: rgba(#3b82f6, 0.2);
+  color: #3b82f6;
+}
+
+.badge-house {
+  background-color: rgba(#10b981, 0.2);
+  color: #10b981;
+}
+
+// Page Header
+.page-header {
+  padding: 150px 0px 0px;
+  text-align: center;
+
+  h1 {
+    margin-bottom: $spacing-sm;
+    background: linear-gradient(to right, $color-primary 50%, $color-secondary);
+    background-clip: text;
+    color: transparent;
+  }
+
+  p {
+    color: $color-muted;
+    font-size: 1.25rem;
+  }
+}

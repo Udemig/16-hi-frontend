@@ -1,0 +1,23 @@
+@use "variables" as *;
+
+// ==============================
+// MIXIN
+// ==============================
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin respond($size) {
+  @if $size == tablet {
+    @media (max-width: $bp-tablet) {
+      @content;
+    }
+  } @else if $size == mobile {
+    @media (max-width: $bp-mobile) {
+      @content;
+    }
+  }
+}

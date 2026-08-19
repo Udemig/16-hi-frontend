@@ -1,0 +1,212 @@
+@use "../utils/variables" as *;
+@use "../utils/mixins" as *;
+
+// Container
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding-inline: 40px;
+
+  @include respond(mobile) {
+    padding-inline: 20px;
+  }
+}
+
+// Section
+section {
+  padding: 100px 0;
+
+  @include respond(tablet) {
+    padding: 80px 0;
+  }
+
+  @include respond(mobile) {
+    padding: 60px 0;
+  }
+}
+
+// Header
+header {
+  background: rgba($background, 0.7);
+  backdrop-filter: blur(24px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  border-bottom: 1px solid $border;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 90px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: $text;
+    text-transform: uppercase;
+  }
+
+  nav {
+    ul {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      @include respond(mobile) {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 5px;
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    }
+
+    a {
+      display: inline-block;
+      padding: 10px 20px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: $muted;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s;
+
+      &.active {
+        background: rgba($primary, 0.2);
+        border-color: rgba($primary, 0.5);
+        color: $text;
+      }
+
+      &:hover {
+        color: $text;
+        background: rgba($primary, 0.2);
+        border-color: rgba($primary, 0.5);
+        transform: translateY(-2px);
+      }
+
+      @include respond(mobile) {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  @include respond(tablet) {
+    .container {
+      flex-direction: column;
+      gap: 20px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    .button {
+      display: none;
+    }
+  }
+}
+
+// Buttons
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 4px 16px 4px 16px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &.primary {
+    background: $primary;
+    color: $text;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &.secondary {
+    background: transparent;
+    color: $text;
+    border: 2px solid $secondary;
+
+    &:hover {
+      background: rgba($secondary, 0.1);
+    }
+  }
+}
+
+// Footer
+footer {
+  background: $surface;
+  border-top: 1px solid $border;
+  padding: 60px 0 30px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  a {
+    color: $muted;
+    transition: color 0.3s ease;
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  .bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid $border;
+    color: $muted;
+    font-size: 0.9rem;
+  }
+}

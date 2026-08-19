@@ -1,0 +1,40 @@
+@use "../utils/variables" as *;
+
+body {
+  font-family: $font-main;
+  background: radial-gradient(circle at top right, rgba(109, 40, 217, 0.1) 0%, $background 60%);
+  background-color: $background;
+  background-attachment: fixed;
+  color: $text;
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 24px;
+  letter-spacing: -2px;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  color: $muted;
+  margin-bottom: 16px;
+}

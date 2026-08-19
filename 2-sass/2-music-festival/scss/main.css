@@ -386,4 +386,38 @@ footer .copy {
 .pricing-grid .pricing-card ul li {
   margin-bottom: 1rem;
   color: #a1a1a1;
+}
+
+.faq-section {
+  max-width: 900px;
+  margin: 10px auto;
+}
+
+.faq-item {
+  background-color: #15151a;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.faq-item summary {
+  padding: 2rem;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 2rem;
+  color: #ff4d8d;
+}
+.faq-item[open] summary::after {
+  content: "-";
+}
+.faq-item p {
+  padding: 0rem 2rem 2rem;
+  color: #a1a1aa;
 }/*# sourceMappingURL=main.css.map */

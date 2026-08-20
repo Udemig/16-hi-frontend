@@ -24,13 +24,37 @@
     </header>
 
     <main>
-      <section></section>
-      <section>
-        <h1>İletişim Sayfası</h1>
-
-        <p>Paragraf yazısı</p>
+      <section class="page-header">
+        <div class="container">
+          <h1>Sinyal Gönder</h1>
+          <p>Uzayın derinliklerinden merkeze mesajınızı iletin.</p>
+        </div>
       </section>
-      <section></section>
+
+      <section class="container">
+        <div class="contact-form">
+          <form action="#">
+            <div class="form-group">
+              <label for="name">Kimlik (Ad Soyad)</label>
+              <input id="name" type="text" placeholder="Örn: Komutan Shepard" />
+            </div>
+            <div class="form-group">
+              <label for="email">Frekans (E-posta)</label>
+              <input id="email" type="email" placeholder="İletişim kanalınız" />
+            </div>
+            <div class="form-group">
+              <label for="message">Mesaj</label>
+              <textarea
+                id="message"
+                type="text"
+                placeholder="İletmek istediğiniz sinyal..."
+              ></textarea>
+            </div>
+
+            <button type="button" class="button primary">SİNYALİ İLET</button>
+          </form>
+        </div>
+      </section>
     </main>
 
     <footer>

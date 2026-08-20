@@ -94,3 +94,46 @@
     background: linear-gradient(90deg, transparent, rgba($surface-light, 0.5), transparent);
   }
 }
+
+// Grid
+.missions-grid,
+.planets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
+}
+
+.about {
+  position: relative;
+  overflow: hidden;
+
+  img {
+    border-radius: $radius-lg;
+    margin-top: 40px;
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.cta {
+  text-align: center;
+  padding: 100px 0;
+  background: linear-gradient(to top rgba($primary, 0.1), transparent);
+
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+
+    @include respond(tablet) {
+      font-size: 2rem;
+    }
+  }
+}

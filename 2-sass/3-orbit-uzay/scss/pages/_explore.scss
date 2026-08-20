@@ -1,0 +1,65 @@
+@use "../utils/variables" as *;
+
+$planet-colors: (
+  merkur: #a3a3a3,
+  venus: #fbbf24,
+  dunya: #3b82f6,
+  mars: #ef4444,
+  jupiter: #f97316,
+  saturn: #fcd34d,
+  uranus: #38bdf8,
+  neptun: #2563eb,
+);
+
+@each $name, $color in $planet-colors {
+  .planet-#{$name} {
+    border-bottom: 4px solid $color;
+  }
+}
+
+.planet-merkur {
+  border-bottom: 4px solid #a3a3a3;
+}
+.planet-venus {
+  border-bottom: 4px solid #fbbf24;
+}
+.planet-dunya {
+  border-bottom: 4px solid #3b82f6;
+}
+
+.explore {
+  .card {
+    text-align: center;
+  }
+
+  img {
+    height: 200px;
+  }
+
+  .content {
+    padding: 24px;
+  }
+
+  ul {
+    text-align: left;
+    margin-top: 20px;
+
+    li {
+      width: 100%;
+      padding: 10px 0;
+      border-bottom: 1px solid $border;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      span {
+        color: $muted;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

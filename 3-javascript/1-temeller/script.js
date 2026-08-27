@@ -1,5 +1,4 @@
 //! 1) Değişkenler
-
 const tcNo = 186345097354;
 
 let yas = 29;
@@ -226,4 +225,18 @@ const konsereGirebilir = (aliYas > 18 || ebeveyniGeliyorMu === true) && biletiVa
 
 console.log("Ali konsere girebilir mi? " + konsereGirebilir);
 
-// TODO: ! Operatörü
+//! Operatörü
+// (!) Operatörü js'te mantıksal değili (NOT) ifade eder. Bir değerin boolean karşılığını tersine çevirir
+
+let girisYapiliMi = true;
+
+console.log(!girisYapiliMi);
+console.log(!true);
+console.log(!false);
+
+// iki tane !! kullanılırsa ne olur
+// Boolean olmayan bir değeri Boolean değere çevirmek için kullanılır
+console.log(!!"Merhaba");
+console.log(!!"");
+console.log(Boolean("Merhaba"));
+console.log(Boolean(""));

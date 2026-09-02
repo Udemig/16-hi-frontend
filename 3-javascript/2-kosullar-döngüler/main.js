@@ -304,3 +304,29 @@ while (10 > 20) {
 do {
   console.log("do-while çalıştı");
 } while (10 > 20);
+
+//? 6.5) for of döngüsü
+// Belirli bir sayıda döngü oluşturmak yerine eğerki dizi dönüyorsak terchih ediceğimiz bir yöntemdir
+
+const sayilar2 = [10, 25, 40, 13, 8, 76, 52];
+
+// for versiyonu
+for (let i = 0; i < sayilar2.length; i++) {
+  console.log("for döngüsü: " + sayilar2[i]);
+}
+
+// for of versiyonu
+for (var sayi of sayilar2) {
+  console.log("for of döngüsü " + sayi);
+}
+
+// Örnek
+let urunler = ["Ekmek", "Süt", "Yumurta"];
+let fiyatlar = [20, 75, 99];
+let toplamSepet = 0;
+
+for (let fiyat of fiyatlar) {
+  toplamSepet += fiyat;
+}
+
+console.log("toplam sepet", toplamSepet); // 194

@@ -119,11 +119,13 @@ const products = [
 // Örnek Dizi
 let ogrenciler = [
   "Atlas",
+  "Faruk",
   "Aygul",
   "Burcu",
   "Derya",
   "Atlas",
   "Fatmanur",
+  "Zeynep",
   "Meric",
   "Saadet",
   "Selim",
@@ -269,3 +271,198 @@ ogrenciler.forEach((ogrenci, index) => {
 });
 
 //! 10.13) map()
+// Dizinin her elemanı için bir fonksiyon çalıştırır ve yeni bir dizi oluşturur
+// map fonksiyonunda bir şey return edilirse. Return edilen verilerden yeni bir dizi oluşur
+// Orjinal diziyi etkilemez
+
+const yeniDizi = ogrenciler.map((ogrenci, index) => {
+  console.log(ogrenci + " kişiisine mail gönderildi " + index);
+
+  return index + "-" + ogrenci;
+});
+
+console.log(ogrenciler);
+console.log(yeniDizi);
+
+//* Örnek: Ürün fiyatlarına %20 zam gelmiş hallerini hesapla
+const urunFiyatlari = [999, 574, 8920, 5440, 3333];
+
+const zamliFiyatlar = urunFiyatlari.map((fiyat) => fiyat + fiyat * 0.2);
+
+console.log(zamliFiyatlar);
+
+//! 10.14) filter()
+// Belirli koşulu sağlayan elemanlardan yeni bir Array oluşturur
+// Orjinal diziyi etkilemez
+// Koşulu sağlayan eleman yoksa boş dizi döndürür
+const numbers = [1025, 40, 14, 50, 60, 57, 89, 32, 12, 25];
+
+const bigNumbers = numbers.filter((number) => number >= 50);
+
+console.log(bigNumbers);
+
+// Örnek:
+const storeProducts = [
+  {
+    id: 4,
+    name: "Laptop",
+    price: 30000,
+    category: "Electronic",
+  },
+  {
+    id: 8,
+    name: "Olta Takımı",
+    price: 3450,
+    category: "Hunting",
+  },
+  {
+    id: 82,
+    name: "Telefon",
+    price: 25000,
+    category: "Electronic",
+  },
+  {
+    id: 14,
+    name: "Yağmurluk",
+    price: 1200,
+    category: "Hunting",
+  },
+];
+
+const huntProducts = storeProducts.filter((product) => product.category === "Hunting");
+
+console.log(huntProducts);
+
+//! 10.15) find()
+// Koşulu sağlayan ilk elemanı bulur
+// Genelde dizideki bir elemanı aramak için kullanırız
+// Koşulu sağlayan eleman yoksa undefined döndürür
+
+const found = storeProducts.find((product) => product.id === 4);
+
+console.log(found);
+
+//! 10.16) findIndex()
+// Koşulu sağlayan ilk elemanın indexini bulur
+// Genelde dizideki bir elemanın indexini öğrenmek için kullanırız
+// Koşulu sağlayan eleman yoksa -1 döndürür
+
+const foundIndex = storeProducts.findIndex((product) => product.id === 19);
+
+console.log(foundIndex);
+
+//! 10.17) some()
+// Dizide en az bir elemanın koşulu sağlayıp sağlamadığını kontrol eder
+// en az bir eleman koşulu sağlıyorsa true döner
+// bütün elemanlar koşulu sağlamıyorsa false döner
+const numbers2 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+const result1 = numbers2.some((number) => number > 50);
+console.log(result1);
+
+const result2 = numbers2.some((number) => number > 120);
+console.log(result2);
+
+// Örnek: Stok Kontrolü
+const tshirt = [
+  {
+    color: "Green",
+    size: "M",
+    inStock: false,
+  },
+  {
+    color: "black",
+    size: "XL",
+    inStock: false,
+  },
+  {
+    color: "whie",
+    size: "S",
+    inStock: true,
+  },
+];
+
+const inStock = tshirt.some((model) => model.inStock);
+
+document.write("<br> ----------------");
+document.write(inStock ? "T-Shirt Stokta > Satın Al" : "Stok Bitti!");
+
+//! 10.18) every()
+// Dizideki bütün elemanların koşulu sağlayıp sağlamadığını kontrol eder
+// bütün elemanlar koşulu sağlıyorsa true döner
+// en az 1 eleman koşulu sağlamıyorsa false döner
+
+const numbers3 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+const result3 = numbers3.every((number) => number > 50);
+console.log(result3);
+
+const result4 = numbers3.every((number) => number > 5);
+console.log(result4);
+
+// Örnek: Bir kullanıcı sepetteki ürünleri satın alırken yapılan son kontrol
+const sepet = [
+  { isim: "Laptop", stoktaVar: true },
+  { isim: "Mouse", stoktaVar: false },
+  { isim: "Klavye", stoktaVar: true }, // Bu ürün stokta yok!
+];
+
+// Sepetteki her ürün stokta var mı
+const siparisVerilebilirMi = sepet.every((urun) => urun.stoktaVar);
+
+document.write("<br> ---------------- <br>");
+document.write(
+  siparisVerilebilirMi ? "Sepeti Onayla" : "Bir Ürünün Stoğu Bitmiş Lütfen Sepeti Güncelleyin",
+);
+
+//! 10.19) reduce()
+// Bir dizideki bütün elemanları kullanarak tek bir sonuç üretir
+// En yaygın kullanımı dizideki sayısal değerleri toplamak içindir.
+const sepetim = [
+  { isim: "Laptop", fiyat: 15000 },
+  { isim: "Mouse", fiyat: 300 },
+  { isim: "Klavye", fiyat: 800 },
+];
+
+const toplam = sepetim.reduce((toplam, urun) => toplam + urun.fiyat, 0);
+
+document.write("<br> ----------------- <br>");
+document.write("Sepetteki Ürünleri Toplam Fiyat: " + toplam);
+
+//! 10.20) sort()
+// Dizideki elemanları sıralamaya yarar
+// Orjinal diziyi günceller
+
+// A) Sayılarda sort kullanımı
+const numbers4 = [99, 6, 32, 7, 28, 102, 57, 42, 89];
+
+document.write("<br> ----------------- <br>");
+document.write(numbers4);
+
+// Küçükten büyüğe sıralama
+numbers4.sort((a, b) => a - b);
+
+document.write("<br> ----------------- <br>");
+document.write(numbers4);
+
+// Büyükten küçüğe sıralama
+numbers4.sort((a, b) => b - a);
+
+document.write("<br> ----------------- <br>");
+document.write(numbers4);
+
+// B) Metinler sort kullanımı
+document.write("<br> ----------------- <br>");
+document.write("Öğrenciler: " + ogrenciler);
+
+// A>Z sıralama
+ogrenciler.sort((a, b) => a.localeCompare(b));
+
+document.write("<br> ----------------- <br>");
+document.write("Öğrenciler: " + ogrenciler);
+
+// Z>A sıralama
+ogrenciler.sort((a, b) => a.localeCompare(b)).reverse();
+
+document.write("<br> ----------------- <br>");
+document.write("Öğrenciler: " + ogrenciler);

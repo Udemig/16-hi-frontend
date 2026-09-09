@@ -1,0 +1,18 @@
+.btn {
+  padding: 5px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  border: 1px solid rgba(128, 128, 128, 0.462);
+  background: none;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.603);
+}
+
+.btn-primary {
+  background: rgb(2, 141, 255);
+  color: white;
+}
+
+.btn-danger {
+  background: crimson;
+  color: white;
+}

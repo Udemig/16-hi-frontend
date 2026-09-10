@@ -1,0 +1,72 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #ffffff;
+  color: #333333;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #222222;
+  color: #f4f4f4;
+}
+
+.dark-mode li {
+  color: #333333 !important;
+}
+
+#theme-btn {
+  background: purple;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-weight: bold;
+  border: 1px solid rgba(128, 128, 128, 0.622);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: rgb(0, 170, 255);
+  color: white;
+}
+
+.btn:hover {
+  filter: brightness(70%);
+}
+
+ul {
+  display: none;
+}
+
+.active {
+  display: block !important;
+}
+
+.box {
+  border: 5px solid;
+  background: crimson;
+  width: 120px;
+  height: 120px;
+  margin-top: 20px;
+}
+
+input {
+  padding: 10px 20px;
+  margin-top: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.609);
+  border-radius: 5px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+li {
+  background: rgb(225, 225, 225);
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

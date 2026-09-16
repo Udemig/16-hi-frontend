@@ -402,3 +402,347 @@ console.log("Üçüncü");
 const timeoutId = setTimeout(() => console.log("Dosya Yüklendi"), 5000);
 
 clearTimeout(timeoutId);
+
+//! 5) setInterval()
+// Belirli aralıklara tekrar tekrar fonnksiyon çalışıtır
+// setInterval(fonksiyon, ms)
+
+const intervalId = setInterval(() => document.write("<br> Interval Çalıştı"), 3000);
+
+//! 6) clearInterval()
+clearInterval(intervalId);
+
+//! 7) Callback() Nedir?
+// Başka bir fonksiyona argument olarak göndeirlen fonksiyona callback denir
+
+document.addEventListener("click", () => {});
+
+[1, 2, 3].forEach(() => {});
+
+setTimeout(() => {}, 2000);
+
+/*
+ ! 8) Promise Nedir?
+ * Promise, gelecekte tamamlanacak bir işlemin sonucunu temsil eder.
+ * Bir Promise üç durumda olabilir:
+ 
+ * Pending
+ * İşlem devam ediyor
+  
+ * Fulfilled
+ * İşlem başarıyla tamamlandı
+  
+ * Rejected
+ * İşlem başarıssız oldu  
+  
+ * Örnek
+ * Dosyayı yükleme başladım > pending
+ * Dosya başarıyla yüklendi > fulfilled 
+ * Dosya yüklenirken bir hata oluştu > rejected
+*/
+
+// Promise Oluşturma
+const promise = new Promise((resolve, reject) => {
+  const success = true;
+
+  if (success) {
+    resolve("Dosya başarıyla yüklendi!");
+  } else {
+    reject("Dosya yüklemesi başarısız :(");
+  }
+});
+
+// Promise'in sonucunu nasıl yönetiriz
+// .then: promise başarılı olduğunda çalışır
+// .catch: işlem başarısız olduğunda çalışır
+// .finally: işlem başarılı da başarısız da olsa çalışır
+promise
+  .then((result) => {
+    console.log(".then çalıştı sonuç: " + result);
+  })
+  .catch((error) => {
+    console.log(".catch çalıştı: " + error);
+  })
+  .finally(() => {
+    console.log(".finally çalıştı");
+  });
+
+/* 
+ ! 9) API
+ * Application Programming Interface, farklı uygulamarın birbirleriyle alışveriş yapmasını sağlayan bir arayüzdür.
+ 
+ * Örneğin frontend uygulamamızıın bir sunucudan:
+ * Ürünleri
+ * Kullanıcıları
+ * Siparişleri
+ * Anlık Kurye Konumu
+ * API üzerinden alınabilir
+
+
+  ! 10. Client ve Server
+  * Frontend uygulaması genellikle client tarafıdır.
+
+```text
+Client
+↓
+Request
+↓
+Server
+↓
+Response
+↓
+Client
+```
+
+Frontend sunucuya istek gönderir.
+
+Sunucu bir cevap döndürür.
+
+---
+
+ ! 11. HTTP Request
+
+ * Frontend tarafından sunucuya gönderilen isteğe request denir.
+
+Örneğin:
+
+```text
+Ürünleri bana gönder.
+```
+
+---
+
+! 12. HTTP Response
+
+* Sunucunun gönderdiği cevaba response denir.
+
+Örneğin:
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Laptop"
+    }
+]
+```
+
+! 13. HTTP Methodları
+
+En sık kullanılan HTTP methodları:
+
+```text
+GET
+POST
+PUT
+PATCH
+DELETE
+```
+
+---
+
+! 14. GET
+
+Sunucudan veri almak için kullanılır.
+
+```text
+GET /products
+```
+
+Örneğin:
+
+```text
+Bütün ürünleri getir.
+```
+
+---
+
+! 15. POST
+
+Sunucuya yeni veri göndermek için kullanılır.
+
+```text
+POST /products
+```
+
+Örneğin:
+
+```text
+Yeni ürün oluştur.
+```
+
+---
+
+! 16. PUT
+
+Bir kaynağı tamamen güncellemek için kullanılabilir.
+
+```text
+PUT /products/5
+```
+
+---
+
+! 17. PATCH
+
+Bir kaynağın belirli alanlarını güncellemek için kullanılır.
+
+```text
+PATCH /products/5
+```
+
+Örneğin sadece fiyatı değiştirmek:
+
+```json
+{
+    "price": 35000
+}
+```
+
+---
+
+! 18. DELETE
+
+Bir kaynağı silmek için kullanılır.
+
+```text
+DELETE /products/5
+```
+
+---
+
+! 19. REST API Mantığı
+
+Örnek bir ürün API yapısı:
+
+```text
+GET    /products      > Bütün ürünleri getir
+GET    /products/5    > 5 id'li ürünü getir
+POST   /products      > Yeni ürün ekle
+PATCH  /products/5    > 5 id'li ürünü kısmi güncelle
+PUT    /products/5    > 5 id'li ürünü güncelle
+DELETE /products/5    > 5 id'li ürünü kaldır
+```
+
+Bu yapı REST API'lerde sık görülür.
+
+---
+
+*/
+
+/*
+ ! 20) FETCH API
+ * Javascript ile HTTP request göndermek için tarayıcıda bulunan `fetch` fonksiyonunu kullanırız
+ * fetch(url)
+ * `fetch()` bir Promise döndürür.
+*/
+
+// HTTP GET isteği at
+fetch("https://dummyjson.com/recipes?select=name,price,cuisine")
+  // olumlu yanıt gelirse: yanıtı js formatına çevir
+  .then((result) => result.json())
+  // olumlu yanıt gelirse: tarif isimlerini ekrana bas
+  .then((data) => data.recipes.forEach((recipe) => document.write("<br>" + recipe.name)))
+  // olumsuz yanıt gelirse: hata mesajını ekrana bas
+  .catch((error) => document.write("Bir sorun oluştu!!"));
+
+//! 21) Async Await
+// A) API'dan kullanıcı verilerini getiren fonksiyon
+const getUsersOne = () => {
+  fetch("https://dummyjson.com/users")
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+    .finally(() => console.log("yükleme bitti"));
+};
+getUsersOne();
+
+// B) API'dan kullanıcı verilerini getiren fonksiyon
+const getUsersTwo = async () => {
+  try {
+    const res = await fetch("https://dummyjson.com/users", { method: "GET" });
+
+    const data = await res.json();
+
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    console.log("yüklenme bitti");
+  }
+};
+getUsersTwo();
+
+/*
+ ! 22) try....catch
+ * Hata oluşturabilecek kodları kontrol etmek için kullanılır.
+ ```
+  try { console.log("İşlem başladı"); }
+  catch (error) { console.log("Hata oluştu"); }
+ ```
+*/
+
+/*
+ ! 23) API İsteği Hakkında
+
+ ? 1) URL
+ * isteğin gönderiliceği adrestir
+ * https://dummyjson.com/users
+ * https > protocol
+ * dummyjson.com > domain
+ * users > endpoint
+  
+ ? 2) HTTP Method
+ * Sunucuya ne yapmak istediğimizi belirtir
+ * GET:        Veri getir
+ * POST:       Veri oluştur
+ * PUT|PATCH:  Veri güncelle
+ * DELETE:     Veri sil
+ ```
+ fetch("https://api.example.com/users", {
+  method: "GET"
+ });
+ ``` 
+
+ ? 3) Headers
+ * İstek hakkında ek bilgi gönderir  
+ * Content-Type: Gönderdiğim verinin formatı nedir?
+ * Authorization: API'a kim olduğumuzu haber verir
+ * Language: API'ın döndürmesi gereken dil verisi
+ ```
+ fetch(url, {
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer TOKEN"
+  }
+  });
+ ```
+
+ ? 4) Body
+ * Sunucuya gönderdiğimiz asıl veri.
+ ```
+ fetch("https://api.example.com/users", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: "Furkan",
+    age: 22
+  })
+});
+ ```
+
+  ? 5) Response
+  * Sunucudan isteğimize dönen yanıt.
+  
+  ? 6) Status Code
+  * İsteğin sonucunu belirten durum kodudur.
+    200 → Başarılı
+    201 → Oluşturuldu
+    400 → Hatalı istek
+    401 → Yetkisiz
+    403 → Erişim yasak
+    404 → Bulunamadı
+    500 → Sunucu hatası
+*/

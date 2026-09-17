@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StudyFlow - Görev Takip</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body data-theme="light">
+  <body>
     <main>
       <!-- Başlık & Dark Mode -->
       <header>
         <div class="logo">
-          <h1>Study <span>Flow</span></h1>
+          <h1>Study<span>Flow</span></h1>
           <p>Öğrenci Görev Takip Uygulaması</p>
         </div>
 
@@ -19,7 +19,82 @@
       </header>
 
       <!-- İstatistik Kartları  -->
-      <section>istatistik</section>
+      <section class="stats">
+        <div class="stat-card">
+          <span>Toplam</span>
+          <strong id="stat-total">0</strong>
+        </div>
+
+        <div class="stat-card">
+          <span>Bekleyen</span>
+          <strong id="stat-pending">0</strong>
+        </div>
+
+        <div class="stat-card">
+          <span>Tamamlanan</span>
+          <strong id="stat-completed">0</strong>
+        </div>
+      </section>
+
+      <!-- İlerleme Çubuğu -->
+      <div class="progress-box">
+        <div class="progress-bar"></div>
+      </div>
+
+      <!-- Görev Ekleme Formu -->
+      <form class="task-form">
+        <input type="text" id="task-input" placeholder="Yeni bir çalışma görevi yaz..." required />
+
+        <div class="form-row">
+          <select id="task-category">
+            <option value="Ders">📚 Ders</option>
+            <option value="Ödev">📝 Ödev</option>
+            <option value="Sınav">🎯 Sınav</option>
+            <option value="Proje">💻 Proje</option>
+          </select>
+
+          <select id="task-priority">
+            <option value="Düşük">🟢 Düşük</option>
+            <option value="Orta" selected>🟡 Orta</option>
+            <option value="Yüksek">🔴 Yüksek</option>
+          </select>
+
+          <button type="submit" class="btn btn-add">➕ Ekle</button>
+        </div>
+      </form>
+
+      <!-- Arama ve Filtreleme -->
+      <div class="controls">
+        <input type="search" id="search-input" placeholder="🔍 Görevlerde ara..." />
+
+        <div class="filter-buttons">
+          <button data-filter="all" class="filter-btn active">Tümü</button>
+          <button data-filter="pending" class="filter-btn">Bekleyen</button>
+          <button data-filter="completed" class="filter-btn">Tamamlanan</button>
+        </div>
+      </div>
+
+      <!-- Görev Listesi -->
+      <ul class="task-list">
+        <!-- <li class="task-item">
+          <div class="task-left">
+            <input type="checkbox" class="task-checkbox" />
+
+            <div class="task-details">
+              <span class="task-text">Web Tasarımı dersi için ödev taslağını hazırla</span>
+              <span class="task-tags">Ödev • Orta Öncelik</span>
+            </div>
+          </div>
+
+          <div class="task-actions">
+            <button class="edit-btn" title="Düzenle">🖋️</button>
+            <button class="delete-btn" title="Sil">🗑️</button>
+          </div>
+        </li> -->
+      </ul>
+
+      <!-- Boş Durum -->
+      <p class="empty-message">Henüz görev yok. Yeni bir tane ekleyin!</p>
     </main>
 
     <script src="script.js"></script>

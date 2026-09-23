@@ -78,4 +78,124 @@ export function setActiveState(stateName) {
   }
 }
 
+// Aratılan kelime metnini güncelleyen fonksiyon
+export function setNotFoundCity(city) {
+  elements.notFoundCity.textContent = city;
+}
+
+// Hata mesajını güncelleyen fonksiyon
+export function setErrorMessage(message) {
+  elements.errorMessage.textContent = message;
+}
+
+// Güncel hava durumu kartınının bilgilerini güncelle
+export function renderCurrentWeather(data) {
+  elements.currentCity.innerText = `${data.name}, ${data.sys.country}`;
+  elements.currentDate.innerText = new Date(data.dt * 1000).toLocaleDateString("tr-TR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
+  elements.currentTemp.innerText = Math.round(data.main.temp);
+  elements.metricFeels.innerText = Math.round(data.main.feels_like) + "°C";
+  elements.metricHumidity.innerText = "%" + data.main.humidity;
+  elements.metricWind.innerText = data.wind.speed + "km/h";
+  elements.currentDesc.innerText = data.weather[0].description;
+  elements.currentIcon.src = `https://openweathermap.org/payload/api/media/file/${data.weather[0].icon}.png`;
+  elements.weatherTip.innerText = getWeatherTip(
+    data.main.temp,
+    data.weather[0].id,
+    data.wind.speed,
+  );
+
+  // arkaplan temasını güncelle
+  document.body.className = getTheme(data.weather[0].id);
+}
+
+// Hava durumu koduna göre arkaplan temasına karar veren fonksiyon
+export function getTheme(code) {
+  if (code >= 200 && code < 300) return "theme-thunder";
+
+  if (code >= 300 && code < 600) return "theme-rain";
+
+  if (code >= 600 && code < 700) return "theme-snow";
+
+  if (code >= 700 && code < 800) return "theme-clouds";
+
+  if (code === 800) return "theme-clear";
+
+  return "theme-clouds";
+}
+
+// Tavsiye metnine karar veren fonksiyonn
+export function getWeatherTip(temp, code, windSpeed) {
+  if (code >= 200 && code < 600)
+    return "Bugün yağış bekleniyor, şemsiyeni yanına almayı unutma! ☔";
+
+  if (code >= 600 && code < 700) return "Kar yağıyor! Bere ve eldivenlerini giymelisin. ❄️🧣";
+
+  if (windSpeed > 30) return "Rüzgar sert esiyor, rüzgarlık tercih edebilirsin 🍃";
+
+  if (temp < 10) return "Hava soğuk, kalın bir mont giymeyi unutma. 🧥";
+
+  if (temp > 28) return "Hava sıcak! Güneş gözlüğünü tak ve bol su iç. 🧢🕶️";
+
+  return "Hava harika, açık havada yürüyüş için ideal bir gün 🚶🌿";
+}
+
+// 5.Günlük Geçmişi ekrana bas
+export function renderForecast(data) {
+  // önceden ekrana basılan kartları temizle
+  elements.forecastContainer.innerHTML = "";
+
+  // api'dan gelen hava durumu tahmin verisi
+  const list = data.list;
+
+  // 40 elemanlı diziden sadece saat 12'deki tahminleri al
+  const dailyList = list.filter((item) => item.dt_txt.includes("12:00:00"));
+
+  // dizideki her bir eleman için kart oluştur
+  dailyList.forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "forecast-card";
+
+    const dayName = new Date(item.dt * 1000).toLocaleDateString("tr", { weekday: "short" });
+    const icon = `https://openweathermap.org/payload/api/media/file/${item.weather[0].icon}.png`;
+    const temp = Math.round(item.main.temp);
+    const desc = item.weather[0].description;
+
+    card.innerHTML = `
+      <span class="forecast-day">${dayName}</span>
+      <img class="forecast-icon" src="${icon}" />
+      <span class="forecast-temps">${temp}°C</span>
+      <span class="forecast-desc">${desc}</span>
+    `;
+
+    elements.forecastContainer.appendChild(card);
+  });
+}
+// Son aratılan şehirleri ekrana bas
+export function renderRecentChips(cities, onChipClick) {
+  // önceden ekrana basılan butonları temizle
+  elements.recentCities.innerHTML = "";
+
+  // her bir son aratılan şehir için bu adımı tekrarla:
+  cities.forEach((city) => {
+    // buton elementi oluştur
+    const chip = document.createElement("button");
+
+    // elementin class'ını güncelle
+    chip.className = "chip";
+
+    // elementin içindeki yazıyı güncelle
+    chip.textContent = city;
+
+    // butona tıklanınca çalışacak fonksiyonu ayarla
+    chip.addEventListener("click", () => onChipClick(city));
+
+    // elementi ekrana bas
+    elements.recentCities.appendChild(chip);
+  });
+}
+
 export default elements;

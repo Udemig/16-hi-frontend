@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weatherly - Hava Durumunu Öğren</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Üst Kısım -->
+      <header>
+        <!-- Logo -->
+        <div class="brand">
+          <span>🌤️</span>
+          <h1>Weatherly</h1>
+        </div>
+
+        <!-- Form -->
+        <form>
+          <input
+            type="text"
+            id="city-input"
+            placeholder="Şehir ara... (Örn: İzmir, İstanbul)"
+            autocomplete="off"
+          />
+          <button type="button" id="btn-geo" title="Mevcut Konumunu Kullan">📍</button>
+          <button type="submit">Ara</button>
+        </form>
+
+        <!-- Hata -->
+        <div id="validation-msg"></div>
+
+        <!-- Son Aramalar -->
+        <div class="recent">
+          <span>Son Aramalar:</span>
+          <div id="recent-cities">
+            <!-- <button class="chip">Türkiye</button> -->
+          </div>
+        </div>
+      </header>
+
+      <!-- Ana İçerik - 5 Farklı Durum -->
+      <main>
+        <!-- 1.Durum (Başlangıç Ekranı)  -->
+        <section id="state-initial" class="state-card glass-panel">
+          <div class="state-icon">🌍</div>
+          <h2>Bir Şehir Arayın</h2>
+          <p>Hava durumunu ve 5 günlük tahminleri görmek için şehir adı yazın.</p>
+          <div class="quick-chips">
+            <button type="button">İstanbul</button>
+            <button type="button">Ankara</button>
+            <button type="button">İzmir</button>
+          </div>
+        </section>
+
+        <!-- 2.Durum (Yüklenme Ekranı)  -->
+        <section id="state-loading" class="state-card glass-panel hidden">
+          <div class="spinner"></div>
+          <p>Hava durumu yükleniyor...</p>
+        </section>
+
+        <!-- 3.Durum (Başarılı Sonuç)  -->
+        <section id="state-success" class="hidden">
+          <!-- Güncel Bilgier Gösteren Kart -->
+          <article class="glass-panel">
+            <div class="current-header">
+              <div>
+                <h2 id="current-city">--</h2>
+                <p id="current-date">--</p>
+              </div>
+              <div id="current-icon">--</div>
+            </div>
+
+            <div class="current-body">
+              <div class="temp"><span id="current-temp-val">--</span>°C</div>
+              <div id="current-desc">--</div>
+            </div>
+
+            <!-- Hava Detayları -->
+            <div class="metrics">
+              <div>
+                <span>Hissedilen</span>
+                <strong id="metrics-feels">--°C</strong>
+              </div>
+              <div>
+                <span>Nem</span>
+                <strong id="metrics-humidity">%--</strong>
+              </div>
+              <div>
+                <span>Rüzgar</span>
+                <strong id="metrics-wind">-- km/h</strong>
+              </div>
+            </div>
+
+            <!-- Tavsiye mesajı -->
+            <div id="weather-tip">--</div>
+          </article>
+
+          <!-- 5 Günlük Tahmin -->
+          <section class="forecast-section">
+            <h3>5 Günlük Tahmin</h3>
+            <div id="forecast-container">
+              <div class="forecast-card">
+                <span class="forecast-day">--</span>
+                <span class="forecast-icon">--</span>
+                <span class="forecast-temps">--°C</span>
+                <span class="forecast-desc">--</span>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <!-- 4.Durum (Şehir Bulunanmadı)  -->
+        <section id="state-not-found" class="state-card glass-panel hidden">
+          <div class="state-icon">🔍</div>
+          <h2>Şehir Bulunamadı</h2>
+          <p>
+            "<span id="not-found-city">ARATILAN-KELİME</span>" için sonuç bulunamadı. Lütfenn
+            kontrol edip tekrar deneyin.
+          </p>
+        </section>
+
+        <!-- 5.Durum (Hata Sonucu)  -->
+        <section id="state-error" class="state-card glass-panel hidden">
+          <div class="state-icon">⚠️</div>
+          <h2>Bir Şeyler Ters Gitti</h2>
+          <p id="error-message">Hava durumu verisi alınamadı</p>
+          <button type="button" id="btn-retry">Tekrar Dene</button>
+        </section>
+      </main>
+
+      <!-- Alt Kısım -->
+      <footer>
+        <p>Weatherly - Vanilla JS Hava Durumu Dashboard</p>
+      </footer>
+    </div>
+
+    <script src="js/app.js" type="module"></script>
+  </body>
+</html>

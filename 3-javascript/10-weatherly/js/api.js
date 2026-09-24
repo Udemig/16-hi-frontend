@@ -40,3 +40,20 @@ export const fetchForecast = async (city) => {
   // api yanıtını js formatınan çevirip return et
   return await response.json();
 };
+
+// Kordinatlara göre hava durumu verisini alan fonknsiyon
+export const fetchWeatherByCoords = async (lat, lon) => {
+  // istek atılacak api adresini ayarla
+  const url = `${API_BASE_URL}/weather?appid=${API_KEY}&lat=${lat}&lon=${lon}&units=metric&lang=tr`;
+
+  // api isteği at
+  const response = await fetch(url);
+
+  // api'dan olumsuz yanıt gelirse hata fırlat
+  if (!response.ok) {
+    throw new Error("Konum hava durumu verisi alınamadı");
+  }
+
+  // apidan gelen yanıtı js formatına çevirip return et
+  return await response.json();
+};

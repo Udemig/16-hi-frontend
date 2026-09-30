@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prism - Sprint Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <!-- logo -->
+      <div class="brand">
+        <div>⬡</div>
+        <div>
+          <h1>Prism</h1>
+          <p>SaaS Dashboard · v2</p>
+        </div>
+      </div>
+
+      <!-- Sprint -->
+      <div class="header-meta">
+        <span class="sprint-badge">Sprint 4 · 30 Eyl - 14 Eki</span>
+        <div class="team-avatars">
+          <span title="Ayşe Yıldız">AY</span>
+          <span title="Burak Koç">BK</span>
+          <span title="Ceren Arslan">CA</span>
+          <span title="Deniz Şahin">DŞ</span>
+        </div>
+      </div>
+
+      <form id="global-form">
+        <input type="text" id="global-input" placeholder="Yeni görev ekle.." autocomplete="off" />
+        <button type="submit">Ekle</button>
+      </form>
+    </header>
+
+    <!-- Ana İçerik -->
+    <main id="board">
+      <!-- Backlog Sütunu -->
+      <section id="col-backlog">
+        <div>
+          <h2>Backlog</h2>
+          <span id="count-backlog">0</span>
+        </div>
+        <ul id="list-backlog">
+          <!-- <li draggable="true" class="dragging dropped" data-id="c3">
+            <span class="drag-handle" title="Sürükle">⠿</span>
+            <span class="card-text">🌍 Çoklu dil desteği ekle</span>
+            <button class="delete-btn" title="Kartı sil">✕</button>
+          </li> -->
+        </ul>
+        <p id="empty-backlog">Görev yok</p>
+      </section>
+      <!-- Devam Ediyor Sütunu -->
+      <section id="col-in-progress">
+        <div>
+          <h2>Devam Ediyor</h2>
+          <span id="count-in-progress">0</span>
+        </div>
+        <ul id="list-in-progress"></ul>
+        <p id="empty-in-progress">Görev yok</p>
+      </section>
+      <!-- Tamamlandı Sütunu -->
+      <section id="col-done">
+        <div>
+          <h2>Tamamlandı</h2>
+          <span id="count-done">0</span>
+        </div>
+        <ul id="list-done"></ul>
+        <p id="empty-done">Görev yok</p>
+      </section>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

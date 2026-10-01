@@ -1,0 +1,453 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background-color: #000000;
+  color: #ffffff;
+  height: 100vh;
+  overflow: hidden;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: inherit;
+  transition: filter 0.15s ease;
+}
+
+button:hover {
+  filter: brightness(0.8);
+}
+
+/* 3 sütunlu ana sayfa düzeni */
+.spotify-container {
+  display: grid;
+  grid-template-columns: 220px 1fr 280px;
+  grid-template-rows: 1fr 80px;
+  height: 100vh;
+  gap: 8px;
+  padding: 8px 8px;
+}
+
+/* sol menü */
+nav {
+  background-color: #121212;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    i {
+      font-size: 1.6rem;
+      color: #1ed760;
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-links li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #b3b3b3;
+
+    &.active,
+    &:hover {
+      color: #ffffff;
+    }
+  }
+
+  .library {
+    border-top: 1px solid #282828;
+    padding-top: 12px;
+    overflow-y: auto;
+
+    .library-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #b3b3b3;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .genre-list li {
+      padding: 6px 8px;
+      border-radius: 4px;
+      color: #b3b3b3;
+      font-size: 0.85rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #282828;
+        color: #ffffff;
+      }
+
+      &.active {
+        color: #1ed760;
+      }
+    }
+  }
+}
+
+/* 2. ORTA İÇERİK */
+.content-wrapper {
+  background-color: #121212;
+  border-radius: 8px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+header {
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  background-color: #121212;
+  z-index: 10;
+
+  form {
+    position: relative;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+
+    i {
+      position: absolute;
+      left: 12px;
+      color: #b3b3b3;
+    }
+
+    input {
+      width: 100%;
+      background: #242424;
+      border: none;
+      border-radius: 500px;
+      padding: 10px 70px 10px 36px;
+      color: #ffffff;
+      outline: none;
+    }
+
+    button {
+      position: absolute;
+      right: 4px;
+      background: #1ed760;
+      border: none;
+      border-radius: 500px;
+      padding: 6px 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+}
+
+main {
+  padding: 0 16px 24px;
+
+  .main-header {
+    padding: 10px 0 16px;
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 4px;
+    }
+
+    p {
+      color: #b3b3b3;
+      font-size: 0.85rem;
+    }
+  }
+
+  #status-box {
+    padding: 16px;
+    background: #181818;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    color: #b3b3b3;
+  }
+
+  .list-head,
+  #song-list li {
+    display: grid;
+    grid-template-columns: 32px 1.5fr 1fr 50px;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+  }
+
+  .list-head {
+    border-bottom: 1px solid #282828;
+    color: #b3b3b3;
+    font-size: 0.75rem;
+  }
+
+  #song-list {
+    list-style: none;
+
+    li {
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+
+      &:hover {
+        background-color: #242424;
+      }
+
+      &.active {
+        color: #1ed769;
+      }
+
+      .song-main {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .song-meta {
+        min-width: 0;
+      }
+
+      h4 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.9rem;
+      }
+
+      p,
+      .song-album,
+      .song-duration {
+        color: #b3b3b3;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 4px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+/* 3. SAĞ PANEL  */
+aside {
+  background-color: #121212;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  img {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .panel-info {
+    h2 {
+      font-size: 1.15rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    p {
+      color: #b3b3b3;
+      font-size: 0.85rem;
+    }
+  }
+
+  .panel-card {
+    background: #181818;
+    padding: 10px;
+    border-radius: 6px;
+
+    span {
+      font-size: 0.75rem;
+      color: #b3b3b3;
+      display: block;
+    }
+
+    strong {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+/* 4. OYNATICI */
+footer {
+  grid-column: 1 / -1;
+  background-color: #000000;
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 550px) 1fr;
+  align-items: center;
+  padding: 0 16px;
+
+  .track-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+    }
+
+    h4 {
+      font-size: 0.85rem;
+    }
+
+    p {
+      font-size: 0.75rem;
+      color: #b3b3b3;
+    }
+  }
+
+  .player-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .control-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  button {
+    color: #b3b3b3;
+    font-size: 1.4rem;
+  }
+
+  .primary-btn {
+    background: #ffffff;
+    color: #000000;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+
+    i {
+      color: #000000;
+      font-size: 1rem;
+    }
+  }
+
+  .progress-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: #b3b3b3;
+
+    input {
+      flex: 1;
+    }
+  }
+
+  .volume-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+
+    input {
+      width: 80px;
+    }
+  }
+
+  input {
+    accent-color: #1ed760;
+    cursor: pointer;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .spotify-container {
+    grid-template-columns: 200px 1fr;
+  }
+
+  #now-playing-panel {
+    display: none;
+  }
+}
+
+@media (max-width: 750px) {
+  .spotify-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .list-head,
+  .head-album,
+  #song-list li .song-album {
+    display: none;
+  }
+
+  .list-head,
+  #song-list li {
+    grid-template-columns: 24px 1fr 45px !important;
+  }
+
+  footer {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 8px;
+    padding: 8px 12px;
+
+    .track-info {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    .player-controls {
+      grid-column: 1 / -1;
+    }
+
+    .volume-container {
+      grid-row: 1;
+    }
+  }
+}

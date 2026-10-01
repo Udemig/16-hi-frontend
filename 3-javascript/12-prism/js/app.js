@@ -4,6 +4,7 @@
 
 import { addCard, removeCard } from "./state.js";
 import { render } from "./render.js";
+import { initDragDrop } from "./dragdrop.js";
 
 // ------ Kart Ekleme ------
 function handleAddCard(event) {
@@ -46,5 +47,6 @@ function handleBoardClick(event) {
 document.querySelector("form").addEventListener("submit", handleAddCard);
 document.querySelector("#board").addEventListener("click", handleBoardClick);
 
-// Kayıtlı kartları ekrana bas
+// Kayıtlı kartları ekrana bas ve sürükle & bırak etkinleştir
+initDragDrop();
 render();

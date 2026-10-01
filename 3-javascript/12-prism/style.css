@@ -244,11 +244,11 @@ section::before {
   background: var(--accent-done);
 }
 
-section.drag-over {
-  border-color: rgba(255, 255, 255, 0.22);
+.drag-over {
+  border-color: rgba(255, 255, 255, 0.711) !important;
   box-shadow:
-    0 0 0 2px rgba(255, 255, 255, 0.07),
-    var(--glass-shadow);
+    0 0 20px 10px rgba(255, 255, 255, 0.144),
+    var(--glass-shadow) !important;
 }
 
 /* Sütun Başlığı */
@@ -325,13 +325,13 @@ ul li {
   opacity: 0.68;
 }
 
-ul li.dragging {
-  cursor: grabbing;
-  transform: scale(1.02);
-  opacity: 0.8;
+.dragging {
+  cursor: grabbing !important;
+  transform: scale(1.02) !important;
+  opacity: 0.5 !important;
 }
 
-ul li.dropped {
+.dropped {
   animation: cardDrop 0.26s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -420,7 +420,7 @@ section > p {
     grid-template-columns: 1fr;
     padding: 0 16px;
   }
-  .column {
+  section {
     min-height: auto;
   }
 }

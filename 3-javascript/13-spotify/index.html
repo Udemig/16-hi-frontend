@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify - Web Player</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  </head>
+  <body>
+    <!-- Container -->
+    <div class="spotify-container">
+      <!-- 1. SOL MENÜ -->
+      <nav>
+        <div class="logo">
+          <i class="bi bi-spotify"></i>
+          <span>Spotify</span>
+        </div>
+
+        <ul class="nav-links">
+          <li class="active">
+            <i class="bi bi-house-door-fill"></i>
+            <span>Ana sayfa</span>
+          </li>
+        </ul>
+
+        <div class="library">
+          <div class="library-header">
+            <i class="bi bi-collection-play"></i>
+            <span>Kitaplığın</span>
+          </div>
+          <ul class="genre-list">
+            <li>🎤 Türkçe Rap</li>
+            <li>💿 2000'ler Türkçe</li>
+            <li>🎙️ 90'lar Nostalji</li>
+            <li>🎧 Türkçe Pop</li>
+            <li>🎸 Rock Klasikleri</li>
+            <li>🎹 Lo-Fi & Chill</li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- 2. ORTA BÖLÜM -->
+      <div class="content-wrapper">
+        <header>
+          <form id="search-form">
+            <i class="bi bi-search"></i>
+            <input type="search" id="search-input" placeholder="Ne dinlemek istiyorsunuz?" required />
+            <button type="submit">Ara</button>
+          </form>
+        </header>
+
+        <main>
+          <div class="main-header">
+            <h1 id="section-heading">İyi günler</h1>
+            <p id="results-counter">Popüler şarkılar yükleniyor..</p>
+          </div>
+
+          <div id="status-box" class="hidden"></div>
+
+          <div class="list-head">
+            <span>#</span>
+            <span>BAŞLIK</span>
+            <span class="head-album">ALBÜM</span>
+            <span class="head-duration">SÜRE</span>
+          </div>
+
+          <ul id="song-list">
+            <li class="active">
+              <span class="song-index">1</span>
+              <div class="song-main">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/a7/52/1aa752a9-0d58-18ff-7bef-30e1b77c431f/cover.jpg/100x100bb.jpg" />
+                <div class="song-meta">
+                  <h4>Yağmurlar</h4>
+                  <p>Şebnem Ferah</p>
+                </div>
+              </div>
+              <span class="song-album">Kadın</span>
+              <span class="song-duration">5:06</span>
+            </li>
+          </ul>
+        </main>
+      </div>
+
+      <!-- 3. SAĞ PANEL -->
+      <aside id="now-playing-panel">
+        <h3>Şimdi Çalınan</h3>
+        <img src="https://media.istockphoto.com/id/134119615/tr/foto%C4%9Fraf/vinyl-record.jpg?s=612x612&w=0&k=20&c=jgdsLropj7qcdZ3poWsf61F_79tRVzY26Pl4LSHGz_0=" alt="kapak" />
+        <div class="panel-info">
+          <h2 id="panel-title">Müzik Seçin</h2>
+          <p id="panel-artist">Bir parçaya tıklayın</p>
+        </div>
+        <div class="panel-card">
+          <span>Albüm</span>
+          <strong id="panel-album">Spotify Web Player</strong>
+        </div>
+      </aside>
+
+      <!-- 4. ALT OYNATICI -->
+      <footer>
+        <div class="track-info">
+          <img id="player-thumb" src="https://media.istockphoto.com/id/134119615/tr/foto%C4%9Fraf/vinyl-record.jpg?s=612x612&w=0&k=20&c=jgdsLropj7qcdZ3poWsf61F_79tRVzY26Pl4LSHGz_0=" alt="kapak" />
+          <div>
+            <h4 id="player-title">Bir şarkı seçin</h4>
+            <p id="player-artist">-</p>
+          </div>
+        </div>
+
+        <div class="player-controls">
+          <div class="control-buttons">
+            <button id="prev-btn" title="Önceki"><i class="bi bi-skip-start-fill"></i></button>
+            <button id="play-btn" class="primary-btn" title="Çal/Duraklat"><i class="bi bi-play-fill"></i></button>
+            <button id="next-btn" title="Sonraki"><i class="bi bi-skip-end-fill"></i></button>
+          </div>
+          <div class="progress-container">
+            <span class="current-time">0:00</span>
+            <input type="range" id="seek-slider" min="0" max="100" value="0" />
+            <span class="duration-time">0:00</span>
+          </div>
+        </div>
+
+        <div class="volume-container">
+          <button id="mute-btn" title="Ses"><i class="bi bi-volume-up-fill"></i></button>
+          <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.75" />
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>

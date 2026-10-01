@@ -55,7 +55,7 @@ function render() {
     count.textContent = columnCards.length;
 
     // "kart yok" mesajını göster/gizle
-    empty.style.display = columnCards.length === 0 ? "block" : "hidden";
+    empty.style.display = columnCards.length === 0 ? "block" : "none";
   });
 }
 

@@ -18,7 +18,7 @@
         </div>
 
         <ul class="nav-links">
-          <li class="active">
+          <li class="active" id="home">
             <i class="bi bi-house-door-fill"></i>
             <span>Ana sayfa</span>
           </li>
@@ -30,12 +30,12 @@
             <span>Kitaplığın</span>
           </div>
           <ul class="genre-list">
-            <li>🎤 Türkçe Rap</li>
-            <li>💿 2000'ler Türkçe</li>
-            <li>🎙️ 90'lar Nostalji</li>
-            <li>🎧 Türkçe Pop</li>
-            <li>🎸 Rock Klasikleri</li>
-            <li>🎹 Lo-Fi & Chill</li>
+            <li data-genre="Rap">🎤 Rap</li>
+            <li data-genre="Rock">🎸 Rock</li>
+            <li data-genre="Hip-Hop">⚡Hip-Hop</li>
+            <li data-genre="Türkçe Pop">🎧 Türkçe Pop</li>
+            <li data-genre="90lar Türkçe">🎙️ 90'lar Nostalji</li>
+            <li data-genre="2000ler Türkçe">💿 2000'ler Türkçe</li>
           </ul>
         </div>
       </nav>
@@ -53,10 +53,9 @@
         <main>
           <div class="main-header">
             <h1 id="section-heading">İyi günler</h1>
-            <p id="results-counter">Popüler şarkılar yükleniyor..</p>
           </div>
 
-          <div id="status-box" class="hidden"></div>
+          <div id="status-box"></div>
 
           <div class="list-head">
             <span>#</span>
@@ -66,7 +65,7 @@
           </div>
 
           <ul id="song-list">
-            <li class="active">
+            <!-- <li class="active">
               <span class="song-index">1</span>
               <div class="song-main">
                 <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/a7/52/1aa752a9-0d58-18ff-7bef-30e1b77c431f/cover.jpg/100x100bb.jpg" />
@@ -77,7 +76,7 @@
               </div>
               <span class="song-album">Kadın</span>
               <span class="song-duration">5:06</span>
-            </li>
+            </li> -->
           </ul>
         </main>
       </div>
@@ -85,7 +84,7 @@
       <!-- 3. SAĞ PANEL -->
       <aside id="now-playing-panel">
         <h3>Şimdi Çalınan</h3>
-        <img src="https://media.istockphoto.com/id/134119615/tr/foto%C4%9Fraf/vinyl-record.jpg?s=612x612&w=0&k=20&c=jgdsLropj7qcdZ3poWsf61F_79tRVzY26Pl4LSHGz_0=" alt="kapak" />
+        <img id="panel-cover" src="https://media.istockphoto.com/id/134119615/tr/foto%C4%9Fraf/vinyl-record.jpg?s=612x612&w=0&k=20&c=jgdsLropj7qcdZ3poWsf61F_79tRVzY26Pl4LSHGz_0=" alt="kapak" />
         <div class="panel-info">
           <h2 id="panel-title">Müzik Seçin</h2>
           <p id="panel-artist">Bir parçaya tıklayın</p>

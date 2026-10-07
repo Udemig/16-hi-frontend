@@ -47,6 +47,9 @@ export function toggleMute() {
   audio.muted = !audio.muted;
   return audio.muted;
 }
+export function setMute(isMuted) {
+  audio.muted = isMuted;
+}
 
 // şuan oynatılan şarkıyı döner
 export function getCurrentTrack() {
@@ -61,7 +64,7 @@ export function isPlaying() {
 // Şarkı çalma olaylarını uygulama bağlamak için dinleyeciler
 export function initPlayerEvent({ onTimeUpdate, onEnded, onPlayStateChanged }) {
   // şarkı ilerledikçe çalışır
-  audio.addEventListener("timeUpdate", () => {
+  audio.addEventListener("timeupdate", () => {
     onTimeUpdate({
       currentTime: audio.currentTime, // 30
       duration: audio.duration, // 60

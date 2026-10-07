@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Üst Bar -->
+      <nav class="topbar">
+        <div class="topbar-inner">
+          <span class="logo">🍿 Cine<strong>Bilet</strong></span>
+          <span class="topbar-tag">Online Rezervasyon</span>
+        </div>
+      </nav>
+
+      <!-- Adım Göstergesi -->
+      <div class="stepper">
+        <div class="step active" data-step="1">
+          <div class="step-circle">1</div>
+          <span class="step-label">Koltuk Seç</span>
+        </div>
+        <div class="step-line"></div>
+
+        <div class="step" data-step="2">
+          <div class="step-circle">2</div>
+          <span class="step-label">Bilgiler</span>
+        </div>
+        <div class="step-line"></div>
+
+        <div class="step" data-step="3">
+          <div class="step-circle">3</div>
+          <span class="step-label">Bilet</span>
+        </div>
+      </div>
+
+      <!-- =========== ADIM 1: Koltuk Seçimi =========== -->
+      <section class="page page-active" id="page-1">
+        <!-- Film Kartı -->
+        <div class="movie-card">
+          <div class="movie-poster">
+            <img
+              src="https://m.media-amazon.com/images/S/pv-target-images/7e1b86f219e65552c4693e046ff8f1ba0c71c52dfe50bfb4081fb87f75e8b1c6.jpg"
+              alt="afiş"
+            />
+            <span class="poster-rating">⭐ 8.7</span>
+          </div>
+          <div class="movie-details">
+            <div class="movie-title-row">
+              <h2 class="movie-title">Yıldızlararası</h2>
+              <span class="movie-age">13+</span>
+            </div>
+            <div class="movie-meta">
+              <span class="meta-tag">Bildim Kurgu</span>
+              <span class="meta-tag">Macera</span>
+              <span class="meta-tag">169 dk</span>
+            </div>
+            <p class="movie-desc">
+              Dünya'nın son günlerinde bir grup kaşif, insanlığı kurtarmak için bir solucan
+              deliğinden geçerek galaksiler ötesine yolculuk eder.
+            </p>
+            <div class="movie-session">
+              <div class="session-item">
+                <span class="session-icon">📅</span>
+                <span>Bugün</span>
+              </div>
+              <div class="session-item">
+                <span class="session-icon">🕐</span>
+                <span>20:30</span>
+              </div>
+              <div class="session-item">
+                <span class="session-icon">📍</span>
+                <span>Salon 3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fiyat Bilgisi -->
+        <div class="price-strip">
+          <span>Bilet Ücreti</span>
+          <span class="price-amount">85 ₺ <small>/ kişi</small></span>
+        </div>
+
+        <!-- Salon -->
+        <div class="cinema-hall">
+          <div class="screen-wrapper">
+            <div class="screen-curve">
+              <div class="screen-text">P E R D E</div>
+            </div>
+            <div class="screen-glow"></div>
+          </div>
+
+          <div id="seat-map" class="seat-map"></div>
+
+          <div class="legend">
+            <div class="legend-item">
+              <span class="legend-dot legend-available"></span>
+              <span>Boş</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot legend-selected"></span>
+              <span>Seçili</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot legend-occupied"></span>
+              <span>Dolu</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seçili Koltuk Etiketleri -->
+        <div class="selected-tags" id="selected-tags"></div>
+
+        <!-- Alt Özet Bar -->
+        <div class="summary-bar" id="summary-bar">
+          <div class="summary-left">
+            <div class="summary-count">
+              <span class="summary-number" id="selected-count">0</span>
+              <span class="summary-text">Koltuk</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-count">
+              <span class="summary-number" id="total-price">0 ₺</span>
+              <span class="summary-text">Toplam</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-next" id="btn-to-step2" disabled>Devam Et</button>
+        </div>
+      </section>
+
+      <!-- =========== ADIM 2: Bilgi Formu =========== -->
+      <section class="page" id="page-2">
+        <div class="form-card">
+          <div class="form-header">
+            <h2 class="form-title">Kişisel Bilgiler</h2>
+            <p class="form-subtitle">Biletiniz bu bilgilerle oluşturulacak.</p>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-ghost" id="btn-back-1">Geri</button>
+          <button class="btn btn-primary" id="btn-confirm">Bileti Onayla</button>
+        </div>
+      </section>
+
+      <!-- =========== ADIM 3: Bilet Kartı =========== -->
+      <section class="page" id="page-3">
+        <div class="success-message">
+          <div class="success-icon">✅</div>
+          <h2>Rezervasyon Tamamlandı</h2>
+          <p>Bilet detayları aşağıdadır</p>
+        </div>
+
+        <button class="btn btn-ghost btn-full" id="btn-new">Yeni Rezervasyon Yap</button>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

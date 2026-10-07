@@ -1,6 +1,6 @@
 import { getTopTracks, searchTracks } from "./api.js";
-import { ui, renderSongList, updateActiveListItem, renderTrackDetails } from "./ui.js";
-import { playTrack, pauseTrack, togglePlay } from "./player.js";
+import { ui, renderSongList, updateActiveListItem, renderTrackDetails, updateMuteButton, updatePlayButton, updateProgressUI } from "./ui.js";
+import { playTrack, togglePlay, seekToPercent, setVolume, toggleMute, initPlayerEvent, setMute } from "./player.js";
 
 //! ======= Uygulama Durumu (State) =======
 let currentTracks = []; // listelenicek şarkılar
@@ -111,6 +111,48 @@ ui.playBtn.addEventListener("click", () => {
     return;
   }
   togglePlay();
+});
+
+// Ses seviyesi beilrleme
+ui.volumeSlider.addEventListener("input", (e) => {
+  setVolume(e.target.value);
+
+  if (e.target.value == 0) {
+    setMute(true);
+    updateMuteButton(true);
+  } else {
+    setMute(false);
+    updateMuteButton(false);
+  }
+});
+
+// Sessize alma
+ui.muteBtn.addEventListener("click", () => {
+  const isMuted = toggleMute(); // sessize alır
+  updateMuteButton(isMuted); // iconu günceller
+});
+
+// Süre ileri/geri alma
+ui.seekSlider.addEventListener("input", (e) => {
+  seekToPercent(e.target.value);
+});
+
+// Oynatı eventlerini bağla
+initPlayerEvent({
+  // şarkı çaldıkça süre ve ilerleme çubuğu günceller
+  onTimeUpdate: ({ currentTime, duration, progressPercent }) => {
+    updateProgressUI(currentTime, duration, progressPercent);
+  },
+
+  // çalma durumu değiştikçe play/pause ikonu günceller
+  onPlayStateChanged: (isPlaying) => {
+    updatePlayButton(isPlaying);
+  },
+
+  // şarkı bittiğinde otomatik bir sonraki şarkıya geçer
+  onEnded: () => {
+    playNextTrack();
+  },
 });
 
 // Sayfa ilk açıldığında Popüler Şarkıları yükle

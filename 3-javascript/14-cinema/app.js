@@ -31,6 +31,10 @@ const btnBack1 = document.getElementById("btn-back-1");
 const btnConfirm = document.getElementById("btn-confirm");
 const btnNew = document.getElementById("btn-new");
 
+const fullnameInput = document.getElementById("fullname");
+const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("phone");
+
 // ------ Global Değişkenler (State) ------
 let selectedSeats = [];
 
@@ -159,18 +163,159 @@ function goToStep(stepNumber) {
   });
   document.getElementById("page-" + stepNumber).classList.add("page-active");
 
-  // todo: stepperı güncelle
+  // stepperı güncelle
+  steps.forEach((step, i) => {
+    const num = i + 1;
+    step.classList.remove("active", "done");
+
+    if (num === stepNumber) {
+      step.classList.add("active");
+    } else if (num < stepNumber) {
+      step.classList.add("done");
+    }
+  });
+
+  // çizgileri güncelle
+  stepLines.forEach((line, i) => {
+    if (i < stepNumber - 1) {
+      line.classList.add("done");
+    } else {
+      line.classList.remove("done");
+    }
+  });
 }
 
 // Adım 1 -> 2
 btnToStep2.addEventListener("click", () => {
-  // todo: özeti güncelle
+  // özeti güncelle
+  document.getElementById("recap-seats").textContent = selectedSeats;
+  document.getElementById("recap-total").textContent = selectedSeats.length * TICKET_PRICE + "₺";
 
   goToStep(2);
 });
 
 // Adım 2 -> 1
 btnBack1.addEventListener("click", () => {
+  goToStep(1);
+});
+
+// ======= 6) Form Doğrulama =======
+
+// doğrulama kuralları
+const validationRules = {
+  fullname: {
+    regex: /^\p{L}{2,}(?:\s+\p{L}{2,})+$/u,
+    message: "Ad ve soyad giriniz (en az 2 kelime)",
+  },
+  email: {
+    regex: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/,
+    message: "Geçerli bir e-posta giriniz.",
+  },
+  phone: {
+    regex: /^05\d{2} ?\d{3} ?\d{2} ?\d{2}$/,
+    message: "Geçerli bir telefon giriniz (05XX XXX XX XX)",
+  },
+};
+
+// bir input alanını doğrula
+function validateField(input) {
+  const rule = validationRules[input.id];
+  const wrapper = input.closest(".input-wrapper");
+  const errorEl = document.getElementById(input.id + "-error");
+  const statusEl = document.getElementById(input.id + "-status");
+  const value = input.value.trim();
+
+  // input boşsa bütün uyarıları kaldır
+  if (value === "") {
+    wrapper.classList.remove("valid", "invalid");
+    errorEl.textContent = "";
+    statusEl.textContent = "";
+    return false;
+  }
+
+  // inputa yazılan yazı regexe (kurallara) uygun mu kontrol et
+  if (rule.regex.test(value)) {
+    // geçerli
+    wrapper.classList.remove("invalid");
+    wrapper.classList.add("valid");
+    errorEl.textContent = "";
+    statusEl.textContent = "✓";
+    return true;
+  } else {
+    // geçersiz
+    wrapper.classList.remove("valid");
+    wrapper.classList.add("invalid");
+    errorEl.textContent = rule.message;
+    statusEl.textContent = "✗";
+    return false;
+  }
+}
+
+// inputlara bir şey yazılınca doğrulama fonksiyonunu çalıştır
+fullnameInput.addEventListener("input", () => {
+  validateField(fullnameInput);
+  checkFormValidity();
+});
+
+emailInput.addEventListener("input", () => {
+  validateField(emailInput);
+  checkFormValidity();
+});
+
+phoneInput.addEventListener("input", () => {
+  validateField(phoneInput);
+  checkFormValidity();
+});
+
+// ======= 7) Buton Aktif/Pasif Kontrolü =======
+function checkFormValidity() {
+  const nameOk = validationRules.fullname.regex.test(fullnameInput.value.trim());
+  const emailOk = validationRules.email.regex.test(emailInput.value.trim());
+  const phoneOk = validationRules.phone.regex.test(phoneInput.value.trim());
+
+  btnConfirm.disabled = !(nameOk && emailOk && phoneOk);
+}
+
+// ======= 8) Bileti Onayla -> Son Sayfaya Geç =======
+btnConfirm.addEventListener("click", () => {
+  // dinamik alanları doldur
+  document.getElementById("ticket-name").textContent = fullnameInput.value.trim();
+  document.getElementById("ticket-seats").textContent = selectedSeats.join(", ");
+  document.getElementById("ticket-count").textContent = selectedSeats.length + " kişi";
+  document.getElementById("ticket-total").textContent = selectedSeats.length * TICKET_PRICE + " ₺";
+
+  goToStep(3);
+});
+
+// ======= 9) Yeni Rezervasyon -> Herşeyi Sıfırla Başa Dön =======
+btnNew.addEventListener("click", () => {
+  // Koltukları sıfırla
+  selectedSeats = [];
+  seatMap.querySelectorAll(".seat.selected").forEach((seat) => {
+    seat.classList.remove("selected");
+    seat.classList.add("available");
+  });
+
+  // özet ve etiketleri sıfırla
+  updateSummary();
+  renderSeatTags();
+
+  // form alanlarını temizle
+  fullnameInput.value = "";
+  emailInput.value = "";
+  phoneInput.value = "";
+
+  // doğrulama stillerini sıfırla
+  document
+    .querySelectorAll(".input-wrapper")
+    .forEach((el) => el.classList.remove("valid", "invalid"));
+  document.querySelectorAll(".error-msg").forEach((el) => (el.textContent = ""));
+  document.querySelectorAll(".input-status").forEach((el) => (el.textContent = ""));
+
+  // bileti onayla butonunu inaktif yap
+  btnConfirm.disabled = true;
+
+  // ilk adıma dön
   goToStep(1);
 });
 

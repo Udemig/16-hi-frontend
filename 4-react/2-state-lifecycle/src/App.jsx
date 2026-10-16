@@ -7,6 +7,7 @@ import FunctionComponent from "./components/FunctionComponent";
 import ClassComponent from "./components/ClassComponent";
 import UserList from "./components/UserList";
 import RecipePicker from "./components/RecipePicker";
+import Countdown from "./components/Countdown";
 
 function App() {
   // bileşen gösterilsin mi?
@@ -31,7 +32,7 @@ function App() {
 
       <button onClick={() => setIsVisible(!isVisible)}>Gizle / Göster</button>
 
-      {isVisible && <RecipePicker />}
+      {isVisible && <Countdown />}
     </div>
   );
 }

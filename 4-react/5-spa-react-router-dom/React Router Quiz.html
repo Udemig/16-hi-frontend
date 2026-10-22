@@ -1,0 +1,213 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>React Router Quiz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: tek sütunlu, tek soru odaklı quiz; üstte ilerleme, altta geri bildirim paneli. */
+:root {
+  --bg: #EEF1F6;
+  --surface: #FFFFFF;
+  --ink: #141B2B;
+  --muted: #566176;
+  --line: #D6DCE8;
+  --accent: #2F55D4;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #E3EAFC;
+  --ok: #176B43;
+  --ok-soft: #DDF3E7;
+  --bad: #A8261D;
+  --bad-soft: #FBE3E0;
+  --code-bg: #E7EBF3;
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+  --font-body: "IBM Plex Sans", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1420; --surface: #172033; --ink: #E8ECF5; --muted: #9AA6BD; --line: #2A3650;
+    --accent: #7E9BFF; --accent-ink: #0F1420; --accent-soft: #22305A;
+    --ok: #6FD3A0; --ok-soft: #14382A; --bad: #FF9A91; --bad-soft: #4A2220; --code-bg: #243049;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1420; --surface: #172033; --ink: #E8ECF5; --muted: #9AA6BD; --line: #2A3650;
+  --accent: #7E9BFF; --accent-ink: #0F1420; --accent-soft: #22305A;
+  --ok: #6FD3A0; --ok-soft: #14382A; --bad: #FF9A91; --bad-soft: #4A2220; --code-bg: #243049;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.55; }
+.wrap { max-width: 760px; margin-inline: auto; padding-block: 28px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 20px; }
+header { display: flex; flex-direction: column; gap: 6px; }
+.kicker { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+h1 { font-family: var(--font-display); font-size: clamp(30px, 6vw, 42px); line-height: 1.1; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; }
+code { font-family: var(--font-mono); font-size: 0.9em; background: var(--code-bg); padding: 1px 6px; border-radius: 5px; overflow-wrap: anywhere; }
+.progress { display: flex; flex-direction: column; gap: 8px; }
+.progress-row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bar { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s ease; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.topic { align-self: flex-start; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: var(--accent-soft); color: var(--accent); padding: 4px 10px; border-radius: 999px; }
+h2 { font-family: var(--font-display); font-size: clamp(22px, 4.2vw, 28px); line-height: 1.25; margin: 0; text-wrap: balance; }
+.opts { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.opt { width: 100%; display: flex; gap: 14px; align-items: flex-start; text-align: left; font: inherit; color: inherit; background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; cursor: pointer; }
+.opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.opt:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.opt:disabled { cursor: default; }
+.letter { flex: none; width: 28px; height: 28px; border-radius: 7px; background: var(--code-bg); display: grid; place-items: center; font-family: var(--font-mono); font-size: 14px; font-weight: 500; }
+.opt .txt { flex: 1; min-width: 0; padding-top: 2px; }
+.opt .tag { flex: none; font-size: 13px; font-weight: 600; padding-top: 4px; }
+.opt.ok { border-color: var(--ok); background: var(--ok-soft); }
+.opt.ok .letter { background: var(--ok); color: var(--surface); }
+.opt.ok .tag { color: var(--ok); }
+.opt.bad { border-color: var(--bad); background: var(--bad-soft); }
+.opt.bad .letter { background: var(--bad); color: var(--surface); }
+.opt.bad .tag { color: var(--bad); }
+.fb { border-radius: 10px; padding: 14px 16px; background: var(--code-bg); display: flex; flex-direction: column; gap: 4px; }
+.fb strong { font-size: 15px; }
+.fb.ok { background: var(--ok-soft); }
+.fb.ok strong { color: var(--ok); }
+.fb.bad { background: var(--bad-soft); }
+.fb.bad strong { color: var(--bad); }
+.fb p { margin: 0; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.btn { font: inherit; font-weight: 600; border: 0; border-radius: 10px; padding: 11px 20px; cursor: pointer; background: var(--accent); color: var(--accent-ink); }
+.btn.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+.hint { font-size: 13px; color: var(--muted); }
+.score { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.score b { font-family: var(--font-display); font-size: clamp(56px, 14vw, 84px); line-height: 1; font-variant-numeric: tabular-nums; }
+.score span { color: var(--muted); font-size: 20px; }
+.topics { display: flex; flex-direction: column; gap: 8px; }
+.trow { display: grid; grid-template-columns: minmax(0, 1fr) 64px; gap: 4px 12px; align-items: center; }
+.trow .bar { grid-column: 1 / -1; height: 6px; }
+.trow span:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.trow .bar > i { background: var(--ok); }
+.missed { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.missed li { border-top: 1px solid var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 4px; }
+.missed .q { font-weight: 600; }
+.missed .a { color: var(--ok); font-size: 15px; }
+.missed .e { color: var(--muted); font-size: 15px; }
+.h3 { font-family: var(--font-display); font-size: 20px; margin: 0; }
+@media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } }
+</style>
+
+<main class="wrap">
+  <header>
+    <span class="kicker">React · Router</span>
+    <h1>React Router DOM Quiz</h1>
+    <p class="sub">18 soru. SPA, route tanımı, dinamik route, iç içe route ve router hook’ları. İpucu: 1–4 tuşlarıyla cevapla, Enter ile ilerle.</p>
+  </header>
+  <section class="progress" aria-label="İlerleme">
+    <div class="progress-row"><span id="pcount">Soru 1 / 18</span><span id="pscore">Doğru: 0</span></div>
+    <div class="bar"><i id="pbar"></i></div>
+  </section>
+  <section id="stage" aria-live="polite"></section>
+</main>
+
+<script>
+const Q = [
+  { t: "SPA", q: "Bir SPA uygulamasında `Link`’e tıklandığında ne olur?", o: ["Tarayıcı sunucudan yeni bir HTML sayfası ister", "JavaScript URL’i okur ve ilgili bileşeni ekrana basar", "Sayfa baştan yüklenir ve state sıfırlanır", "Tarayıcı geçmişi temizlenir"], a: 1, e: "SPA’da sayfa isteği atılmaz. Dosyalar ilk ziyarette bir kez iner, sonrasında Router URL’e bakıp doğru bileşeni gösterir." },
+  { t: "SPA", q: "`npm run build` ile üretilen çıktı için hangisi doğrudur?", o: ["Kaynak dosyalar silinir ve sunucu başlatılır", "Yalnızca HTML dosyası üretilir", "Dosyalar birleştirilip küçültülür; geriye birkaç optimize dosya kalır", "Her bileşen için ayrı bir sayfa üretilir"], a: 2, e: "Build, projedeki dosyaları optimize edip yayına hazır hale getirir. Çıktı genelde index.html, birkaç JS/CSS ve asset dosyasından oluşur." },
+  { t: "URL", q: "`https://www.site.com/otomobil/bmw?yil_min=2012` adresinde `?yil_min=2012` kısmı nedir?", o: ["Path", "Path params", "Query params", "Protocol"], a: 2, e: "Soru işaretinden sonraki kısım query params’tır. React Router’da `useSearchParams` ile okunur." },
+  { t: "Kurulum", q: "Uygulamada Router özelliklerini kullanabilmek için tüm uygulamayı sarmalayan bileşen hangisidir?", o: ["Routes", "BrowserRouter", "Outlet", "NavLink"], a: 1, e: "`BrowserRouter` uygulamayı sarar ve URL’i dinlemeye başlar. Route’lar bunun içinde tanımlanır." },
+  { t: "Temel yapı", q: "Hangi bileşen, URL’e uyan `Route`’u seçip ekranda gösterir?", o: ["Link", "Navigate", "Routes", "Outlet"], a: 2, e: "`Routes` içindeki `Route`’ları sırayla değerlendirir ve URL ile eşleşeni render eder." },
+  { t: "Temel yapı", q: "Uygulama içinde sayfa yenilemeden `/sepet` sayfasına gitmek için hangisi kullanılır?", o: ["`<a href=\"/sepet\">`", "`<Route to=\"/sepet\">`", "`<Link to=\"/sepet\">`", "`<Outlet to=\"/sepet\">`"], a: 2, e: "`a` etiketi sayfayı yeniler ve state kaybolur. `Link` ise sadece URL’i değiştirir, Router yeni sayfayı çizer." },
+  { t: "Temel yapı", q: "`NavLink`, `Link`’ten hangi yönüyle ayrılır?", o: ["Aktif sayfayı algılar ve aktif linke özel stil/sınıf uygulanabilir", "Sayfayı yenileyerek gider", "Yalnızca dış sitelere gider", "Parametre taşıyamaz"], a: 0, e: "`NavLink` bulunulan sayfayla eşleşince `active` sınıfı ekler; menülerde aktif linki vurgulamak için kullanılır." },
+  { t: "Dinamik route", q: "Route `path=\"/ürünler/:id\"` ise, `/ürünler/3` adresindeki `3` değerine hangi hook ile ulaşılır?", o: ["useLocation", "useParams", "useNavigate", "useSearchParams"], a: 1, e: "`const { id } = useParams()` ile path’teki parametreler nesne olarak okunur." },
+  { t: "Dinamik route", q: "`const { id } = useParams()` ile gelen `id` değerinin türü nedir?", o: ["number", "boolean", "string", "object"], a: 2, e: "URL’den gelen her parametre string’dir. Sayı gerekiyorsa `Number(id)` ile dönüştürülür." },
+  { t: "Dinamik route", q: "Detay sayfasında `book?.title` ifadesi, `book` henüz `null` iken ne üretir?", o: ["Hata fırlatır ve sayfa çöker", "`undefined` döner, hata vermez", "Boş bir string döner", "`null` değerini yazdırır"], a: 1, e: "Optional chaining (`?.`) sol taraf null/undefined ise zinciri durdurur. Veri API’dan gelene kadar sayfa çökmez." },
+  { t: "Dinamik route", q: "Detail bileşeninde `useEffect(() => { ... }, [])` yazılmış ve URL’deki `id` değişiyor. Ne olur?", o: ["Her değişimde yeni istek atılır", "Yeni id için istek atılmaz; bağımlılık dizisi `[id]` olmalıdır", "Bileşen unmount edilir", "Hata mesajı gösterilir"], a: 1, e: "Boş bağımlılık dizisi efekti yalnızca ilk render’da çalıştırır. `id` değişince yeniden çalışması için `[id]` yazılır." },
+  { t: "İç içe route", q: "Ortak bir `Layout` bileşeninde alt route’un görüneceği yeri belirleyen bileşen hangisidir?", o: ["Routes", "Outlet", "Link", "Navigate"], a: 1, e: "`Outlet`, üst route’un içinde eşleşen alt route’un render edileceği yerdir. Unutulursa alt sayfa görünmez." },
+  { t: "İç içe route", q: "Yetkisi olmayan kullanıcıyı koruma altındaki sayfadan ana sayfaya yönlendirmek için hangisi render edilir?", o: ["`<Navigate to=\"/\" />`", "`<Link to=\"/\" />`", "`<Outlet to=\"/\" />`", "`<Route path=\"/\" />`"], a: 0, e: "`Navigate` render edildiği anda yönlendirme yapar. Korumalı route’larda yetki yoksa `Navigate`, varsa `Outlet` döndürülür." },
+  { t: "Hook’lar", q: "Form gönderildikten sonra kod içinden başka bir sayfaya gitmek için hangi hook kullanılır?", o: ["useNavigate", "useParams", "useLocation", "useRoutes"], a: 0, e: "`const navigate = useNavigate()` ile `navigate(\"/sayfa\")` şeklinde kodla yönlendirme yapılır." },
+  { t: "Hook’lar", q: "Bir önceki sayfaya dönmek için doğru kullanım hangisidir?", o: ["`<Link to={-1}>`", "`navigate(-1)`", "`<Navigate to=\"back\" />`", "`useParams(-1)`"], a: 1, e: "`Link` sayı kabul etmez. Geri gitmek için `useNavigate`’ten gelen `navigate(-1)` kullanılır." },
+  { t: "Hook’lar", q: "URL `?kategori=roman` iken `searchParams.get(\"kategori\")` ne döndürür?", o: ["`\"roman\"`", "`[\"roman\"]`", "`true`", "`undefined`"], a: 0, e: "`useSearchParams` ile alınan `searchParams.get(anahtar)` değeri string olarak verir. Parametre yoksa `null` döner." },
+  { t: "Hook’lar", q: "`useLocation` hook’u neyi verir?", o: ["Sadece path parametrelerini", "Tarayıcı geçmişinin tamamını", "pathname, search ve `navigate` ile taşınan state gibi konum bilgisini", "Kullanıcının coğrafi konumunu"], a: 2, e: "`useLocation` bulunulan URL’in bilgilerini ve `navigate` ile gönderilen state’i verir. Hata ayıklarken de işe yarar." },
+  { t: "404", q: "Hiçbir route ile eşleşmeyen adresler için 404 sayfasını göstermek için hangi path yazılır?", o: ["`path=\"/404\"`", "`path=\"/\"`", "`path=\"*\"`", "`path=\":id\"`"], a: 2, e: "`path=\"*\"` diğer route’lar eşleşmediğinde devreye girer. Genelde Routes’un en sonunda tanımlanır." },
+  { t: "Modern tanım", q: "`createBrowserRouter` ile tanımlanan route’lar uygulamaya hangi bileşenle bağlanır?", o: ["BrowserRouter", "RouterProvider", "Routes", "Outlet"], a: 1, e: "Modern tanımda route’lar nesne dizisi olarak yazılır ve `<RouterProvider router={router} />` ile kullanılır." }
+];
+
+let list = Q.slice(), idx = 0, score = 0, answered = false, results = [];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const md = (s) => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>");
+const L = ["A", "B", "C", "D"];
+
+function progress() {
+  $("pcount").textContent = "Soru " + Math.min(idx + 1, list.length) + " / " + list.length;
+  $("pscore").textContent = "Doğru: " + score;
+  $("pbar").style.width = (idx / list.length * 100) + "%";
+}
+
+function render() {
+  const q = list[idx];
+  answered = false;
+  progress();
+  $("stage").innerHTML =
+    '<div class="card"><span class="topic">' + esc(q.t) + '</span><h2>' + md(q.q) + '</h2><ul class="opts">' +
+    q.o.map((t, i) => '<li><button class="opt" data-i="' + i + '"><span class="letter">' + L[i] + '</span><span class="txt">' + md(t) + '</span><span class="tag"></span></button></li>').join("") +
+    '</ul><div id="fb"></div><div class="actions"><button class="btn" id="next" hidden></button><span class="hint" id="hint">Bir seçenek seç.</span></div></div>';
+  document.querySelectorAll(".opt").forEach((b) => b.addEventListener("click", () => pick(+b.dataset.i)));
+  $("next").addEventListener("click", next);
+}
+
+function pick(i) {
+  if (answered) return;
+  answered = true;
+  const q = list[idx], right = i === q.a;
+  if (right) score++;
+  results.push({ q, picked: i, right });
+  document.querySelectorAll(".opt").forEach((b) => {
+    const n = +b.dataset.i;
+    b.disabled = true;
+    if (n === q.a) { b.classList.add("ok"); b.querySelector(".tag").textContent = "Doğru cevap"; }
+    else if (n === i) { b.classList.add("bad"); b.querySelector(".tag").textContent = "Senin cevabın"; }
+  });
+  $("fb").innerHTML = '<div class="fb ' + (right ? "ok" : "bad") + '"><strong>' + (right ? "Doğru" : "Yanlış") + '</strong><p>' + md(q.e) + '</p></div>';
+  const nb = $("next");
+  nb.hidden = false;
+  nb.textContent = idx === list.length - 1 ? "Sonucu gör" : "Sonraki soru";
+  nb.focus();
+  $("hint").textContent = "";
+  $("pscore").textContent = "Doğru: " + score;
+}
+
+function next() {
+  idx++;
+  if (idx >= list.length) return finish();
+  render();
+}
+
+function finish() {
+  idx = list.length;
+  progress();
+  $("pcount").textContent = "Bitti";
+  const pct = Math.round(score / list.length * 100);
+  const topics = {};
+  results.forEach((r) => { const t = r.q.t; topics[t] = topics[t] || [0, 0]; topics[t][1]++; if (r.right) topics[t][0]++; });
+  const missed = results.filter((r) => !r.right);
+  const msg = pct >= 85 ? "Konu büyük ölçüde oturmuş." : pct >= 60 ? "İyi gidiyorsun. Yanlışları gözden geçir." : "Slaytlara bir daha göz at, sonra tekrar dene.";
+  $("stage").innerHTML =
+    '<div class="card"><div class="score"><b>' + score + '</b><span>/ ' + list.length + ' doğru (%' + pct + ')</span></div><p class="sub">' + msg + '</p>' +
+    '<h3 class="h3">Konulara göre</h3><div class="topics">' +
+    Object.keys(topics).map((t) => '<div class="trow"><span>' + esc(t) + '</span><span>' + topics[t][0] + ' / ' + topics[t][1] + '</span><div class="bar"><i style="width:' + (topics[t][0] / topics[t][1] * 100) + '%"></i></div></div>').join("") + '</div>' +
+    (missed.length ? '<h3 class="h3">Yanlış cevapların</h3><ul class="missed">' + missed.map((r) => '<li><span class="q">' + md(r.q.q) + '</span><span class="a">Doğru cevap: ' + md(r.q.o[r.q.a]) + '</span><span class="e">' + md(r.q.e) + '</span></li>').join("") + '</ul>' : '<p>Tüm soruları doğru yanıtladın.</p>') +
+    '<div class="actions"><button class="btn" id="again">Baştan başla</button>' + (missed.length ? '<button class="btn ghost" id="retry">Sadece yanlışları çöz</button>' : '') + '</div></div>';
+  $("again").addEventListener("click", () => start(Q.slice()));
+  if (missed.length) $("retry").addEventListener("click", () => start(missed.map((r) => r.q)));
+}
+
+function start(items) { list = items; idx = 0; score = 0; results = []; render(); }
+
+document.addEventListener("keydown", (e) => {
+  if (idx >= list.length) return;
+  if (!answered && e.key >= "1" && e.key <= "4") { pick(+e.key - 1); }
+  else if (answered && e.key === "Enter" && document.activeElement !== $("next")) { next(); }
+});
+
+start(Q.slice());
+</script>
+
+</body></html>

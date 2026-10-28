@@ -1,0 +1,206 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>useContext Quiz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: tek sütunlu, tek soru odaklı quiz; üstte ilerleme, altta geri bildirim paneli. */
+:root {
+  --bg: #F5F3EE;
+  --surface: #FFFEFB;
+  --ink: #1C1B22;
+  --muted: #5E6270;
+  --line: #E1DDD3;
+  --accent: #C2410C;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #FBE3D7;
+  --ok: #176B43;
+  --ok-soft: #DDF3E7;
+  --bad: #A8261D;
+  --bad-soft: #FBE3E0;
+  --code-bg: #EEEAE1;
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+  --font-body: "IBM Plex Sans", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17161C; --surface: #211F28; --ink: #EDEAE3; --muted: #A5A2AE; --line: #34313D;
+    --accent: #FF9F6E; --accent-ink: #17161C; --accent-soft: #3E2619;
+    --ok: #6FD3A0; --ok-soft: #14382A; --bad: #FF9A91; --bad-soft: #4A2220; --code-bg: #2C2A34;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17161C; --surface: #211F28; --ink: #EDEAE3; --muted: #A5A2AE; --line: #34313D;
+  --accent: #FF9F6E; --accent-ink: #17161C; --accent-soft: #3E2619;
+  --ok: #6FD3A0; --ok-soft: #14382A; --bad: #FF9A91; --bad-soft: #4A2220; --code-bg: #2C2A34;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.55; }
+.wrap { max-width: 760px; margin-inline: auto; padding-block: 28px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 20px; }
+header { display: flex; flex-direction: column; gap: 6px; }
+.kicker { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+h1 { font-family: var(--font-display); font-size: clamp(30px, 6vw, 42px); line-height: 1.1; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; }
+code { font-family: var(--font-mono); font-size: 0.9em; background: var(--code-bg); padding: 1px 6px; border-radius: 5px; overflow-wrap: anywhere; }
+.progress { display: flex; flex-direction: column; gap: 8px; }
+.progress-row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bar { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s ease; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.topic { align-self: flex-start; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: var(--accent-soft); color: var(--accent); padding: 4px 10px; border-radius: 999px; }
+h2 { font-family: var(--font-display); font-size: clamp(22px, 4.2vw, 28px); line-height: 1.25; margin: 0; text-wrap: balance; }
+pre.snip { margin: 0; font-family: var(--font-mono); font-size: 15px; line-height: 1.6; background: var(--code-bg); border-radius: 10px; padding: 14px 16px; overflow-x: auto; }
+.opts { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.opt { width: 100%; display: flex; gap: 14px; align-items: flex-start; text-align: left; font: inherit; color: inherit; background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; cursor: pointer; }
+.opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.opt:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.opt:disabled { cursor: default; }
+.letter { flex: none; width: 28px; height: 28px; border-radius: 7px; background: var(--code-bg); display: grid; place-items: center; font-family: var(--font-mono); font-size: 14px; font-weight: 500; }
+.opt .txt { flex: 1; min-width: 0; padding-top: 2px; }
+.opt .tag { flex: none; font-size: 13px; font-weight: 600; padding-top: 4px; }
+.opt.ok { border-color: var(--ok); background: var(--ok-soft); }
+.opt.ok .letter { background: var(--ok); color: var(--surface); }
+.opt.ok .tag { color: var(--ok); }
+.opt.bad { border-color: var(--bad); background: var(--bad-soft); }
+.opt.bad .letter { background: var(--bad); color: var(--surface); }
+.opt.bad .tag { color: var(--bad); }
+.fb { border-radius: 10px; padding: 14px 16px; background: var(--code-bg); display: flex; flex-direction: column; gap: 4px; }
+.fb strong { font-size: 15px; }
+.fb.ok { background: var(--ok-soft); }
+.fb.ok strong { color: var(--ok); }
+.fb.bad { background: var(--bad-soft); }
+.fb.bad strong { color: var(--bad); }
+.fb p { margin: 0; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.btn { font: inherit; font-weight: 600; border: 0; border-radius: 10px; padding: 11px 20px; cursor: pointer; background: var(--accent); color: var(--accent-ink); }
+.btn.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+.hint { font-size: 13px; color: var(--muted); }
+.score { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.score b { font-family: var(--font-display); font-size: clamp(56px, 14vw, 84px); line-height: 1; font-variant-numeric: tabular-nums; }
+.score span { color: var(--muted); font-size: 20px; }
+.topics { display: flex; flex-direction: column; gap: 8px; }
+.trow { display: grid; grid-template-columns: minmax(0, 1fr) 64px; gap: 4px 12px; align-items: center; }
+.trow .bar { grid-column: 1 / -1; height: 6px; }
+.trow span:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.trow .bar > i { background: var(--ok); }
+.missed { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.missed li { border-top: 1px solid var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 4px; }
+.missed .q { font-weight: 600; }
+.missed .a { color: var(--ok); font-size: 15px; }
+.missed .e { color: var(--muted); font-size: 15px; }
+.h3 { font-family: var(--font-display); font-size: 20px; margin: 0; }
+@media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } }
+</style>
+
+<main class="wrap">
+  <header>
+    <span class="kicker">React · Context API</span>
+    <h1>useContext Quiz</h1>
+    <p class="sub">10 soru. Prop drilling, Context’in dört adımı, BasketContext ve iyi pratikler. İpucu: 1–4 tuşlarıyla cevapla, Enter ile ilerle.</p>
+  </header>
+  <section class="progress" aria-label="İlerleme">
+    <div class="progress-row"><span id="pcount">Soru 1 / 10</span><span id="pscore">Doğru: 0</span></div>
+    <div class="bar"><i id="pbar"></i></div>
+  </section>
+  <section id="stage" aria-live="polite"></section>
+</main>
+
+<script>
+const Q = [
+  { t: "Prop drilling", q: "Prop drilling nedir?", o: ["Bir bileşenin kendi state’ini değiştirmesi", "Verinin, onu kullanmayan ara bileşenlerden props ile geçirilerek aşağı taşınması", "Bir bileşenin birden fazla kez render olması", "API’dan gelen verinin props’a yazılması"], a: 1, e: "Veri derindeki bir bileşene ulaşana kadar her ara bileşen onu sadece aşağı iletmek için props olarak alır. Context bu zinciri ortadan kaldırır." },
+  { t: "Prop drilling", q: "Veri sadece bir iki bileşen aşağı iniyorsa hangisi en uygun çözümdür?", o: ["Context API", "Redux", "Props", "Her bileşende ayrı useState"], a: 2, e: "Kısa mesafede props en basit çözümdür. Context, çok sayıda bileşen aynı veriyi kullandığında işe yarar." },
+  { t: "Dört adım", q: "Context API’nin adımları doğru sırayla hangisidir?", o: ["useContext → createContext → Provider → sarmalama", "createContext → Provider bileşeni → uygulamayı sarmala → useContext", "Provider → createContext → useContext → sarmalama", "createContext → useContext → Provider → sarmalama"], a: 1, e: "Önce context nesnesi oluşturulur, sonra veriyi tutan Provider yazılır, uygulama Provider ile sarmalanır ve bileşenler useContext ile okur." },
+  { t: "Provider", q: "Provider’da tüm tüketicilere aktarılacak veri hangi prop ile verilir?", c: "<BasketContext.Provider ???={{ basket }}>\n  {children}\n</BasketContext.Provider>", o: ["`data`", "`state`", "`value`", "`props`"], a: 2, e: "Provider’a verilen `value`, o context’i useContext ile okuyan her bileşene ulaşır. Genelde bir nesnedir." },
+  { t: "Provider", q: "`<BasketProvider><App /></BasketProvider>` yazıldığında `App`, BasketProvider bileşenine nasıl ulaşır?", o: ["`value` prop’u olarak", "`children` prop’u olarak", "useContext ile", "Ulaşmaz, App ayrı render edilir"], a: 1, e: "Etiketin açılış ve kapanışı arasına yazılan her şey bileşene `children` olarak gelir. Provider bunu kendi çıktısının içine koyar." },
+  { t: "useContext", q: "`const { basket } = useContext(BasketContext)` satırında `useContext` neyi döndürür?", o: ["Context nesnesinin kendisini", "En yakın Provider’ın `value` değerini", "Sadece `setBasket` fonksiyonunu", "Provider bileşenini"], a: 1, e: "useContext, ağaçta yukarıdaki en yakın Provider’ın value’sunu döndürür. Destructuring ile ihtiyaç duyulan alanlar alınır." },
+  { t: "BasketContext", q: "Sepetten ürün kaldırmak için doğru yazım hangisidir?", o: ["`basket.splice(index, 1)`", "`setBasket(basket.filter((item) => item.id !== id))`", "`basket.pop()`", "`setBasket(basket.push(id))`"], a: 1, e: "State doğrudan değiştirilmez. `filter` yeni bir dizi üretir; React referans değiştiği için güncellemeyi yakalar." },
+  { t: "Render", q: "Sepete ürün eklenince hangi bileşenler yeniden render edilir?", o: ["Uygulamadaki tüm bileşenler", "Sadece ürünü ekleyen Card", "BasketContext’i useContext ile okuyan bileşenler", "Hiçbiri, context render tetiklemez"], a: 2, e: "value değişince o context’e abone olan, yani useContext ile okuyan bileşenler güncellenir. Context’i okumayanlar etkilenmez." },
+  { t: "İyi pratik", q: "Uygulamaya sepetle ilgisi olmayan bir tema (açık/koyu) bilgisi eklenecek. En doğru yaklaşım hangisi?", o: ["Temayı BasketContext’in value’suna eklemek", "Ayrı bir ThemeContext oluşturmak", "Temayı her bileşene props ile geçirmek", "Temayı localStorage’dan her bileşende okumak"], a: 1, e: "Birlikte değişen veri aynı context’te, ilgisiz veri ayrı context’te tutulur. Aksi halde sepet her değiştiğinde temayı okuyanlar da gereksiz render olur." },
+  { t: "Hatalar", q: "`const { basket } = useContext(BasketContext)` satırı “Cannot destructure property 'basket' of undefined” hatası veriyor. En olası sebep nedir?", o: ["useContext import edilmemiş", "Bileşen BasketProvider ile sarmalanmamış", "basket boş bir dizi", "createContext iki kez çağrılmış"], a: 1, e: "Bileşen Provider’ın dışındaysa useContext, createContext’e verilen varsayılan değeri döndürür; varsayılan verilmediyse bu undefined’dır ve destructuring hata verir. Import unutulursa hata “is not defined” olur." }
+];
+
+let list = Q.slice(), idx = 0, score = 0, answered = false, results = [];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const md = (s) => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>");
+const L = ["A", "B", "C", "D"];
+
+function progress() {
+  $("pcount").textContent = "Soru " + Math.min(idx + 1, list.length) + " / " + list.length;
+  $("pscore").textContent = "Doğru: " + score;
+  $("pbar").style.width = (idx / list.length * 100) + "%";
+}
+
+function render() {
+  const q = list[idx];
+  answered = false;
+  progress();
+  $("stage").innerHTML =
+    '<div class="card"><span class="topic">' + esc(q.t) + '</span><h2>' + md(q.q) + '</h2>' +
+    (q.c ? '<pre class="snip">' + esc(q.c) + '</pre>' : '') + '<ul class="opts">' +
+    q.o.map((t, i) => '<li><button class="opt" data-i="' + i + '"><span class="letter">' + L[i] + '</span><span class="txt">' + md(t) + '</span><span class="tag"></span></button></li>').join("") +
+    '</ul><div id="fb"></div><div class="actions"><button class="btn" id="next" hidden></button><span class="hint" id="hint">Bir seçenek seç.</span></div></div>';
+  document.querySelectorAll(".opt").forEach((b) => b.addEventListener("click", () => pick(+b.dataset.i)));
+  $("next").addEventListener("click", next);
+}
+
+function pick(i) {
+  if (answered) return;
+  answered = true;
+  const q = list[idx], right = i === q.a;
+  if (right) score++;
+  results.push({ q, picked: i, right });
+  document.querySelectorAll(".opt").forEach((b) => {
+    const n = +b.dataset.i;
+    b.disabled = true;
+    if (n === q.a) { b.classList.add("ok"); b.querySelector(".tag").textContent = "Doğru cevap"; }
+    else if (n === i) { b.classList.add("bad"); b.querySelector(".tag").textContent = "Senin cevabın"; }
+  });
+  $("fb").innerHTML = '<div class="fb ' + (right ? "ok" : "bad") + '"><strong>' + (right ? "Doğru" : "Yanlış") + '</strong><p>' + md(q.e) + '</p></div>';
+  const nb = $("next");
+  nb.hidden = false;
+  nb.textContent = idx === list.length - 1 ? "Sonucu gör" : "Sonraki soru";
+  nb.focus();
+  $("hint").textContent = "";
+  $("pscore").textContent = "Doğru: " + score;
+}
+
+function next() {
+  idx++;
+  if (idx >= list.length) return finish();
+  render();
+}
+
+function finish() {
+  idx = list.length;
+  progress();
+  $("pcount").textContent = "Bitti";
+  const pct = Math.round(score / list.length * 100);
+  const topics = {};
+  results.forEach((r) => { const t = r.q.t; topics[t] = topics[t] || [0, 0]; topics[t][1]++; if (r.right) topics[t][0]++; });
+  const missed = results.filter((r) => !r.right);
+  const msg = pct >= 85 ? "Konu büyük ölçüde oturmuş." : pct >= 60 ? "İyi gidiyorsun. Yanlışları gözden geçir." : "Slaytlara bir daha göz at, sonra tekrar dene.";
+  $("stage").innerHTML =
+    '<div class="card"><div class="score"><b>' + score + '</b><span>/ ' + list.length + ' doğru (%' + pct + ')</span></div><p class="sub">' + msg + '</p>' +
+    '<h3 class="h3">Konulara göre</h3><div class="topics">' +
+    Object.keys(topics).map((t) => '<div class="trow"><span>' + esc(t) + '</span><span>' + topics[t][0] + ' / ' + topics[t][1] + '</span><div class="bar"><i style="width:' + (topics[t][0] / topics[t][1] * 100) + '%"></i></div></div>').join("") + '</div>' +
+    (missed.length ? '<h3 class="h3">Yanlış cevapların</h3><ul class="missed">' + missed.map((r) => '<li><span class="q">' + md(r.q.q) + '</span><span class="a">Doğru cevap: ' + md(r.q.o[r.q.a]) + '</span><span class="e">' + md(r.q.e) + '</span></li>').join("") + '</ul>' : '<p>Tüm soruları doğru yanıtladın.</p>') +
+    '<div class="actions"><button class="btn" id="again">Baştan başla</button>' + (missed.length ? '<button class="btn ghost" id="retry">Sadece yanlışları çöz</button>' : '') + '</div></div>';
+  $("again").addEventListener("click", () => start(Q.slice()));
+  if (missed.length) $("retry").addEventListener("click", () => start(missed.map((r) => r.q)));
+}
+
+function start(items) { list = items; idx = 0; score = 0; results = []; render(); }
+
+document.addEventListener("keydown", (e) => {
+  if (idx >= list.length) return;
+  if (!answered && e.key >= "1" && e.key <= "4") { pick(+e.key - 1); }
+  else if (answered && e.key === "Enter" && document.activeElement !== $("next")) { next(); }
+});
+
+start(Q.slice());
+</script>
+
+</body></html>

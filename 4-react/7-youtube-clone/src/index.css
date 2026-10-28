@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* Tailwind Değişkenleri */
+@theme {
+  --font-sans: "Roboto", sans-serif;
+
+  --color-gray: #3f3f3f;
+  --color-white: #ffffff;
+  --color-black: #0f0f0f;
+  --color-dark: #272727;
+}
+
+/* Element Stilleri */
+@layer base {
+  body {
+    @apply bg-black text-white;
+  }
+
+  button,
+  a {
+    @apply cursor-pointer transition duration-300;
+  }
+}
+
+/* Sınıf Stillendirmeleri */
+@layer components {
+  .icon {
+    @apply p-2 hover:bg-zinc-700 transition rounded-full text-xl;
+  }
+
+  .page {
+    @apply py-6 px-4;
+  }
+
+  .page-center {
+    @apply py-6 px-4 grid place-items-center;
+  }
+
+  .comment-btn {
+    @apply px-2 py-1 rounded hover:bg-zinc-800 transition duration-300;
+  }
+}
+
+/* Yardımcı sınıf */
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}

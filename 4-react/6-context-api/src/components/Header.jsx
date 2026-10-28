@@ -1,6 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { BasketContext } from "../context/BasketContext";
 
 const Header = () => {
+  const { basket } = useContext(BasketContext);
+
   return (
     <header className="navbar navbar-dark bg-dark px-md-5">
       <div className="container-fluid">
@@ -13,7 +17,7 @@ const Header = () => {
             Anasayfa
           </NavLink>
           <NavLink to="/sepet" className="text-secondary">
-            Sepet (??)
+            Sepet ({basket.length})
           </NavLink>
         </nav>
       </div>

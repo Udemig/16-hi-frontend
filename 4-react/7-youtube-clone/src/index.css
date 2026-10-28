@@ -20,6 +20,18 @@
   a {
     @apply cursor-pointer transition duration-300;
   }
+
+  *::-webkit-scrollbar {
+    @apply bg-black w-2 h-2;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-gray rounded cursor-pointer;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    @apply bg-[#5b5b5b];
+  }
 }
 
 /* Sınıf Stillendirmeleri */
@@ -39,6 +51,10 @@
   .comment-btn {
     @apply px-2 py-1 rounded hover:bg-zinc-800 transition duration-300;
   }
+
+  .active {
+    @apply bg-zinc-800;
+  }
 }
 
 /* Yardımcı sınıf */
@@ -46,4 +62,19 @@
   .flex-center {
     @apply flex items-center justify-center;
   }
+}
+
+/* animasyon */
+@keyframes slide {
+  from {
+    left: -500px;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+.slide-in {
+  animation: slide 400ms ease;
 }

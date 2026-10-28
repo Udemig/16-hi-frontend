@@ -35,7 +35,7 @@ const Header = ({ toggleSidebar }) => {
         </button>
 
         <Link to="/" className="flex items-center gap-1">
-          <img src="youtube.png" alt="youtube" className="w-8" />
+          <img src="/youtube.png" alt="youtube" className="w-8" />
           <span className="text-xl font-bold tracking-tight max-sm:hidden">Youtube</span>
         </Link>
       </div>

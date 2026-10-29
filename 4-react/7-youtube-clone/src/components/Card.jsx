@@ -25,7 +25,7 @@ const Thumbnail = ({ video, isHover, className = "" }) => {
   );
 };
 
-const Card = ({ video }) => {
+const Card = ({ video, isRow }) => {
   // mouse card'ın üzerinde mi state'i
   const [isHover, setIsHover] = useState(false);
 
@@ -33,6 +33,40 @@ const Card = ({ video }) => {
   const channelAvatar =
     video.channelThumbnail?.[0]?.url || video.channelAvatar?.[0]?.url || "/avatar.jpg";
 
+  // yatay card
+  if (isRow)
+    return (
+      <Link
+        className="group flex gap-2 p-2 hover:bg-zinc-900 transition rounded-lg"
+        to={`/watch?v=${video.videoId}`}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
+        <Thumbnail video={video} isHover={isHover} className="flex-1 max-w-125 min-w-47.5" />
+
+        <div className="flex-1 text-zinc-400 space-y-2">
+          <h3 className="text-white line-clamp-2 leading-tight font-semibold">{video.title}</h3>
+
+          <p className="flex items-center gap-1 text-sm">
+            {video.viewCount && (
+              <span className="whitespace-nowrap">
+                {formatNumber(video.viewCount)} görüntülenme *
+              </span>
+            )}{" "}
+            <span className="line-clamp-1">{video.publishedTimeText}</span>
+          </p>
+
+          <div className="flex items-center gap-2">
+            <img src={channelAvatar} alt={video.channelTitle} className="size-6 rounded-full" />
+            <p className="my-1">{video.channelTitle}</p>
+          </div>
+
+          <p className="text-xs md:text-sm line-clamp-2 text-zinc-400">{video.description}</p>
+        </div>
+      </Link>
+    );
+
+  // dikey card
   return (
     <Link
       className="group"
@@ -51,8 +85,12 @@ const Card = ({ video }) => {
           <p className="my-1">{video.channelTitle}</p>
 
           <p className="flex items-center gap-1 text-sm">
-            <span className="whitespace-nowrap">{formatNumber(video.viewCount)} görüntülenme</span>{" "}
-            * <span className="line-clamp-1">{video.publishedTimeText}</span>
+            {video.viewCount && (
+              <span className="whitespace-nowrap">
+                {formatNumber(video.viewCount)} görüntülenme *
+              </span>
+            )}
+            <span className="line-clamp-1">{video.publishedTimeText}</span>
           </p>
         </div>
       </div>

@@ -20,7 +20,7 @@
 - Bir veriyi her seferinde:
 - - api'a tekrar istek atmak yerine ...
 - - aynı hesaplamayı tekrar yapmak yerine ...
-- - bir kez işlemli yapıp sonucu cage'de saklarsak sonraki yapıcağımız aynı işlemde baştan hesaplamak yerine cache'de saklanan cevabı kullanırız
+- - bir kez işlemli yapıp sonucu cachee'de saklarsak sonraki yapıcağımız aynı işlemde baştan hesaplamak yerine cache'de saklanan cevabı kullanırız
 - - ilk sefer: 10sn ------- sonraki sefer: 0.1sn
 
 - **Benzetme**
@@ -34,3 +34,23 @@
 - useMemo, yoğun hesaplama yapan fonksiyonların ürettikleri sonuçları cache'de saklar.
 - Ve aynı hespalama kısa süre içerisinde tekrar yapılacağında, baştan hesaplamak yerine ilk hesaplamanın cache'de tutulan sonucunu kullanır
 - Bu seneryo hesaplamadaki girdilerin değişmediği durum için geçerlidir, girdi değişirse hesaplama baştan yapılmalır
+
+# Javacript Veri Türleri
+
+1. **Primitive Types**
+
+- Primitive (ilkel) tipler, değerin kendisini tutar
+- Hafızada sabit bir alan kaplar
+- Bir değişkene atandığında kopyası oluşturulur
+- string, number, boolean, null, undefined, symbol, bigint
+
+2. **Refferance Types**
+
+- Referans üzerinde saklanır ve değerleri değiştirilebilir
+- Bellekte değişkenin referansı saklanır
+- Bir değişkene atandığından aynı referansı paylaşırlar
+- object, array, function, class
+
+# 1 Cümlede Fark
+
+- Primitive değerler (number,string,boolean) doğrudan değerin kendisini kopyalar, referans tipler (object,array,function) ise değerin kendisini değil bellekteki adresini (referansını) alır

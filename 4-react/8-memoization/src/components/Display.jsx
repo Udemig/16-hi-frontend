@@ -1,8 +1,13 @@
 import React from "react";
 
-const Display = ({ count }) => {
+const Display = ({ count, increase }) => {
   console.log("bileşen render oldu");
-  return <h1>{count}</h1>;
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={increase}>Arttır (+1)</button>
+    </div>
+  );
 };
 
 /*
@@ -12,7 +17,7 @@ const Display = ({ count }) => {
 
  * Bu durmun önüne react memo ile geçeriz
 
- ! todo: useCallback
+ ! eğer primitive (string,number,boolean) yerine referance (object,array,function) bir değer olarak prop geliyorsa react.memo() görevini yapamaz
 */
 
 export default React.memo(Display);

@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>React Memoization Quiz</title>
+<style>
+  :root {
+    --bg: #f5f6fa;
+    --card: #ffffff;
+    --text: #1d2130;
+    --muted: #6b7280;
+    --primary: #4f46e5;
+    --correct: #16a34a;
+    --correct-bg: #dcfce7;
+    --wrong: #dc2626;
+    --wrong-bg: #fee2e2;
+    --border: #e5e7eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1220;
+      --card: #181c2e;
+      --text: #e6e8f2;
+      --muted: #9aa3b8;
+      --primary: #818cf8;
+      --correct: #4ade80;
+      --correct-bg: #14532d;
+      --wrong: #f87171;
+      --wrong-bg: #7f1d1d;
+      --border: #2a3047;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1220;
+    --card: #181c2e;
+    --text: #e6e8f2;
+    --muted: #9aa3b8;
+    --primary: #818cf8;
+    --correct: #4ade80;
+    --correct-bg: #14532d;
+    --wrong: #f87171;
+    --wrong-bg: #7f1d1d;
+    --border: #2a3047;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 16px;
+  }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  .subtitle { color: var(--muted); margin: 0 0 24px; }
+  .progress-bar {
+    height: 8px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+  .question {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 16px;
+  }
+  .code {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 0.88rem;
+    white-space: pre-wrap;
+    margin: 0 0 16px;
+    overflow-x: auto;
+  }
+  .options { display: grid; gap: 10px; }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--text);
+    font: inherit;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .option:hover:not(:disabled) { border-color: var(--primary); }
+  .option:disabled { cursor: default; }
+  .option .letter {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .option.correct { border-color: var(--correct); background: var(--correct-bg); }
+  .option.correct .letter { border-color: var(--correct); color: var(--correct); }
+  .option.wrong { border-color: var(--wrong); background: var(--wrong-bg); }
+  .option.wrong .letter { border-color: var(--wrong); color: var(--wrong); }
+  .explanation {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    font-size: 0.95rem;
+    display: none;
+  }
+  .explanation.show { display: block; }
+  .explanation strong { display: block; margin-bottom: 4px; }
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .result { text-align: center; }
+  .result .score {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 8px 0;
+  }
+  .result p { color: var(--muted); }
+  .hidden { display: none !important; }
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 16px; }
+    .card { padding: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>React Memoization Quiz</h1>
+  <p class="subtitle">React.memo, useMemo ve useCallback üzerine 10 soru.</p>
+
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="meta">
+    <span id="counter"></span>
+    <span id="scoreLive"></span>
+  </div>
+
+  <div class="card" id="quizCard">
+    <p class="question" id="question"></p>
+    <div class="code hidden" id="code"></div>
+    <div class="options" id="options"></div>
+    <div class="explanation" id="explanation"></div>
+    <div class="actions">
+      <button class="btn" id="nextBtn" disabled>Sonraki</button>
+    </div>
+  </div>
+
+  <div class="card result hidden" id="resultCard">
+    <h2>Quiz bitti</h2>
+    <div class="score" id="finalScore"></div>
+    <p id="finalMessage"></p>
+    <div class="actions" style="justify-content:center">
+      <button class="btn" id="restartBtn">Tekrar çöz</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const QUESTIONS = [
+    {
+      question: "React.memo ne işe yarar?",
+      options: [
+        "State'i kalıcı hale getirir",
+        "Props değişmediği sürece bileşenin yeniden render edilmesini atlar",
+        "Bileşeni lazy olarak yükler",
+        "useEffect çağrılarını önbelleğe alır"
+      ],
+      answer: 1,
+      explanation: "React.memo, bileşeni sarmalar ve önceki props ile yeni props'u karşılaştırır. Değişmediyse son render sonucunu yeniden kullanır."
+    },
+    {
+      question: "useMemo hangi değeri döndürür?",
+      options: [
+        "Verilen fonksiyonun kendisini",
+        "Bir Promise nesnesini",
+        "Bir ref nesnesini",
+        "Fonksiyonun hesapladığı ve dependency'leri değişmedikçe önbelleğe alınmış değeri"
+      ],
+      answer: 3,
+      explanation: "useMemo(() => hesapla(), deps) fonksiyonu çalıştırır ve sonucunu döndürür. deps değişmediği sürece hesaplamayı tekrar yapmaz."
+    },
+    {
+      question: "Aşağıdaki ifadelerden hangisi useCallback'in eşdeğeridir?",
+      options: [
+        "useMemo(fn, [])",
+        "useMemo(() => fn, deps)",
+        "useRef(fn)",
+        "useEffect(fn, deps)"
+      ],
+      answer: 1,
+      explanation: "useCallback(fn, deps), useMemo(() => fn, deps) ile aynıdır. Fonksiyonun referansını deps değişene kadar sabit tutar."
+    },
+    {
+      question: "Aşağıdaki kodda Child neden her render'da yeniden çalışır?",
+      code: "const Child = React.memo(function Child({ onClick }) {\n  console.log('render');\n  return <button onClick={onClick}>Tıkla</button>;\n});\n\nfunction Parent() {\n  const [count, setCount] = useState(0);\n  return <Child onClick={() => setCount(count + 1)} />;\n}",
+      options: [
+        "React.memo yalnızca class bileşenlerinde çalışır",
+        "onClick her render'da yeni bir fonksiyon referansı olduğu için memo karşılaştırması farkı görür",
+        "count state'i Child'a otomatik olarak aktarılır",
+        "Child bileşeni export edilmediği için memo uygulanmaz"
+      ],
+      answer: 1,
+      explanation: "Inline arrow function her render'da yeni bir referans üretir. Shallow karşılaştırma bunu farklı bulur. Çözüm: onClick'i useCallback ile sarmalamak."
+    },
+    {
+      question: "React.memo varsayılan olarak props'ları nasıl karşılaştırır?",
+      options: [
+        "Derin (deep) eşitlik kontrolü yapar",
+        "JSON.stringify ile serileştirerek karşılaştırır",
+        "Her prop için sığ (shallow) karşılaştırma yapar, yani Object.is kullanır",
+        "Props'ları hiç karşılaştırmaz, her zaman render eder"
+      ],
+      answer: 2,
+      explanation: "Varsayılan karşılaştırma sığdır. Nesne ve diziler için yalnızca referansa bakılır. Özel karşılaştırma için ikinci argüman olarak bir fonksiyon verilebilir."
+    },
+    {
+      question: "useMemo(() => fn, []) kullanılırsa ne olur?",
+      options: [
+        "Fonksiyon her render'da yeniden oluşturulur",
+        "Fonksiyon yalnızca ilk render'da oluşturulur ve sonraki render'larda eski closure kullanılır",
+        "React hata verir",
+        "Fonksiyon her saniye yenilenir"
+      ],
+      answer: 1,
+      explanation: "Boş dependency array, değerin hiç güncellenmeyeceği anlamına gelir. Bileşen içindeki state veya props'lara erişen fonksiyonlar bayat (stale) değerler kullanabilir."
+    },
+    {
+      question: "Aşağıdakilerden hangisi useMemo kullanmak için en doğru nedendir?",
+      options: [
+        "Her bileşeni otomatik olarak hızlandırmak",
+        "Pahalı bir hesaplamayı gereksiz yere tekrar çalıştırmamak veya bir bağımlılığın referansını sabit tutmak",
+        "Bileşenlerin DOM'a erişimini sağlamak",
+        "Asenkron işlemleri beklemek"
+      ],
+      answer: 1,
+      explanation: "useMemo, ölçülebilir bir maliyeti olan hesaplamalarda ya da child'a referans olarak geçen nesne/dizi değerlerinde faydalıdır. Her yere eklemek gerekmez."
+    },
+    {
+      question: "Memoization her zaman performansı artırır mı?",
+      options: [
+        "Evet, her zaman",
+        "Hayır. Karşılaştırma ve bellek maliyeti kazancı aşabilir, bu yüzden gereksiz yere kullanılmamalı",
+        "Evet, ancak yalnızca class bileşenlerinde",
+        "Hayır, React memoization'ı desteklemez"
+      ],
+      answer: 1,
+      explanation: "Memoization bedava değildir. Her render'da bağımlılıkları karşılaştırmak ve önbelleği tutmak maliyet getirir. Önce ölçüm yapmak, sonra optimize etmek önerilir."
+    },
+    {
+      question: "React Compiler ne yapar?",
+      options: [
+        "Sunucu tarafında HTML üretir",
+        "Derleme aşamasında birçok durumda useMemo, useCallback ve memo benzeri memoization'ı otomatik uygular",
+        "State yönetimini Redux'a çevirir",
+        "Bileşenleri Web Worker'a taşır"
+      ],
+      answer: 1,
+      explanation: "React Compiler kodunuzu analiz eder ve uygun yerlerde otomatik memoization ekler. Bu yüzden her yere manuel useMemo/useCallback yazmak çoğu zaman gerekmez."
+    },
+    {
+      question: "Aşağıdaki ifadelerden hangisi YANLIŞTIR?",
+      options: [
+        "useMemo, önbelleğe alınmış değeri bellekten atabilir ve yeniden hesaplayabilir",
+        "useCallback, fonksiyonun referansını deps değişmediği sürece korumayı amaçlar",
+        "React.memo, props değişmediğinde render'ı atlayabilir",
+        "useMemo ve useCallback semantik garanti olarak 'asla yeniden hesaplanmaz' sözü verir"
+      ],
+      answer: 3,
+      explanation: "React belgelerine göre memoization bir semantik garanti değildir. React gerekirse önbelleği temizleyebilir. Kodunuz önbellek olmadan da doğru çalışmalıdır."
+    }
+  ];
+
+  const letters = ["A", "B", "C", "D"];
+  let current = 0;
+  let score = 0;
+  let answered = false;
+
+  const el = {
+    fill: document.getElementById("progressFill"),
+    counter: document.getElementById("counter"),
+    scoreLive: document.getElementById("scoreLive"),
+    question: document.getElementById("question"),
+    code: document.getElementById("code"),
+    options: document.getElementById("options"),
+    explanation: document.getElementById("explanation"),
+    next: document.getElementById("nextBtn"),
+    quizCard: document.getElementById("quizCard"),
+    resultCard: document.getElementById("resultCard"),
+    finalScore: document.getElementById("finalScore"),
+    finalMessage: document.getElementById("finalMessage"),
+    restart: document.getElementById("restartBtn")
+  };
+
+  function render() {
+    const q = QUESTIONS[current];
+    answered = false;
+    el.fill.style.width = (current / QUESTIONS.length) * 100 + "%";
+    el.counter.textContent = `Soru ${current + 1} / ${QUESTIONS.length}`;
+    el.scoreLive.textContent = `Puan: ${score}`;
+    el.question.textContent = q.question;
+
+    if (q.code) {
+      el.code.textContent = q.code;
+      el.code.classList.remove("hidden");
+    } else {
+      el.code.classList.add("hidden");
+    }
+
+    el.options.innerHTML = "";
+    q.options.forEach((text, i) => {
+      const btn = document.createElement("button");
+      btn.className = "option";
+      btn.innerHTML = `<span class="letter">${letters[i]}</span><span></span>`;
+      btn.lastElementChild.textContent = text;
+      btn.addEventListener("click", () => choose(i));
+      el.options.appendChild(btn);
+    });
+
+    el.explanation.classList.remove("show");
+    el.explanation.textContent = "";
+    el.next.disabled = true;
+    el.next.textContent = current === QUESTIONS.length - 1 ? "Sonucu gör" : "Sonraki";
+  }
+
+  function choose(index) {
+    if (answered) return;
+    answered = true;
+    const q = QUESTIONS[current];
+    const buttons = el.options.querySelectorAll(".option");
+    buttons.forEach((b, i) => {
+      b.disabled = true;
+      if (i === q.answer) b.classList.add("correct");
+    });
+    if (index === q.answer) {
+      score++;
+    } else {
+      buttons[index].classList.add("wrong");
+    }
+
+    el.scoreLive.textContent = `Puan: ${score}`;
+    el.explanation.innerHTML = "";
+    const title = document.createElement("strong");
+    title.textContent = index === q.answer ? "Doğru!" : "Yanlış.";
+    el.explanation.appendChild(title);
+    el.explanation.appendChild(document.createTextNode(q.explanation));
+    el.explanation.classList.add("show");
+    el.next.disabled = false;
+  }
+
+  function finish() {
+    el.fill.style.width = "100%";
+    el.quizCard.classList.add("hidden");
+    el.resultCard.classList.remove("hidden");
+    el.finalScore.textContent = `${score} / ${QUESTIONS.length}`;
+    const ratio = score / QUESTIONS.length;
+    el.finalMessage.textContent =
+      ratio === 1 ? "Mükemmel! Memoization konusuna hakimsin." :
+      ratio >= 0.7 ? "Çok iyi. Birkaç noktayı tekrar gözden geçirebilirsin." :
+      ratio >= 0.4 ? "Fena değil. Açıklamaları okuyup tekrar dene." :
+      "Konuyu tekrar çalışmanı öneririm. React belgelerindeki Memoization bölümü iyi bir başlangıç.";
+  }
+
+  el.next.addEventListener("click", () => {
+    if (current < QUESTIONS.length - 1) {
+      current++;
+      render();
+    } else {
+      finish();
+    }
+  });
+
+  el.restart.addEventListener("click", () => {
+    current = 0;
+    score = 0;
+    el.resultCard.classList.add("hidden");
+    el.quizCard.classList.remove("hidden");
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

@@ -1,9 +1,13 @@
 import { RefreshCw } from "lucide-react";
 
-const RefreshButton = () => {
+const RefreshButton = ({ isLoading, requestCoins }) => {
   return (
-    <button className="p-3 bg-blue-600 rounded-lg text-white">
-      <RefreshCw />
+    <button
+      disabled={isLoading}
+      onClick={requestCoins}
+      className="p-3 bg-blue-600 rounded-lg text-white"
+    >
+      <RefreshCw className={isLoading ? "animate-spin" : ""} />
     </button>
   );
 };

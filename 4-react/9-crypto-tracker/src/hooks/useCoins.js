@@ -1,25 +1,32 @@
 import { useEffect, useState } from "react";
 import api from "../utils/api";
 
-const useCoins = () => {
+const useCoins = (url) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [coins, setCoins] = useState([]);
+  const [data, setData] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(new Date());
 
-  useEffect(() => {
-    api
-      .get("/coins/markets?vs_currency=usd")
+  // isteği atar ve state'i günceller
+  const fetchData = () => {
+    setIsLoading(true);
+    setError(null);
+
+     api
+      .get(url)
       .then((res) => {
-        setCoins(res.data);
+        setData(res.data);
         setLastUpdated(new Date());
       })
       .catch((err) => setError(err.message))
       .finally(() => setIsLoading(false));
-  }, []);
+  }
 
+  useEffect(() => {
+    fetchData()
+  }, [url]);
 
-  return {isLoading,error,coins,lastUpdated}
+  return {isLoading,error,data,lastUpdated, fetchData}
 }
 
 export default useCoins

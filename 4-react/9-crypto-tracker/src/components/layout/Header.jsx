@@ -29,6 +29,7 @@ const Header = () => {
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-zinc-100 text-gray-700 dark:bg-gray-700 dark:text-gray-400"
+              aria-label="temayı değiştir"
             >
               {isDarkTheme ? <Moon /> : <Sun />}
             </button>

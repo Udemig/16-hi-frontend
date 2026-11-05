@@ -24,13 +24,17 @@ const CoinHeader = ({ coin, isLoading, refetch }) => {
           onClick={refetch}
           disabled={isLoading}
           className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          aria-label="fiyatları yenile"
         >
           <RefreshCw
             className={`${isLoading ? "animate-spin" : ""} size-5 text-gray-500 dark:text-gray-400`}
           />
         </button>
 
-        <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+        <button
+          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          aria-label="favorilere ekle"
+        >
           <Star className="size-5 text-gray-500 dark:text-gray-400" />
         </button>
       </div>

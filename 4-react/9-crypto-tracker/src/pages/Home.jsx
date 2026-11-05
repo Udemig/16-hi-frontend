@@ -8,6 +8,7 @@ import Searchbar from "../components/home/Searchbar";
 import Loader from "../components/loader";
 import useCoins from "../hooks/useCoins";
 import { ArrowUp } from "lucide-react";
+import HomeLoader from "./../components/loader/HomeLoader";
 
 const Home = () => {
   // api'dan verileri getiren hook
@@ -31,9 +32,9 @@ const Home = () => {
     [data, query],
   );
 
-  if (isLoading && data?.length === 0) return <Loader />;
+  const isPending = isLoading && data?.length === 0;
 
-  if (error && data?.length === 0) return <Error message={error} refetch={fetchData} />;
+  const isError = error && data?.length === 0;
 
   return (
     <div>
@@ -54,15 +55,20 @@ const Home = () => {
       <InfoList coinCount={data?.length} lastUpdated={lastUpdated} />
 
       <div className="my-6 grid gap-6  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filtredCoins?.map((coin) => (
-          <CoinCard key={coin.id} coin={coin} />
-        ))}
+        {true ? (
+          <HomeLoader />
+        ) : isError ? (
+          <Error message={error} refetch={fetchData} />
+        ) : (
+          filtredCoins?.map((coin) => <CoinCard key={coin.id} coin={coin} />)
+        )}
       </div>
 
       <div className="flex justify-end mt-4">
         <button
           onClick={() => topRef.current.scrollIntoView({ behavior: "smooth" })}
           className="bg-blue-500 flex gap-1 items-center px-4 py-2 rounded-md"
+          aria-label="Sayfanın en üstüne dön"
         >
           <ArrowUp className="size-4" />
           Başa Dön

@@ -5,6 +5,8 @@ const List = () => {
   // store'da tutulan verilere abone ol (eriştik)
   const { todos } = useSelector((store) => store.todoReducer);
 
+  console.log(todos);
+
   return (
     <div className="space-y-10 mt-10">
       {todos.map((todo) => (

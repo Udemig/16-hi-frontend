@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { createTodo } from "../redux/actions/todo-actions";
 
 const Form = () => {
   // dispatch fonksiyonuna eriş
@@ -19,8 +20,8 @@ const Form = () => {
       createdAt: new Date().getTime(),
     };
 
-    // reducer'a action gönder
-    dispatch({ type: "CREATE", payload: newTodo });
+    // api'a istek at, reducer'a action gönder
+    dispatch(createTodo(newTodo));
 
     // formu sıfırla
     e.target.reset();

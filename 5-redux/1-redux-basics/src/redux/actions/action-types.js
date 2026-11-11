@@ -1,0 +1,17 @@
+// YÖNTEM - 1
+export const CREATE = "CREATE_TODO"
+export const DELETE = "DELETE_TODO"
+export const TOGGLE = "TOGGLE_TODO"
+
+// YÖNTEM - 2
+const ACTION_TYPES = {
+  CREATE : "CREATE_TODO",
+  DELETE : "DELETE_TODO",
+  TOGGLE : "TOGGLE_TODO",
+
+  LOADING : "TODOS_LOADING",
+  ERROR : "TODOS_ERROR",
+  SUCCESS : "SUCCESS",
+}
+
+export default ACTION_TYPES

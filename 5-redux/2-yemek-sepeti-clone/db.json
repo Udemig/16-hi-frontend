@@ -1,0 +1,595 @@
+{
+  "restaurants": [
+    {
+      "id": "1",
+      "name": "Mangal Steakhouse",
+      "minPrice": 250,
+      "estimatedDelivery": 45,
+      "photo": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/5b/a9/39/mengoli-burgers-steak.jpg?w=600&h=400&s=1",
+      "rating": 4.7,
+      "isDeliveryFree": true,
+      "isOpen": false,
+      "distance": 5
+    },
+    {
+      "id": "2",
+      "name": "Anadolu Ev Yemekleri",
+      "minPrice": 180,
+      "estimatedDelivery": 35,
+      "photo": "https://www.gastronomidergisi.com/images/haber/roof%20mezzepotamia10336.jpg",
+      "rating": 4.5,
+      "isDeliveryFree": false,
+      "isOpen": true,
+      "distance": 7
+    },
+    {
+      "id": "3",
+      "name": "Napoli Pizzeria",
+      "minPrice": 200,
+      "estimatedDelivery": 50,
+      "photo": "https://www.netkurumsal.com/wp-content/uploads/2017/10/restoran.jpg",
+      "rating": 4.8,
+      "isDeliveryFree": true,
+      "isOpen": true,
+      "distance": 2
+    },
+    {
+      "id": "4",
+      "name": "Mahalle Makarnacısı",
+      "minPrice": 150,
+      "estimatedDelivery": 40,
+      "photo": "https://mudavim.net/wp-content/uploads/2018/05/29-ulus-scaled.jpeg",
+      "rating": 4.6,
+      "isDeliveryFree": true,
+      "isOpen": true,
+      "distance": 9
+    },
+    {
+      "id": "5",
+      "name": "Güveç Sofrası",
+      "minPrice": 220,
+      "estimatedDelivery": 55,
+      "photo": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800",
+      "rating": 4.9,
+      "isDeliveryFree": false,
+      "isOpen": false,
+      "distance": 11
+    },
+    {
+      "id": "6",
+      "name": "Bangkok Street",
+      "minPrice": 200,
+      "estimatedDelivery": 40,
+      "photo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800",
+      "rating": 4.4,
+      "isDeliveryFree": false,
+      "isOpen": false,
+      "distance": 1
+    },
+    {
+      "id": "7",
+      "name": "Sağlıklı İstasyon",
+      "minPrice": 200,
+      "estimatedDelivery": 50,
+      "photo": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800",
+      "rating": 4.6,
+      "isDeliveryFree": true,
+      "isOpen": true,
+      "distance": 2
+    },
+    {
+      "id": "8",
+      "name": "Spice Route",
+      "minPrice": 180,
+      "estimatedDelivery": 45,
+      "photo": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800",
+      "rating": 4.7,
+      "isDeliveryFree": true,
+      "isOpen": true,
+      "distance": 11
+    },
+    {
+      "id": "9",
+      "name": "Yeşil Sofra",
+      "minPrice": 150,
+      "estimatedDelivery": 35,
+      "photo": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=800",
+      "rating": 4.8,
+      "isOpen": true,
+      "isDeliveryFree": false,
+      "distance": 3
+    },
+    {
+      "id": "10",
+      "name": "Deniz Mahzeni",
+      "minPrice": 300,
+      "estimatedDelivery": 50,
+      "photo": "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=800",
+      "rating": 4.6,
+      "isOpen": true,
+      "isDeliveryFree": true,
+      "distance": 7
+    },
+    {
+      "id": "11",
+      "name": "Ege Zeytin Sofrası",
+      "minPrice": 180,
+      "estimatedDelivery": 40,
+      "photo": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=800",
+      "rating": 4.9,
+      "isOpen": false,
+      "isDeliveryFree": false,
+      "distance": 4
+    },
+    {
+      "id": "12",
+      "name": "Köfte Salonu",
+      "minPrice": 200,
+      "estimatedDelivery": 30,
+      "photo": "https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=800",
+      "rating": 4.5,
+      "isOpen": true,
+      "isDeliveryFree": true,
+      "distance": 2
+    },
+    {
+      "id": "13",
+      "name": "Burger Durağı",
+      "minPrice": 220,
+      "estimatedDelivery": 55,
+      "photo": "https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=800",
+      "rating": 4.3,
+      "isOpen": false,
+      "isDeliveryFree": false,
+      "distance": 6
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "title": "Izgara Somon",
+      "desc": "Taze somon balığı ızgara edilmiş, yanında sebzelerle servis edilir.",
+      "category": "Deniz Ürünleri",
+      "price": 689,
+      "rating": 4.8,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Grilled_plated_salmon_fillet_%28cropped%29.jpg",
+      "restaurantId": "10",
+      "isPopular": true
+    },
+    {
+      "id": "2",
+      "title": "Margarita Pizza",
+      "desc": "İnce hamur üzerine taze mozzarella peyniri, domates sosu ve fesleğen ile yapılan klasik pizza.",
+      "category": "Pizza",
+      "price": 379,
+      "rating": 4.5,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Margherita_Originale.JPG/960px-Margherita_Originale.JPG",
+      "restaurantId": "3"
+    },
+    {
+      "id": "3",
+      "title": "Tavuk Kebabı",
+      "desc": "Marine edilmiş tavuk parçaları şişe dizilerek mangalda pişirilir.",
+      "category": "Kebaplar",
+      "price": 449,
+      "rating": 4.7,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Tavuk_%C5%9Ei%C5%9F.jpg/960px-Tavuk_%C5%9Ei%C5%9F.jpg",
+      "restaurantId": "1",
+      "isPopular": true
+    },
+    {
+      "id": "4",
+      "title": "Çikolatalı Brownie",
+      "desc": "Yoğun çikolata tadıyla enfes brownie, üzerine vanilyalı dondurma ile servis edilir.",
+      "category": "Tatlılar",
+      "price": 219,
+      "rating": 4.9,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Chocolate-brownie-hachatw.jpg",
+      "restaurantId": "3"
+    },
+    {
+      "id": "5",
+      "title": "Fırın Makarna",
+      "desc": "Fırında pişirilmiş makarna, mozarella peyniri ve domates sosu ile hazırlanmıştır.",
+      "category": "Makarnalar",
+      "price": 289,
+      "rating": 4.6,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Anelletti_al_forno.jpg/960px-Anelletti_al_forno.jpg",
+      "restaurantId": "4",
+      "isPopular": true
+    },
+    {
+      "id": "6",
+      "title": "Güveçte Et Sote",
+      "desc": "Taze sebzeler ve baharatlarla harmanlanmış dana eti, güveçte pişirilir.",
+      "category": "Et Yemekleri",
+      "price": 569,
+      "rating": 4.4,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Beef_Stew%21.jpg/960px-Beef_Stew%21.jpg",
+      "restaurantId": "5"
+    },
+    {
+      "id": "7",
+      "title": "Fırın Tavuk But",
+      "desc": "Baharatlarla marine edilmiş tavuk butları, fırında kızartılarak servis edilir.",
+      "category": "Tavuk Yemekleri",
+      "price": 359,
+      "rating": 4.7,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Liat_Portal_for_Foodie_Disorder_-_Chicken_Drumstick_with_Jalape%C3%B1o.jpg/960px-Liat_Portal_for_Foodie_Disorder_-_Chicken_Drumstick_with_Jalape%C3%B1o.jpg",
+      "restaurantId": "7",
+      "isPopular": true
+    },
+    {
+      "id": "8",
+      "title": "Sebzeli Noodle",
+      "desc": "Çeşitli sebzeler ve noodle ile hazırlanmış hafif ve lezzetli bir Asya yemeği.",
+      "category": "Asya Mutfağı",
+      "price": 329,
+      "rating": 4.6,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Chinese_vegetable_stir_fry_noodles.jpg/960px-Chinese_vegetable_stir_fry_noodles.jpg",
+      "restaurantId": "8",
+      "isPopular": true
+    },
+    {
+      "id": "9",
+      "title": "İtalyan Salata",
+      "desc": "Taze roka, cherry domates, mozzarella peyniri ve balsamik sos ile yapılan hafif bir salata.",
+      "category": "Salatalar",
+      "price": 229,
+      "rating": 4.3,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Insalata_Caprese_%28from_Poznan%29.JPG/960px-Insalata_Caprese_%28from_Poznan%29.JPG",
+      "restaurantId": "7"
+    },
+    {
+      "id": "10",
+      "title": "Köri Tavuk",
+      "desc": "Hint usulü köri sosu ile pişirilmiş tavuk parçaları, yanında pirinç pilavı ile servis edilir.",
+      "category": "Hint Mutfağı",
+      "price": 419,
+      "rating": 4.8,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Chicken_Curry_9.jpg/960px-Chicken_Curry_9.jpg",
+      "restaurantId": "8",
+      "isPopular": true
+    },
+    {
+      "id": "11",
+      "title": "Mevsim Salata",
+      "desc": "Mevsim sebzeleri ile hazırlanmış ferahlatıcı bir salata.",
+      "category": "Salatalar",
+      "price": 199,
+      "rating": 4.5,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Salad_platter.jpg/960px-Salad_platter.jpg",
+      "restaurantId": "11",
+      "isPopular": true
+    },
+    {
+      "id": "12",
+      "title": "Çıtır Tavuk Kanadı",
+      "desc": "Çıtır çıtır kızarmış tavuk kanatları, yanında sos ile servis edilir.",
+      "category": "Atıştırmalıklar",
+      "price": 289,
+      "rating": 4.4,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Bankrueed_fried_chicken_wings.jpg/960px-Bankrueed_fried_chicken_wings.jpg",
+      "restaurantId": "13"
+    },
+    {
+      "id": "42",
+      "title": "Adana Kebap",
+      "desc": "Acılı kıyma harcının şişe sarılıp mangalda pişirildiği, yanında lavaş, közlenmiş biber ve domates ile servis edilen geleneksel Adana kebap.",
+      "category": "Kebaplar",
+      "price": 469,
+      "rating": 4.5,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Adana_Kebap.jpg/960px-Adana_Kebap.jpg",
+      "restaurantId": "1",
+      "isPopular": true
+    },
+    {
+      "id": "314",
+      "title": "Fırında Kuzu But",
+      "desc": "Yoğurtlu baharatlarla marine edilen kuzu eti, fırında yavaş pişirilir, yanında bulgur pilavı ile servis edilir.",
+      "category": "Et Yemekleri",
+      "price": 899,
+      "rating": 4.9,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/A_roast_lamb_Sunday_dinner_at_The_Black_Bull%2C_Fyfield%2C_Essex%2C_England.jpg/960px-A_roast_lamb_Sunday_dinner_at_The_Black_Bull%2C_Fyfield%2C_Essex%2C_England.jpg",
+      "restaurantId": "2",
+      "isPopular": true
+    },
+    {
+      "id": "315",
+      "title": "Pad Thai",
+      "desc": "Karides, pirinç eriştesi ve yer fıstığı ile hazırlanan Tayland usulü Pad Thai.",
+      "category": "Asya Mutfağı",
+      "price": 369,
+      "rating": 4.4,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/960px-Phat_Thai_kung_Chang_Khien_street_stall.jpg",
+      "restaurantId": "6"
+    },
+    {
+      "id": "313",
+      "title": "Falafel Tabağı",
+      "desc": "Humus, taze sebzeler ve pita ekmeği ile servis edilen çıtır falafel topları.",
+      "category": "Vejetaryen",
+      "price": 289,
+      "rating": 4.6,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Falafel_1.JPG/960px-Falafel_1.JPG",
+      "restaurantId": "9"
+    },
+    {
+      "id": "101",
+      "title": "Kuzu Pirzola",
+      "desc": "Ocakta közlenen kuzu pirzola, yanında pilav ve ızgara sebzelerle servis edilir.",
+      "category": "Et Yemekleri",
+      "price": 799,
+      "rating": 4.9,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Liat_Portal_for_Foodie_Disorder_-_Homemade_Lamb_Chops_with_Rice_and_Grilled_Vegetables.jpg/960px-Liat_Portal_for_Foodie_Disorder_-_Homemade_Lamb_Chops_with_Rice_and_Grilled_Vegetables.jpg",
+      "restaurantId": "1",
+      "isPopular": true
+    },
+    {
+      "id": "102",
+      "title": "Dana Bonfile",
+      "desc": "Mantar soslu, yumuşacık dana bonfile; yanında patates püresi ile servis edilir.",
+      "category": "Et Yemekleri",
+      "price": 749,
+      "rating": 4.7,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Beef_fillet_steak_with_mushrooms.jpg/960px-Beef_fillet_steak_with_mushrooms.jpg",
+      "restaurantId": "1"
+    },
+    {
+      "id": "103",
+      "title": "Mercimek Çorbası",
+      "desc": "Kırmızı mercimek, soğan ve havuçtan yapılan geleneksel çorba; yanında limon ile.",
+      "category": "Çorbalar",
+      "price": 119,
+      "rating": 4.6,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Homemade_Lentil_Soup_-_Lavash_2025-02-10.jpg/960px-Homemade_Lentil_Soup_-_Lavash_2025-02-10.jpg",
+      "restaurantId": "2",
+      "isPopular": true
+    },
+    {
+      "id": "104",
+      "title": "Mantı",
+      "desc": "Elde açılmış hamurun içine kıyma doldurulup yoğurt ve sarımsaklı sos ile servis edilen geleneksel mantı.",
+      "category": "Türk Mutfağı",
+      "price": 329,
+      "rating": 4.8,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Manti_%28dumpling%29_In_Istanbul.jpg/960px-Manti_%28dumpling%29_In_Istanbul.jpg",
+      "restaurantId": "2"
+    },
+    {
+      "id": "105",
+      "title": "Kuru Dolma",
+      "desc": "Biber, patlıcan ve kabakta zeytinyağlı pirinçli iç harcı; ev usulü pişirilir.",
+      "category": "Türk Mutfağı",
+      "price": 299,
+      "rating": 4.5,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kuru_dolma.jpg/960px-Kuru_dolma.jpg",
+      "restaurantId": "2"
+    },
+    {
+      "id": "106",
+      "title": "Sebzeli Pizza",
+      "desc": "Mısır, mantar, biber ve zeytin ile hazırlanan, mozzarellalı taş fırın pizza.",
+      "category": "Pizza",
+      "price": 399,
+      "rating": 4.4,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Vegetarian_Pizza.jpg/960px-Vegetarian_Pizza.jpg",
+      "restaurantId": "3"
+    },
+    {
+      "id": "107",
+      "title": "Tiramisu",
+      "desc": "Kahveli bisküvi, mascarpone kreması ve kakao ile klasik İtalyan tatlısı.",
+      "category": "Tatlılar",
+      "price": 219,
+      "rating": 4.8,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Dolce_Tiramis%C3%B9_monoporzione.jpg/960px-Dolce_Tiramis%C3%B9_monoporzione.jpg",
+      "restaurantId": "3",
+      "isPopular": true
+    },
+    {
+      "id": "108",
+      "title": "Penne Arrabbiata",
+      "desc": "Acılı domates sosu, sarımsak ve fesleğen ile hazırlanan penne makarna.",
+      "category": "Makarnalar",
+      "price": 299,
+      "rating": 4.5,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Penne_Arrabbiata.jpg/960px-Penne_Arrabbiata.jpg",
+      "restaurantId": "4"
+    },
+    {
+      "id": "109",
+      "title": "Kuru Fasulye",
+      "desc": "Haşlanmış beyaz fasulyenin domates ve salça ile ağır ateşte pişirilmiş hali; yanında pilav ile.",
+      "category": "Türk Mutfağı",
+      "price": 279,
+      "rating": 4.6,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Kuru_Fasulye..JPG/960px-Kuru_Fasulye..JPG",
+      "restaurantId": "5",
+      "isPopular": true
+    },
+    {
+      "id": "110",
+      "title": "Tom Yum Çorbası",
+      "desc": "Limonlu otlu, acılı Tay çorbası; karides ve mantar ile.",
+      "category": "Asya Mutfağı",
+      "price": 229,
+      "rating": 4.5,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Tom_Yum_mixed_with_clear_soup.jpg/960px-Tom_Yum_mixed_with_clear_soup.jpg",
+      "restaurantId": "6"
+    },
+    {
+      "id": "111",
+      "title": "Yeşil Köri Tavuk",
+      "desc": "Hindistan cevizi sütlü yeşil köri sosunda tavuk, pirinç pilavı ve roti ile.",
+      "category": "Asya Mutfağı",
+      "price": 349,
+      "rating": 4.7,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Thai_green_chicken_curry_and_roti.jpg/960px-Thai_green_chicken_curry_and_roti.jpg",
+      "restaurantId": "6",
+      "isPopular": true
+    },
+    {
+      "id": "112",
+      "title": "Kinoa Salatası",
+      "desc": "Kinoa, kuru meyve, roka ve narenciye soslu ferah bir salata.",
+      "category": "Salatalar",
+      "price": 259,
+      "rating": 4.5,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Healthy_quinoa_salad_with_dried_fruit.jpg/960px-Healthy_quinoa_salad_with_dried_fruit.jpg",
+      "restaurantId": "7"
+    },
+    {
+      "id": "113",
+      "title": "Izgara Tavuk Göğsü",
+      "desc": "Yağsız tavuk göğsü ızgarada pişirilir; buharda sebze ve bulgur ile.",
+      "category": "Tavuk Yemekleri",
+      "price": 299,
+      "rating": 4.6,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Grilled_chicken_breast%2C_Santo_Domingo%2C_La_Palma.jpg/960px-Grilled_chicken_breast%2C_Santo_Domingo%2C_La_Palma.jpg",
+      "restaurantId": "7"
+    },
+    {
+      "id": "114",
+      "title": "Sebzeli Biryani",
+      "desc": "Safranlı basmati pirinç, mevsim sebzeleri ve baharatlarla katmanlı biryani.",
+      "category": "Hint Mutfağı",
+      "price": 349,
+      "rating": 4.6,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Vegetable_Biryani_IMG_001.jpg/960px-Vegetable_Biryani_IMG_001.jpg",
+      "restaurantId": "8"
+    },
+    {
+      "id": "115",
+      "title": "Samosa",
+      "desc": "Patatesli ve baharatlı içli, çıtır hamurlu samosa; nane sosu ile servis edilir.",
+      "category": "Atıştırmalıklar",
+      "price": 149,
+      "rating": 4.4,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Samosa_4.jpg/960px-Samosa_4.jpg",
+      "restaurantId": "8"
+    },
+    {
+      "id": "116",
+      "title": "Humus",
+      "desc": "Nohut, tahin ve zeytinyağı ile hazırlanan humus; sıcak pita ile servis edilir.",
+      "category": "Vejetaryen",
+      "price": 169,
+      "rating": 4.5,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Homemade_hummus_and_pita_03.jpg/960px-Homemade_hummus_and_pita_03.jpg",
+      "restaurantId": "9"
+    },
+    {
+      "id": "117",
+      "title": "Izgara Levrek",
+      "desc": "Taze levrek ızgarada pişirilir, limon ve kekik ile servis edilir.",
+      "category": "Deniz Ürünleri",
+      "price": 649,
+      "rating": 4.8,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Grilled_sea_bass_%287906690230%29.jpg/960px-Grilled_sea_bass_%287906690230%29.jpg",
+      "restaurantId": "10",
+      "isPopular": true
+    },
+    {
+      "id": "118",
+      "title": "Karides Güveç",
+      "desc": "Karides, domates, biber ve baharatlar ile güveçte pişirilmiş karides.",
+      "category": "Deniz Ürünleri",
+      "price": 579,
+      "rating": 4.7,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Day_14-Istanbul-_Lunch_appetizer_is_awesome%21_Turkish_spices_in_shrimp_casserole_FTW%21_%28Most_food_has_been_so-so_at_best_so_far_this_trip...%29.jpg/960px-Day_14-Istanbul-_Lunch_appetizer_is_awesome%21_Turkish_spices_in_shrimp_casserole_FTW%21_%28Most_food_has_been_so-so_at_best_so_far_this_trip...%29.jpg",
+      "restaurantId": "10"
+    },
+    {
+      "id": "119",
+      "title": "Zeytinyağlı Enginar",
+      "desc": "Enginar, havuç ve bezelye ile zeytinyağında pişirilmiş soğuk meze.",
+      "category": "Zeytinyağlılar",
+      "price": 249,
+      "rating": 4.5,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Bakla_with_artichokes.jpg/960px-Bakla_with_artichokes.jpg",
+      "restaurantId": "11"
+    },
+    {
+      "id": "120",
+      "title": "Gözleme",
+      "desc": "İnce açılmış hamura peynir ve ıspanak konularak sacda pişirilen gözleme.",
+      "category": "Türk Mutfağı",
+      "price": 189,
+      "rating": 4.7,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/G%C3%B6zleme.JPG/960px-G%C3%B6zleme.JPG",
+      "restaurantId": "11",
+      "isPopular": true
+    },
+    {
+      "id": "121",
+      "title": "Izgara Köfte",
+      "desc": "Dana kıymadan elde yoğrulmuş, mangalda pişirilmiş köfte; yanında salata ve lavaş.",
+      "category": "Kebaplar",
+      "price": 349,
+      "rating": 4.6,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Turkish_koftes.jpg/960px-Turkish_koftes.jpg",
+      "restaurantId": "12",
+      "isPopular": true
+    },
+    {
+      "id": "122",
+      "title": "Ayran",
+      "desc": "Ev yapımı soğuk ayran.",
+      "category": "İçecekler",
+      "price": 49,
+      "rating": 4.3,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Ayran_and_social_responsability.jpg/960px-Ayran_and_social_responsability.jpg",
+      "restaurantId": "12"
+    },
+    {
+      "id": "123",
+      "title": "Klasik Burger",
+      "desc": "Dana köfte, marul, domates, turşu ve özel sos ile klasik burger.",
+      "category": "Burger",
+      "price": 319,
+      "rating": 4.5,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Big_Mac_hamburger.jpg/960px-Big_Mac_hamburger.jpg",
+      "restaurantId": "13",
+      "isPopular": true
+    },
+    {
+      "id": "124",
+      "title": "Cheeseburger",
+      "desc": "Dana köfte, çift kaşar peyniri, soğan ve ketçap ile cheeseburger.",
+      "category": "Burger",
+      "price": 359,
+      "rating": 4.6,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Cheeseburger_with_onions_at_Hatfield_Heath_Festival_2017.jpg/960px-Cheeseburger_with_onions_at_Hatfield_Heath_Festival_2017.jpg",
+      "restaurantId": "13"
+    },
+    {
+      "id": "125",
+      "title": "Patates Kızartması",
+      "desc": "Çıtır kızartılmış patates, tuz ve kekik ile servis edilir.",
+      "category": "Atıştırmalıklar",
+      "price": 139,
+      "rating": 4.4,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Cajun_fries_from_Popeyes_Louisiana_Kitchen%2C_Stratford%2C_Ontario%2C_2025-08-04.jpg/960px-Cajun_fries_from_Popeyes_Louisiana_Kitchen%2C_Stratford%2C_Ontario%2C_2025-08-04.jpg",
+      "restaurantId": "13"
+    }
+  ],
+  "cart": [
+    {
+      "id": "10",
+      "title": "Köri Tavuk",
+      "price": 419,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Chicken_Curry_9.jpg/960px-Chicken_Curry_9.jpg",
+      "restaurantId": "8",
+      "amount": 3
+    },
+    {
+      "id": "3",
+      "title": "Tavuk Kebabı",
+      "price": 449,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Tavuk_%C5%9Ei%C5%9F.jpg/960px-Tavuk_%C5%9Ei%C5%9F.jpg",
+      "restaurantId": "1",
+      "amount": 2
+    }
+  ]
+}

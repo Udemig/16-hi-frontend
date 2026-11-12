@@ -576,20 +576,20 @@
   ],
   "cart": [
     {
-      "id": "10",
-      "title": "Köri Tavuk",
-      "price": 419,
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Chicken_Curry_9.jpg/960px-Chicken_Curry_9.jpg",
-      "restaurantId": "8",
+      "id": "113",
+      "title": "Izgara Tavuk Göğsü",
+      "price": 299,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Grilled_chicken_breast%2C_Santo_Domingo%2C_La_Palma.jpg/960px-Grilled_chicken_breast%2C_Santo_Domingo%2C_La_Palma.jpg",
+      "restaurantId": "7",
       "amount": 3
     },
     {
-      "id": "3",
-      "title": "Tavuk Kebabı",
-      "price": 449,
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Tavuk_%C5%9Ei%C5%9F.jpg/960px-Tavuk_%C5%9Ei%C5%9F.jpg",
-      "restaurantId": "1",
-      "amount": 2
+      "id": "121",
+      "title": "Izgara Köfte",
+      "price": 349,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Turkish_koftes.jpg/960px-Turkish_koftes.jpg",
+      "restaurantId": "12",
+      "amount": 3
     }
   ]
 }

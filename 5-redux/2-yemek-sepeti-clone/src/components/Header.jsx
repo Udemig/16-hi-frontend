@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const { restaurants } = useSelector((store) => store.restaurantReducer);
+  const { cart } = useSelector((store) => store.cartReducer);
+
+  // sepetteki ürünlerin miktar değerlerini topla
+  const totalAmount = cart.reduce((total, item) => total + item.amount, 0);
 
   return (
     <header className="sticky top-0 z-20 border-b border-zinc-200/70 bg-white/80 backdrop-blur-md">
@@ -25,7 +29,7 @@ const Header = () => {
             >
               <ShoppingBasket className="size-5" />
 
-              <span className="font-semibold">??</span>
+              <span className="font-semibold">{totalAmount}</span>
             </Link>
           </div>
         </div>

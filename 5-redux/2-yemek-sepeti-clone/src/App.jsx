@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getRestaurants } from "./redux/actions/restaurantActions";
+import { getCart } from "./redux/actions/cartActions";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const App = () => {
   useEffect(() => {
     // api isteği at gelen cevaba göre reducer'a haber ver
     dispatch(getRestaurants());
+    dispatch(getCart());
   }, []);
 
   return (

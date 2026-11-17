@@ -4,8 +4,17 @@ import Footer from "./components/Footer";
 import WatchList from "./pages/watch-list";
 import Home from "./pages/home";
 import Movie from "./pages/movie";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getWatchList } from "./redux/actions";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getWatchList());
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen padding">

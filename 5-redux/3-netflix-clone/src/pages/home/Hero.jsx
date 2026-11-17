@@ -35,7 +35,7 @@ const Hero = () => {
       ) : error ? (
         <Error message={error} />
       ) : (
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8">
           <div className="flex flex-col gap-6 items-center justify-center">
             <h1 className="text-3xl md:text-4xl font-bold text-center">{movie.title}</h1>
 
@@ -54,7 +54,7 @@ const Hero = () => {
                 Filmi İzle
               </Link>
 
-              <WatchListButton />
+              <WatchListButton movie={movie} />
             </div>
           </div>
 

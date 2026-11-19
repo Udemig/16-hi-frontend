@@ -1,10 +1,11 @@
 import { ArrowRight, Volume2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setText, clear } from "../redux/slices/translateSlice";
+import Loader from "./Loader";
 
 const TextContainer = () => {
   const dispatch = useDispatch();
-  const { textToTranslate, translatedText, sourceLang, targetLang } = useSelector(
+  const { loading, textToTranslate, translatedText, sourceLang, targetLang } = useSelector(
     (store) => store.translateReducer,
   );
 
@@ -88,8 +89,8 @@ const TextContainer = () => {
           </label>
 
           <div className="flex items-center gap-3">
-            <button className="btn">
-              <Volume2 className="size-4" onClick={handleSpeakTarget} /> Seslendir
+            <button className="btn" onClick={handleSpeakTarget}>
+              <Volume2 className="size-4" /> Seslendir
             </button>
             <button
               className="btn"
@@ -103,8 +104,9 @@ const TextContainer = () => {
           </div>
         </div>
 
-        <div>
+        <div className="relative">
           <textarea id="answer" disabled value={translatedText}></textarea>
+          {loading && <Loader />}
         </div>
       </div>
     </div>

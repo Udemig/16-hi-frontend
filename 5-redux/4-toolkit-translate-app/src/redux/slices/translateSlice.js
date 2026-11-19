@@ -38,6 +38,9 @@ const translateSlice = createSlice({
       state.textToTranslate = "";
       state.translatedText = "";
     },
+    clearHistory: (state) => {
+      state.history = [];
+    },
   },
   // asenkron aksiyonlar
   extraReducers: (builder) => {
@@ -55,10 +58,23 @@ const translateSlice = createSlice({
       state.loading = false;
       state.error = null;
       state.translatedText = action.payload;
+
+      // son yapılan çeviriyi geçmiş dizisine ekle
+      if (action.payload) {
+        state.history.unshift({
+          id: Date.now(),
+          textToTranslate: state.textToTranslate,
+          translatedText: action.payload,
+          sourceLang: state.sourceLang.label,
+          targetLang: state.targetLang.label,
+          timestamp: new Date().toLocaleDateString(),
+        });
+      }
     });
   },
 });
 
-export const { setSourceLang, setTargetLang, setText, swap, clear } = translateSlice.actions;
+export const { setSourceLang, setTargetLang, setText, swap, clear, clearHistory } =
+  translateSlice.actions;
 
 export default translateSlice.reducer;

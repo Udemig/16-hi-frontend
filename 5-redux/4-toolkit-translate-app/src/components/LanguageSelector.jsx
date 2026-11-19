@@ -55,7 +55,7 @@ const LanguageSelector = () => {
         </div>
 
         {/* Değiştirme Butonu */}
-        <div className="grid place-items-center">
+        <div className="lg:self-end">
           <button
             disabled={sourceLang.label === "Dili Algıla"}
             onClick={() => dispatch(swap())}

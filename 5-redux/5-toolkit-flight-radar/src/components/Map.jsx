@@ -1,9 +1,10 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useSelector } from "react-redux";
 import PlaneMarker from "./PlaneMarker";
 import Modal from "./modal";
 import { useCallback, useState } from "react";
+import AirportMarker from "./AirportMarker";
 
 const Map = () => {
   // uçuş detay state'i
@@ -11,6 +12,7 @@ const Map = () => {
 
   // store'a abone ol
   const { flights, searchTerm } = useSelector((store) => store.flightReducer);
+  const { loading, info, route } = useSelector((store) => store.detailReducer);
 
   // aratılan kaliemeye göre filtrele
   const filtredFlights = searchTerm
@@ -43,6 +45,21 @@ const Map = () => {
             setDetailId={setDetailId}
           />
         ))}
+
+        {/* Kalkış Noktası */}
+        {!loading && detailId && info && info?.airport?.origin && (
+          <AirportMarker title="Kalkış" info={info.airport.origin} />
+        )}
+
+        {/* İniş Noktası */}
+        {!loading && detailId && info && info?.airport?.destination && (
+          <AirportMarker title="İniş" info={info.airport.destination} />
+        )}
+
+        {/* Uçuş Rotası */}
+        {!loading && detailId && route && (
+          <Polyline positions={route} pathOptions={{ color: "#4f39f6" }} />
+        )}
       </MapContainer>
 
       <Modal detailId={detailId} close={close} />

@@ -4,13 +4,20 @@ import Airport from "./Airport";
 import Time from "./Time";
 import Aircraft from "./Aircraft";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetails } from "../../redux/actions";
+import Loader from "./../Loader";
+import Error from "./../Error";
 
 const Modal = ({ detailId, close }) => {
-  // seçi uçuşun detayını al
+  const dispatch = useDispatch();
+  const { loading, error, info } = useSelector((store) => store.detailReducer);
+
+  // seçili uçuşun detayını al
   useEffect(() => {
     // dispatch
-    console.log(detailId);
-  });
+    dispatch(getDetails(detailId));
+  }, [detailId]);
 
   // esc tuşu ile kapat
   useEffect(() => {
@@ -29,17 +36,23 @@ const Modal = ({ detailId, close }) => {
   return (
     <div className="fixed top-0 left-0 h-screen flex items-center z-999999! max-sm:justify-center max-sm:inset-0 max-sm:backdrop-blur-xs">
       <div className="w-90 max-sm:w-[70%] min-h-9/12 ml-4 gradient text-white rounded-3xl flex flex-col p-5 shadow-2xl mt-10 overflow-y-auto">
-        <Head />
+        <Head loading={loading} error={error} info={info} close={close} />
 
-        <div className="flex-1 flex flex-col gap-5 mt-5 justify-between">
-          <div className="flex flex-col gap-5">
-            <Gallery />
-            <Airport />
-            <Time />
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Error message={error} retry={() => dispatch(getDetails(detailId))} />
+        ) : (
+          <div className="flex-1 flex flex-col gap-5 mt-5 justify-between">
+            <div className="flex flex-col gap-5">
+              <Gallery images={info?.aircraft?.images} />
+              <Airport airportData={info?.airport} />
+              <Time timeData={info?.time} />
+            </div>
+
+            <Aircraft aircraftData={info?.aircraft} />
           </div>
-
-          <Aircraft />
-        </div>
+        )}
       </div>
     </div>
   );

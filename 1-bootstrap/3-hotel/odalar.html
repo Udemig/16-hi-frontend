@@ -1,313 +1,220 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr" data-bs-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Odalar & Süitler | Grand Royal Hotel</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Odalar | Grand Royal Hotel</title>
+
     <!-- Bootstrap CSS -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe"
+      crossorigin="anonymous"
     />
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap JS (kaynak: getbootstrap.com/docs/6.0/getting-started/javascript → import map + ESM) -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@floating-ui/dom": "https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.7.6/dist/floating-ui.dom.esm.min.js",
+          "@floating-ui/core": "https://cdn.jsdelivr.net/npm/@floating-ui/core@1.7.5/dist/floating-ui.core.esm.min.js",
+          "@floating-ui/utils": "https://cdn.jsdelivr.net/npm/@floating-ui/utils@0.2.11/dist/floating-ui.utils.esm.min.js",
+          "@floating-ui/utils/dom": "https://cdn.jsdelivr.net/npm/@floating-ui/utils@0.2.11/dist/floating-ui.utils.dom.esm.min.js",
+          "vanilla-calendar-pro": "https://cdn.jsdelivr.net/npm/vanilla-calendar-pro@3.4.0/index.mjs",
+          "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.min.js"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as bootstrap from "bootstrap";
+    </script>
+
     <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Header -->
-    <header class="bg-dark-navy text-light py-1 small d-none d-md-block">
+    <!-- Üst bilgi çubuğu -->
+    <header class="bg-dark-navy fg-white py-1 small d-none md:d-block">
       <address class="container d-flex justify-content-between mb-0 fst-normal">
         <div>
-          <span class="me-3">
-            <i class="bi bi-geo-alt text-gold"></i> Monaco Sahil Bulvarı No: 624
-          </span>
-          <span><i class="bi bi-telephone text-gold"></i> +90 (850) 555 - ROYAL </span>
+          <span class="me-3"><i class="bi bi-geo-alt text-gold"></i> Monaco Sahil Bulvarı No: 624</span>
+          <span><i class="bi bi-telephone text-gold"></i> +90 (850) 555 - ROYAL</span>
         </div>
         <div>
-          <a href="#" class="text-light text-decoration-none me-2"
-            ><i class="bi bi-facebook"></i
-          ></a>
-          <a href="#" class="text-light text-decoration-none me-2"
-            ><i class="bi bi-instagram"></i
-          ></a>
-          <a href="#" class="text-light text-decoration-none me-2"
-            ><i class="bi bi-twitter-x"></i
-          ></a>
+          <a href="#" class="fg-white me-2"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="fg-white me-2"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="fg-white me-2"><i class="bi bi-twitter-x"></i></a>
         </div>
       </address>
     </header>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm py-2">
+    <!-- Navbar (Bootstrap 6 navbar + drawer, kaynak: getbootstrap.com/docs/6.0/components/navbar → "main/basic" örneği) -->
+    <nav class="navbar lg:navbar-expand bg-white sticky-top shadow-sm py-2">
       <div class="container">
-        <a class="navbar-brand fw-bold fs-4 text-dark d-flex align-items-center" href="#"
-          ><i class="bi bi-gem text-gold fs-3 me-2"></i>
-          <span class="font-serif">GRAND ROYAL</span></a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#nav"
-        >
-          <span class="navbar-toggler-icon"></span>
+        <a class="navbar-brand fw-bold fs-xl fg-body d-flex align-items-center" href="index.html">
+          <i class="bi bi-gem text-gold fs-2xl me-2"></i>
+          <span class="font-serif">GRAND ROYAL</span>
+        </a>
+        <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarDrawer" aria-controls="navbarDrawer" aria-expanded="false" aria-label="Menüyü aç">
+          <span class="navbar-toggler-icon" aria-hidden="true"></span>
         </button>
-        <div class="collapse navbar-collapse" id="nav">
-          <ul class="navbar-nav mx-auto fw-medium">
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="/index.html">Anasayfa</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active text-gold" href="/odalar.html">Odalar</a>
-            </li>
-            <li class="nav-item"><a class="nav-link text-dark" href="#about">Hakkımızda</a></li>
-            <li class="nav-item"><a class="nav-link text-dark" href="#services">Hizmetler</a></li>
-            <li class="nav-item"><a class="nav-link text-dark" href="#contact">İletişim</a></li>
-          </ul>
-          <a href="/odalar.html" class="btn btn-gold rounded-pill px-4 btn-sm fw-semibold"
-            >Rezervasyon Yap</a
-          >
-        </div>
+        <dialog class="drawer drawer-end" tabindex="-1" id="navbarDrawer" aria-labelledby="navbarDrawerLabel">
+          <div class="drawer-header">
+            <h5 class="drawer-title" id="navbarDrawerLabel">Menü</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Kapat"></button>
+          </div>
+          <div class="drawer-body">
+            <ul class="navbar-nav mx-auto fw-medium">
+              <li class="nav-item"><a class="nav-link fg-body" href="index.html">Anasayfa</a></li>
+              <li class="nav-item"><a class="nav-link active text-gold" aria-current="page" href="odalar.html">Odalar</a></li>
+              <li class="nav-item"><a class="nav-link fg-body" href="#about">Hakkımızda</a></li>
+              <li class="nav-item"><a class="nav-link fg-body" href="#services">Hizmetler</a></li>
+              <li class="nav-item"><a class="nav-link fg-body" href="#contact">İletişim</a></li>
+            </ul>
+            <a href="odalar.html" class="btn btn-gold rounded-pill px-4 btn-sm fw-semibold">Rezervasyon Yap</a>
+          </div>
+        </dialog>
       </div>
     </nav>
 
-    <!-- Ana İçerik -->
     <main>
-      <!-- Breadcrumb -->
-      <header class="bg-dark-navy text-white py-4">
+      <!-- Başlık -->
+      <header class="bg-dark-navy fg-white section-pad">
         <div class="container">
-          <nav>
-            <ol class="breadcrumb text-light">
-              <li class="breadcrumb-item">
-                <a href="index.html" class="text-gold">Anasayfa</a>
-              </li>
-              <li class="breadcrumb-item active text-light opacity-75">
-                <a href="odalar.html" class="text-light">Odalar</a>
-              </li>
-            </ol>
+          <nav class="small mb-2">
+            <a href="index.html" class="text-gold">Anasayfa</a> <span class="opacity-75">/ Odalar</span>
           </nav>
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <h1 class="display-6 fw-bold font-serif mb-1">Lüks Odalar & Süitler</h1>
-              <p class="text-light opacity-75 small mb-0">
-                En iyi konfor için tasarlanmış özel süitlerimiz.
-              </p>
+              <h1 class="text-4xl fw-bold font-serif mb-1">Lüks Odalar & Süitler</h1>
+              <p class="opacity-75 small mb-0">En iyi konfor için tasarlanmış özel süitlerimiz.</p>
             </div>
-            <span class="badge bg-gold px-3 py-2 rounded-pill d-none d-md-inline"
-              >En İyi Fiyat Garantisi</span
-            >
+            <span class="badge bg-gold px-3 py-2 rounded-pill d-none md:d-inline">En İyi Fiyat Garantisi</span>
           </div>
         </div>
       </header>
 
-      <!-- Alert -->
-      <div class="container mt-3 popup">
-        <div
-          role="alert"
-          class="alert alert-warning alert-dismissible fade show border-0 shadow-sm rounded-4 p-3 d-flex align-items-center pe-5"
-        >
-          <i class="bi bi-percent fs-3 text-warning-emphasis me-3"></i>
-          <div class="small">
-            <strong>Özel Sezon İndirimi!</strong> 3 gece ve üzeri konaklamalarda %20 indirim. Kod:
-            <span class="badge bg-dark text-gold">LUXURY20</span>
-          </div>
-          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-      </div>
-
-      <!-- Filtreleme Formu -->
-      <section class="container py-2">
+      <!-- Filtre -->
+      <section class="container section-pad-sm">
         <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
-          <form class="row g-2 align-items-end">
-            <div class="col-md-4 col-sm-6">
-              <label class="form-label small fw-semibold text-dark">Oda Tipi</label>
-              <select class="form-select form-select-sm rounded-3">
-                <option selected>Tüm Kategoriler</option>
-                <option>Deluxe Süt</option>
-                <option>Başkanlık Çatı Katı</option>
-                <option>Bahçe Villası</option>
-              </select>
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <label class="form-label small fw-semibold text-dark">Fiyat Aralığı</label>
-              <select class="form-select form-select-sm rounded-3">
-                <option selected>Tüm Fiyatlar</option>
-                <option>3.000 ₺ - 5.000 ₺</option>
-                <option>5.000 ₺ ve üzeri</option>
-              </select>
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <label class="form-label small fw-semibold text-dark">Misafir</label>
-              <select class="form-select form-select-sm rounded-3">
-                <option selected>Fark Etmez</option>
-                <option>1 - 2 Kişi</option>
-                <option>3+ Kişi (Aile)</option>
-              </select>
-            </div>
-            <div class="col-md-2 col-sm-6 d-grid">
-              <button class="btn btn-gold btn-sm rounded-3 fw-medium">Filtrele</button>
-            </div>
-          </form>
+        <form class="row g-2 align-items-end">
+          <div class="md:col-4 sm:col-6">
+            <label class="form-label small fw-semibold">Oda Tipi</label>
+            <select class="form-control">
+              <option selected>Tüm Kategoriler</option>
+              <option>Deluxe Süit</option>
+              <option>Başkanlık Çatı Katı</option>
+              <option>Bahçe Villası</option>
+            </select>
+          </div>
+          <div class="md:col-3 sm:col-6">
+            <label class="form-label small fw-semibold">Fiyat Aralığı</label>
+            <select class="form-control">
+              <option selected>Tüm Fiyatlar</option>
+              <option>3.000 ₺ - 5.000 ₺</option>
+              <option>5.000 ₺ ve üzeri</option>
+            </select>
+          </div>
+          <div class="md:col-3 sm:col-6">
+            <label class="form-label small fw-semibold">Misafir</label>
+            <select class="form-control">
+              <option selected>Fark Etmez</option>
+              <option>1 - 2 Kişi</option>
+              <option>3+ Kişi (Aile)</option>
+            </select>
+          </div>
+          <div class="md:col-2 sm:col-6">
+            <button class="btn btn-gold w-100 rounded-3">Filtrele</button>
+          </div>
+        </form>
         </div>
       </section>
 
       <!-- Oda Kartları -->
-      <section class="container py-3">
+      <section class="container pb-3">
         <div class="row g-4">
-          <!-- Oda 1 -->
-          <div class="col-lg-4 col-md-6">
-            <article
-              class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift bg-white"
-            >
-              <div class="relative">
-                <img
-                  src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80"
-                  class="card-img-top room-img"
-                />
-                <span class="badge bg-gold position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill"
-                  >Popüler</span
-                >
+          <div class="lg:col-4 md:col-6">
+            <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift bg-white">
+              <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80" class="card-img-top room-img" alt="Deluxe süit" />
+                <span class="badge bg-gold position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill">Popüler</span>
               </div>
-              <div class="card-body p-4 d-flex flex-column">
-                <h2 class="card-title h5 fw-bold font-serif text-dark mb-1">
-                  Deluxe Deniz Manzaralı Süit
-                </h2>
-                <p class="card-text text-secondary small mb-3">
-                  Panoramik Akdeniz manzarası ve geniş özel balkon.
-                </p>
-
-                <ul class="list-group list-group-flush small mb-3">
-                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
-                    <i class="bi bi-check-circle-fill text-gold me-2"></i> King Size Ortopedik Yatak
-                  </li>
-                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
-                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Jakuzili Mermer Banyo
-                  </li>
-                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
-                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Yüksek Hızlı Wi-Fi
-                  </li>
+              <div class="card-body card-pad d-flex flex-column">
+                <h2 class="h5 fw-bold font-serif fg-body mb-1">Deluxe Deniz Manzaralı Süit</h2>
+                <p class="fg-secondary small mb-3">Panoramik Akdeniz manzarası ve geniş özel balkon.</p>
+                <ul class="list-unstyled small mb-3">
+                  <li class="py-1"><i class="bi bi-check-circle-fill text-gold me-2"></i>King Size Ortopedik Yatak</li>
+                  <li class="py-1"><i class="bi bi-check-circle-fill text-gold me-2"></i>Jakuzili Mermer Banyo</li>
+                  <li class="py-1"><i class="bi bi-check-circle-fill text-gold me-2"></i>Yüksek Hızlı Wi-Fi</li>
                 </ul>
-
-                <footer class="mt-auto pt-2 border-top">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="fs-5 fw-bold text-dark"
-                      >3.500 ₺ <small class="text-muted fs-6 fw-normal">/gece</small></span
-                    >
-                  </div>
+                <div class="mt-auto pt-2 border-top">
+                  <p class="fs-xl fw-bold mb-2">3.500 ₺ <small class="fg-secondary fs-md fw-normal">/gece</small></p>
                   <div class="d-flex gap-2">
-                    <button class="btn btn-outline-dark btn-sm w-50 rounded-pill">Detaylar</button>
+                    <button class="btn btn-outline btn-sm w-50 rounded-pill">Detaylar</button>
                     <button class="btn btn-gold btn-sm w-50 rounded-pill">Ayırt</button>
                   </div>
-                </footer>
+                </div>
               </div>
             </article>
           </div>
-          <!-- Oda 2 -->
-          <div class="col-lg-4 col-md-6">
-            <article
-              class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift bg-white"
-            >
-              <div class="relative">
-                <img
-                  src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80"
-                  class="card-img-top room-img"
-                />
-                <span class="badge bg-dark position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill"
-                  >Vip Süit</span
-                >
+          <div class="lg:col-4 md:col-6">
+            <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift bg-white">
+              <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" class="card-img-top room-img" alt="Çatı katı" />
+                <span class="badge bg-dark position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill">Vip Süit</span>
               </div>
-              <div class="card-body p-4 d-flex flex-column">
-                <h2 class="card-title h5 fw-bold font-serif text-dark mb-1">
-                  Kraliyet Başkanlık Çatı Katı
-                </h2>
-                <p class="card-text text-secondary small mb-3">
-                  Özel ısıtmalı çatı teras havuzu ve 7/24 kişisel uşak.
-                </p>
-
-                <ul class="list-group list-group-flush small mb-3">
-                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
-                    <i class="bi bi-check-circle-fill text-gold me-2"></i> 7/24 Kişisel Uşak Servisi
-                  </li>
-                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
-                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Özel Isıtmalı Çatı Havuzu
-                  </li>
-                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
-                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Ücretsiz Şampanya İkramı
-                  </li>
+              <div class="card-body card-pad d-flex flex-column">
+                <h2 class="h5 fw-bold font-serif fg-body mb-1">Kraliyet Başkanlık Çatı Katı</h2>
+                <p class="fg-secondary small mb-3">Özel ısıtmalı çatı teras havuzu ve 7/24 kişisel uşak.</p>
+                <ul class="list-unstyled small mb-3">
+                  <li class="py-1"><i class="bi bi-check-circle-fill text-gold me-2"></i>7/24 Kişisel Uşak Servisi</li>
+                  <li class="py-1"><i class="bi bi-check-circle-fill text-gold me-2"></i>Özel Isıtmalı Çatı Havuzu</li>
+                  <li class="py-1"><i class="bi bi-check-circle-fill text-gold me-2"></i>Ücretsiz Şampanya İkramı</li>
                 </ul>
-
-                <footer class="mt-auto pt-2 border-top">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="fs-5 fw-bold text-dark"
-                      >8.900 ₺ <small class="text-muted fs-6 fw-normal">/gece</small></span
-                    >
-                  </div>
+                <div class="mt-auto pt-2 border-top">
+                  <p class="fs-xl fw-bold mb-2">8.900 ₺ <small class="fg-secondary fs-md fw-normal">/gece</small></p>
                   <div class="d-flex gap-2">
-                    <button class="btn btn-outline-dark btn-sm w-50 rounded-pill">Detaylar</button>
+                    <button class="btn btn-outline btn-sm w-50 rounded-pill">Detaylar</button>
                     <button class="btn btn-gold btn-sm w-50 rounded-pill">Ayırt</button>
                   </div>
-                </footer>
+                </div>
               </div>
             </article>
           </div>
-          <!-- Oda 3 -->
-          <div class="col-lg-4 col-md-6">
-            <article
-              class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift bg-white"
-            >
-              <div class="relative">
-                <img
-                  src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=600&q=80"
-                  class="card-img-top room-img"
-                />
-                <span
-                  class="badge bg-success position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill"
-                  >Yeni</span
-                >
+          <div class="lg:col-4 md:col-6">
+            <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-lift bg-white">
+              <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=600&q=80" class="card-img-top room-img" alt="Bahçe villası" />
+                <span class="badge bg-success position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill">Yeni</span>
               </div>
-              <div class="card-body p-4 d-flex flex-column">
-                <h2 class="card-title h5 fw-bold font-serif text-dark mb-1">
-                  Executive Bahçe Villası
-                </h2>
-                <p class="card-text text-secondary small mb-3">
-                  Botanik bahçe içinde açık hava yağmur duşu ve kamelya.
-                </p>
-
-                <ul class="list-group list-group-flush small mb-3">
-                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
-                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Özel Bahçe Güneşlenme
-                    Alanı
-                  </li>
-                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
-                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Açık Hava Yağmur Duşu
-                  </li>
-                  <li class="list-group-item px-0 py-1 border-0 text-secondary">
-                    <i class="bi bi-check-circle-fill text-gold me-2"></i> Organik Kahvaltı Sepeti
-                  </li>
+              <div class="card-body card-pad d-flex flex-column">
+                <h2 class="h5 fw-bold font-serif fg-body mb-1">Executive Bahçe Villası</h2>
+                <p class="fg-secondary small mb-3">Botanik bahçe içinde açık hava yağmur duşu ve kamelya.</p>
+                <ul class="list-unstyled small mb-3">
+                  <li class="py-1"><i class="bi bi-check-circle-fill text-gold me-2"></i>Özel Bahçe Güneşlenme Alanı</li>
+                  <li class="py-1"><i class="bi bi-check-circle-fill text-gold me-2"></i>Açık Hava Yağmur Duşu</li>
+                  <li class="py-1"><i class="bi bi-check-circle-fill text-gold me-2"></i>Organik Kahvaltı Sepeti</li>
                 </ul>
-
-                <footer class="mt-auto pt-2 border-top">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="fs-5 fw-bold text-dark"
-                      >4.900 ₺ <small class="text-muted fs-6 fw-normal">/gece</small></span
-                    >
-                  </div>
+                <div class="mt-auto pt-2 border-top">
+                  <p class="fs-xl fw-bold mb-2">4.900 ₺ <small class="fg-secondary fs-md fw-normal">/gece</small></p>
                   <div class="d-flex gap-2">
-                    <button class="btn btn-outline-dark btn-sm w-50 rounded-pill">Detaylar</button>
+                    <button class="btn btn-outline btn-sm w-50 rounded-pill">Detaylar</button>
                     <button class="btn btn-gold btn-sm w-50 rounded-pill">Ayırt</button>
                   </div>
-                </footer>
+                </div>
               </div>
             </article>
           </div>
         </div>
 
-        <!-- Pagination - Sayfalama -->
+        <!-- Sayfalama -->
         <nav class="d-flex justify-content-center my-5">
           <ul class="pagination">
             <li class="page-item disabled"><a class="page-link" href="#">Geri</a></li>
@@ -317,128 +224,73 @@
             <li class="page-item"><a class="page-link" href="#">İleri</a></li>
           </ul>
         </nav>
+      </section>
 
-        <!-- Otel Olanakları -->
-        <section class="py-5 bg-white border-top">
-          <div class="container">
-            <header class="text-center mb-4">
-              <h2 class="display-6 fw-bold font-serif text-dark">Otel Olanakları</h2>
-              <p class="text-secondary small">Konaklamanıza dahil olan ayrıcalıklar.</p>
-            </header>
-
-            <div class="row justify-content-center">
-              <div class="col-lg-8">
-                <div class="accordion" id="accordionExample">
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button
-                        class="accordion-button"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne"
-                      >
-                        <i class="bi bi-flower1 text-gold me-2"></i> 1. Lüks Spa & Türk Hamamı
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseOne"
-                      class="accordion-collapse collapse show"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div class="accordion-body">
-                        Bütünsel organik aromaterapiler, geleneksel Türk hamamı ve Fin saunası ile
-                        yenilenin.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button
-                        class="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo"
-                      >
-                        <i class="bi bi-cup-hot me-2 text-gold"></i>
-                        2. Michelin Yıldızlı Restoran
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseTwo"
-                      class="accordion-collapse collapse"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div class="accordion-body">
-                        Ödüllü şeflerimizin hazırladığı taze Akdeniz lezzetleri ve seçkin şarap
-                        mahzeni.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button
-                        class="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree"
-                      >
-                        <i class="bi bi-water text-gold me-2"></i> 3. Isıtmalı Sonsuzluk Havuzu
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseThree"
-                      class="accordion-collapse collapse"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div class="accordion-body">
-                        Akdeniz manzaralı sonsuzluk havuzumuzda havlu servisi ve kokteyller
-                        eşliğinde dinlenin.
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      <!-- Otel Olanakları -->
+      <section class="section-pad bg-white">
+        <div class="container">
+          <div class="text-center mb-4">
+            <span class="text-gold fw-bold text-uppercase small">Olanaklar</span>
+            <h2 class="text-4xl fw-bold font-serif fg-body">Otel Olanakları</h2>
+          </div>
+          <div class="row justify-content-center">
+            <div class="lg:col-8">
+              <!--
+                Kaynak: getbootstrap.com/docs/6.0/components/accordion → "main/basic" örneği.
+                Yapı ve sınıflar aynen alındı; sadece başlıklar ve metinler değiştirildi.
+              -->
+              <div class="accordion">
+                <details class="accordion-item" name="olanak" open>
+                  <summary class="accordion-header">
+                    Spa & Wellness
+                    <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+                  </summary>
+                  <div class="accordion-body">Türk hamamı, masaj salonları ve sauna. Tüm misafirlere açıktır.</div>
+                </details>
+                <details class="accordion-item" name="olanak">
+                  <summary class="accordion-header">
+                    Gurme Restoranlar
+                    <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+                  </summary>
+                  <div class="accordion-body">Michelin yıldızlı şeflerimizle akşam yemeği ve oda servisi.</div>
+                </details>
+                <details class="accordion-item" name="olanak">
+                  <summary class="accordion-header">
+                    VIP Transfer
+                    <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+                  </summary>
+                  <div class="accordion-body">Havalimanından Maybach ile karşılama ve helikopter transferi.</div>
+                </details>
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-black text-light py-4">
+    <footer class="bg-black fg-white site-footer">
       <div class="container">
         <div class="row g-4">
-          <section class="col-md-4">
-            <h5 class="font-serif text-white">
-              <i class="bi bi-gem text-gold me-2"></i>GRAND ROYAL
-            </h5>
-            <p class="text-secondary small mb-0">Akdeniz kıyısında 5 yıldızlı lüks konaklama.</p>
-          </section>
-
-          <nav class="col-md-4">
-            <h6 class="text-white mb-2">Hızlı Linkler</h6>
+          <div class="md:col-4">
+            <h5 class="font-serif"><i class="bi bi-gem text-gold me-2"></i>GRAND ROYAL</h5>
+            <p class="fg-secondary small mb-0">Akdeniz kıyısında 5 yıldızlı lüks konaklama.</p>
+          </div>
+          <nav class="md:col-4">
+            <h6 class="mb-2">Hızlı Linkler</h6>
             <ul class="list-unstyled small mb-0">
-              <li>
-                <a href="index.html" class="text-secondary text-decoration-none">Ana Sayfa</a>
-              </li>
-              <li><a href="odalar.html" class="text-secondary text-decoration-none">Odalar</a></li>
-              <li><a href="#about" class="text-secondary text-decoration-none">Hakkımızda</a></li>
+              <li><a href="index.html" class="fg-secondary">Ana Sayfa</a></li>
+              <li><a href="odalar.html" class="fg-secondary">Odalar</a></li>
             </ul>
           </nav>
-
-          <address class="col-md-4 mb-0">
-            <h6 class="text-white">İletişim</h6>
-            <p class="text-secondary small mb-0">
-              <i class="bi bi-telephone text-gold me-2"></i>+90 (850) 555-ROYAL
-            </p>
-            <p class="text-secondary small mb-0">
-              <i class="bi bi-envelope text-gold me-2"></i> rezervasyon@grandroyalhotel.com
-            </p>
+          <address class="md:col-4 mb-0">
+            <h6>İletişim</h6>
+            <p class="fg-secondary small mb-0"><i class="bi bi-telephone text-gold me-2"></i>+90 (850) 555-ROYAL</p>
+            <p class="fg-secondary small mb-0"><i class="bi bi-envelope text-gold me-2"></i>rezervasyon@grandroyalhotel.com</p>
           </address>
         </div>
-
         <hr />
-        <div class="text-center small text-secondary">&copy; 2026 Grand Royal Luxurt Hotel.</div>
+        <div class="text-center small fg-secondary">&copy; 2026 Grand Royal Luxury Hotel.</div>
       </div>
     </footer>
   </body>

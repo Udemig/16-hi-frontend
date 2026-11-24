@@ -21,3 +21,12 @@ export const getFligts = createAsyncThunk("flight/getFlights", async () => {
   // aksiyonun payload'ını return et
   return formatted;
 });
+
+// Thunk Akisyonu
+export const getDetails = createAsyncThunk("detail/getDetails", async (id) => {
+  // api isteği at
+  const res = await api.get("/flights/detail", { params: { flight: id } });
+
+  // paylod return
+  return res.data;
+});

@@ -1,23 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap");
 
-body {
-  font-family: "Inter", sans-serif;
-  color: #f8f9fa;
-  background: #050e2d;
-  overflow-x: hidden;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.navbar-brand {
-  font-family: "Outfit", sans-serif;
-}
-
-/* Renkler */
 :root {
   --rb-navy: #0a1e5e;
   --rb-dark-navy: #050e2d;
@@ -25,89 +7,78 @@ h6,
   --rb-yellow: #f4c114;
 }
 
-.bg-navy {
-  background: var(--rb-navy);
-}
-.bg-dark-navy {
+body {
+  font-family: "Inter", sans-serif;
+  color: #f8f9fa;
   background: var(--rb-dark-navy);
+  overflow-x: hidden;
 }
-.bg-black {
-  background: #000000 !important;
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+  font-family: "Outfit", sans-serif;
 }
-.text-navy {
-  color: var(--rb-navy);
-}
-.text-yellow {
-  color: var(--rb-yellow);
-}
-.text-red {
-  color: var(--rb-red);
-}
+
+/* Renk ve yazı yardımcıları */
+.bg-navy { background: var(--rb-navy); }
+.bg-dark-navy { background: var(--rb-dark-navy); }
+.text-navy { color: var(--rb-navy); }
+.text-yellow { color: var(--rb-yellow); }
+.fw-black { font-weight: 900; }
+.tracking-wide { letter-spacing: 0.1em; }
+.spacing { padding-block: 6rem; }
 
 /* Navbar */
-.navbar {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-}
-
 .navbar-nav .nav-link {
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.85rem;
   letter-spacing: 1px;
   margin-left: 1rem;
-  transition: color 0.3s ease;
 }
 
-.navbar-nav .nav-link:hover {
+.navbar-nav .nav-link:hover,
+footer .links a:hover {
   color: var(--rb-yellow) !important;
 }
 
-/* Buttons */
+/* Butonlar: hover sadece renk değiştirir; ana ekranda hover yok */
+.btn-red,
+.btn-outline-light {
+  border-width: 2px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
 .btn-red {
   background: var(--rb-red);
   border-color: var(--rb-red);
   color: #fff;
-  transition: all 0.3s ease;
 }
 
 .btn-red:hover {
   background: #c01428;
   border-color: #c01428;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(229, 26, 49, 0.4);
 }
 
 .btn-outline-light {
-  border-width: 2px;
-  transition: all 0.3s ease;
+  background: transparent;
+  border-color: #f8f9fa;
+  color: #f8f9fa;
 }
 
-.btn-outline-light:hover {
-  background: #fff;
-  color: var(--rb-navy);
-  transform: translateY(-2px);
+.hero-section .btn-red:hover {
+  background: var(--rb-red);
+  border-color: var(--rb-red);
 }
 
-/* Yazı */
-.fw-black {
-  font-weight: 900;
-}
-.spacing {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
-.tracking-wide {
-  letter-spacing: 0.1em;
+.hero-section .btn-outline-light:hover {
+  background: transparent;
+  color: #f8f9fa;
 }
 
 /* Hero */
 .hero-section {
   min-height: 100vh;
-  background-image: url("/images/hero.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /*parallax effect*/
+  background: url("/images/hero.jpg") center / cover fixed;
   position: relative;
 }
 
@@ -116,29 +87,22 @@ h6,
 }
 
 .hero-overlay {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
     to right,
     rgba(5, 14, 45, 0.95) 0%,
     rgba(5, 14, 45, 0.6) 50%,
     rgba(5, 14, 45, 0.1) 100%
   );
-  position: absolute;
-  inset: 0;
 }
 
-/* Card */
+/* Kartlar */
 .stat-card {
   background: linear-gradient(145deg, rgba(10, 30, 94, 0.6), rgba(5, 14, 45, 0.9));
   border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
 }
 
-.stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* Pilotlar */
 .line {
   width: 60px;
   height: 4px;
@@ -146,95 +110,26 @@ h6,
   border-radius: 2px;
 }
 
-#drivers .card {
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-#drivers .card:hover {
-  transform: translateY(-10px);
-}
-
 .driver-number {
   position: absolute;
   top: -40px;
   right: 20px;
   font-size: 4rem;
-  font-family: "Outfit", "sans-serif";
+  font-family: "Outfit", sans-serif;
   font-weight: 900;
   color: rgba(255, 255, 255, 0.1);
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
 }
 
-/* Araç */
-#car img {
-  transition: transform 0.5s ease;
-}
-
-#car img:hover {
-  transform: scale(1.02);
-}
-
-/* Neden Red Bull ? */
-.feature-card {
-  transition: transform 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-}
-
 /* Sponsorlar */
 .sponsor {
+  background-color: #f8f9fa;
   filter: grayscale(100%);
   opacity: 0.7;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.sponsor:hover {
-  filter: grayscale(0%);
-  opacity: 1;
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* S.S.S */
-.accordion .accordion-item {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.accordion .accordion-button {
-  box-shadow: none;
-}
-
-.accordion .accordion-button:not(.collapsed) {
+/* SSS: açık madde vurgusu */
+.accordion-item[open] > .accordion-header {
   background-color: var(--rb-navy);
-  color: var(--rb-yellow) !important;
-}
-
-.accordion .accordion-button::after {
-  filter: invert(1);
-}
-
-/* İletişim */
-.form-control {
-  padding: 12px 15px;
-}
-
-.form-control::placeholder {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.form-control:focus {
-  background: var(--rb-dark-navy);
-  border-color: var(--rb-red) !important;
-}
-
-/* Footer */
-footer .links a:hover {
   color: var(--rb-yellow) !important;
 }

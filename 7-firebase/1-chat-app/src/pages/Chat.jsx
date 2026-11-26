@@ -1,8 +1,18 @@
+import { useOutletContext, useParams } from "react-router-dom";
+import Head from "../components/Chat/Head";
+import Form from "../components/Chat/Form";
+import Messages from "./../components/Chat/Messages";
+
 const Chat = () => {
+  const user = useOutletContext();
+  const { room } = useParams();
+
   return (
-    <div className="wrapper">
-      <div className="box flex flex-col items-center justify-center">
-        <h1 className="text-4xl">Chat Sayfası</h1>
+    <div className="h-screen md:grid md:place-items-center">
+      <div className="bg-white text-dark w-full md:w-[80vw] lg:w-[60vw] xl:w-[50vw] h-screen md:h-[80vh] md:rounded-md overflow-hidden flex flex-col">
+        <Head username={user.displayName} photo={user.photoURL} room={room} />
+        <Messages user={user} room={room} />
+        <Form user={user} room={room} />
       </div>
     </div>
   );
